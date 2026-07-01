@@ -68,9 +68,13 @@
     "nuxt-auth-utils": "^0.5.29"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.102",
+    "@iconify-json/radix-icons": "^1.2.6",
+    "@iconify-json/tabler": "^1.2.33",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@types/node": "^24.1.0",
+    "@unocss/nuxt": "^66.7.4",
     "@vue/eslint-config-typescript": "^13.0.0",
     "drizzle-kit": "^0.31.10",
     "eslint": "^8.57.0",

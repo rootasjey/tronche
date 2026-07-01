@@ -1,98 +1,90 @@
 <template>
-  <div class="home">
-    <section class="hero">
-      <h1 class="hero-title">
+  <div>
+    <section class="text-center px-5 pt-20 pb-15 max-w-240 mx-auto">
+      <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
         Des avatars<br />
-        <span class="hero-highlight">qui ont de la gueule</span>
+        <span class="bg-gradient-to-r from-primary to-[#FF8A5C] bg-clip-text text-transparent">qui ont de la gueule</span>
       </h1>
-      <p class="hero-sub">
-        Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.
-      </p>
+      <p class="text-$muted text-lg mb-10">Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.</p>
 
-      <div class="hero-demo">
-        <div class="demo-avatars">
-          <div v-for="s in samples" :key="s.name" class="demo-avatar-card">
-            <img :src="`/api/avatar/${s.name}?variant=${s.variant}&size=80`" :alt="s.name" width="80" height="80" />
-            <span class="demo-name">{{ s.name }}</span>
-          </div>
+      <div class="flex justify-center gap-5 flex-wrap mb-10">
+        <div v-for="s in samples" :key="s.name" class="flex flex-col items-center gap-2">
+          <img :src="`/api/avatar/${s.name}?variant=${s.variant}&size=80`" :alt="s.name" width="80" height="80" class="rounded-full bg-$surface" />
+          <span class="text-xs text-$muted">{{ s.name }}</span>
         </div>
       </div>
 
-      <div class="hero-actions">
-        <NuxtLink to="#playground" class="btn-primary">Essayer</NuxtLink>
-        <a href="https://github.com/rootasjey/tronche" class="btn-secondary" target="_blank">GitHub</a>
+      <div class="flex justify-center gap-3">
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
+        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-[#1e1e22] text-white font-semibold text-sm no-underline hover:border-white transition-colors">GitHub</a>
       </div>
     </section>
 
-    <section id="playground" class="section">
-      <div class="section-header">
-        <h2>Playground</h2>
-        <p>Customisez votre avatar en direct</p>
+    <section id="playground" class="px-5 py-15 max-w-240 mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-2">Playground</h2>
+        <p class="text-$muted">Customisez votre avatar en direct</p>
       </div>
 
-      <div class="playground">
-        <div class="playground-preview">
-          <div class="preview-avatar">
-            <img :src="previewUrl" alt="avatar" width="200" height="200" />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="text-center sticky top-20">
+          <div class="w-50 h-50 mx-auto mb-4">
+            <img :src="previewUrl" alt="avatar" width="200" height="200" class="w-full h-full rounded-full bg-$surface" />
           </div>
-          <p class="preview-name">{{ name || '—' }}</p>
-          <button class="btn-primary btn-sm" @click="download">Télécharger SVG</button>
+          <p class="text-$muted text-sm mb-4">{{ name || '—' }}</p>
+          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
         </div>
 
-        <div class="playground-controls">
-          <div class="control-group">
-            <label>Nom</label>
-            <input v-model="name" type="text" class="input" placeholder="Entrez un nom..." />
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-$muted uppercase tracking-wide">Nom</label>
+            <input v-model="name" type="text" placeholder="Entrez un nom..." class="px-3.5 py-2.5 rounded-xl bg-$surface border border-[#1e1e22] text-white text-sm outline-none transition-colors focus:border-primary" />
           </div>
 
-          <div class="control-group">
-            <label>Variant</label>
-            <div class="variant-grid">
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-$muted uppercase tracking-wide">Variant</label>
+            <div class="grid grid-cols-3 gap-2">
               <button
                 v-for="v in variants"
                 :key="v"
-                class="variant-btn"
-                :class="{ active: variant === v }"
+                class="flex flex-col items-center gap-1 p-2 rounded-xl bg-$surface border-2 border-transparent cursor-pointer transition-colors"
+                :class="variant === v ? '!border-primary' : 'hover:border-[#1e1e22]'"
                 @click="variant = v"
               >
-                <img :src="`/api/avatar/${name}?variant=${v}&size=40`" :alt="v" width="40" height="40" />
-                <span>{{ v }}</span>
+                <img :src="`/api/avatar/${name}?variant=${v}&size=40`" :alt="v" width="40" height="40" class="rounded-full" />
+                <span class="text-xs text-$muted">{{ v }}</span>
               </button>
             </div>
           </div>
 
-          <div class="control-group">
-            <label>Taille : {{ size }}px</label>
-            <input v-model.number="size" type="range" min="40" max="400" class="range" />
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-$muted uppercase tracking-wide">Taille : {{ size }}px</label>
+            <input v-model.number="size" type="range" min="40" max="400" class="w-full accent-primary" />
           </div>
 
-          <div class="control-group row">
-            <label class="checkbox-label">
-              <input v-model="square" type="checkbox" />
-              Carré
-            </label>
-          </div>
+          <label class="flex items-center gap-2 text-sm cursor-pointer">
+            <input v-model="square" type="checkbox" class="accent-primary" />
+            Carré
+          </label>
         </div>
       </div>
     </section>
 
-    <section class="section section-api">
-      <div class="section-header">
-        <h2>API gratuite</h2>
-        <p>Intégration simple, résultat immédiat</p>
+    <section class="px-5 py-15 max-w-240 mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-2">API gratuite</h2>
+        <p class="text-$muted">Intégration simple, résultat immédiat</p>
       </div>
 
-      <div class="code-block">
-        <pre>&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&size=80" /&gt;</pre>
-        <button class="btn-copy" @click="copyCode">Copier</button>
+      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-$surface border border-[#1e1e22] mb-4 overflow-x-auto">
+        <code class="text-sm font-mono whitespace-pre shrink-0">&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&amp;size=80" /&gt;</code>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
       </div>
 
-      <div class="api-demo">
-        <div class="api-params">
-          <div class="param"><code>variant</code><span>marble, beam, pixel, sunset, ring, bauhaus</span></div>
-          <div class="param"><code>size</code><span>16 – 512</span></div>
-          <div class="param"><code>square</code><span>true | false</span></div>
-          <div class="param"><code>colors</code><span>liste de couleurs hex séparées par des virgules</span></div>
+      <div class="flex flex-col gap-2">
+        <div v-for="p in params" :key="p[0]" class="flex gap-3 text-sm p-3 rounded-lg bg-$surface">
+          <code class="text-primary font-mono min-w-20">{{ p[0] }}</code>
+          <span class="text-$muted">{{ p[1] }}</span>
         </div>
       </div>
     </section>
@@ -116,12 +108,19 @@ const samples = [
   { name: 'Manon', variant: 'bauhaus' },
 ]
 
+const params = [
+  ['variant', 'marble, beam, pixel, sunset, ring, bauhaus'],
+  ['size', '16 – 512'],
+  ['square', 'true | false'],
+  ['colors', 'liste de couleurs hex séparées par des virgules'],
+]
+
 const previewUrl = computed(() => {
   const base = `/api/avatar/${encodeURIComponent(name.value || '?')}`
-  const params = new URLSearchParams({ variant: variant.value })
-  if (size.value !== 200) params.set('size', String(size.value))
-  if (square.value) params.set('square', 'true')
-  return `${base}?${params}`
+  const p = new URLSearchParams({ variant: variant.value })
+  if (size.value !== 200) p.set('size', String(size.value))
+  if (square.value) p.set('square', 'true')
+  return `${base}?${p}`
 })
 
 function download() {
@@ -135,315 +134,3 @@ function copyCode() {
   navigator.clipboard.writeText(`<img src="https://tronche.app/api/avatar/${encodeURIComponent(name.value || 'avatar')}?variant=${variant.value}&size=80" />`)
 }
 </script>
-
-<style scoped>
-.hero {
-  text-align: center;
-  padding: 80px 20px 60px;
-  max-width: var(--max-w);
-  margin: 0 auto;
-}
-
-.hero-title {
-  font-size: 3rem;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-}
-
-.hero-highlight {
-  background: linear-gradient(135deg, var(--c-accent), #FF8A5C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-sub {
-  color: var(--c-muted);
-  font-size: 1.1rem;
-  margin-bottom: 40px;
-}
-
-.hero-demo {
-  margin-bottom: 40px;
-}
-
-.demo-avatars {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.demo-avatar-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.demo-avatar-card img {
-  border-radius: 50%;
-  background: var(--c-surface);
-}
-
-.demo-name {
-  font-size: 0.8rem;
-  color: var(--c-muted);
-}
-
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  background: var(--c-accent);
-  color: #fff;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: background 0.2s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background: var(--c-accent-hover);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  border: 1px solid var(--c-border);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: border-color 0.2s;
-  cursor: pointer;
-  background: none;
-  color: var(--c-text);
-}
-
-.btn-secondary:hover {
-  border-color: var(--c-text);
-}
-
-.section {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.section-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.section-header p {
-  color: var(--c-muted);
-  font-size: 1rem;
-}
-
-.playground {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-@media (max-width: 700px) {
-  .playground {
-    grid-template-columns: 1fr;
-  }
-}
-
-.playground-preview {
-  text-align: center;
-  position: sticky;
-  top: 80px;
-}
-
-.preview-avatar {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 16px;
-}
-
-.preview-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--c-surface);
-}
-
-.preview-name {
-  color: var(--c-muted);
-  margin-bottom: 16px;
-  font-size: 0.9rem;
-}
-
-.btn-sm {
-  padding: 8px 20px;
-  font-size: 0.85rem;
-}
-
-.playground-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.control-group label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--c-muted);
-}
-
-.control-group.row {
-  flex-direction: row;
-  align-items: center;
-}
-
-.input {
-  padding: 10px 14px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius);
-  color: var(--c-text);
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.input:focus {
-  border-color: var(--c-accent);
-}
-
-.variant-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.variant-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 8px;
-  background: var(--c-surface);
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.variant-btn:hover {
-  border-color: var(--c-border);
-}
-
-.variant-btn.active {
-  border-color: var(--c-accent);
-}
-
-.variant-btn img {
-  border-radius: 50%;
-}
-
-.variant-btn span {
-  font-size: 0.7rem;
-  color: var(--c-muted);
-}
-
-.range {
-  width: 100%;
-  accent-color: var(--c-accent);
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.code-block {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  overflow-x: auto;
-  margin-bottom: 24px;
-}
-
-.code-block pre {
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.85rem;
-  white-space: pre;
-}
-
-.btn-copy {
-  flex-shrink: 0;
-  padding: 6px 14px;
-  background: var(--c-accent);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-copy:hover {
-  background: var(--c-accent-hover);
-}
-
-.api-params {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.param {
-  display: flex;
-  gap: 12px;
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  background: var(--c-surface);
-  border-radius: 8px;
-}
-
-.param code {
-  color: var(--c-accent);
-  font-family: 'SF Mono', monospace;
-  min-width: 80px;
-}
-
-.param span {
-  color: var(--c-muted);
-}
-</style>

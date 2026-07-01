@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxthub/core',
     'nuxt-auth-utils',
+    '@unocss/nuxt',
     './src/module.ts',
   ],
 
@@ -19,6 +20,36 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'cloudflare-module',
   },
+
+  unocss: {
+    preflight: true,
+    theme: {
+      colors: {
+        primary: {
+          DEFAULT: '#F05D5E',
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#F05D5E',
+          600: '#dc4445',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+        },
+        surface: {
+          DEFAULT: '#141416',
+          light: '#1a1a1e',
+        },
+        muted: {
+          DEFAULT: '#6b6b7b',
+        },
+      },
+    },
+  },
+
+
 
   app: {
     head: {

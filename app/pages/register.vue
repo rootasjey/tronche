@@ -1,30 +1,30 @@
 <template>
-  <div class="auth-page">
-    <div class="auth-card">
-      <h1>Créer un compte</h1>
-      <p class="auth-sub">Pour générer des clés API et monitorer votre utilisation</p>
+  <div class="flex items-center justify-center min-h-[calc(100vh-112px)] px-5">
+    <div class="w-full max-w-sm bg-$surface border border-[#1e1e22] rounded-xl p-10 text-center">
+      <h1 class="text-2xl font-bold mb-1">Créer un compte</h1>
+      <p class="text-$muted text-sm mb-6">Pour générer des clés API et monitorer votre utilisation</p>
 
-      <form @submit.prevent="handleRegister">
-        <div class="field">
-          <input v-model="name" type="text" placeholder="Nom d'utilisateur" class="input" />
+      <form class="text-left" @submit.prevent="handleRegister">
+        <div class="mb-3">
+          <input v-model="name" type="text" placeholder="Nom d'utilisateur" class="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0a0b] border border-[#1e1e22] text-white text-sm outline-none transition-colors focus:border-primary" />
         </div>
-        <div class="field">
-          <input v-model="email" type="email" placeholder="Email" class="input" />
+        <div class="mb-3">
+          <input v-model="email" type="email" placeholder="Email" class="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0a0b] border border-[#1e1e22] text-white text-sm outline-none transition-colors focus:border-primary" />
         </div>
-        <div class="field">
-          <input v-model="password" type="password" placeholder="Mot de passe (8+ caractères)" class="input" />
+        <div class="mb-3">
+          <input v-model="password" type="password" placeholder="Mot de passe (8+ caractères)" class="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0a0b] border border-[#1e1e22] text-white text-sm outline-none transition-colors focus:border-primary" />
         </div>
 
-        <p v-if="error" class="error">{{ error }}</p>
+        <p v-if="error" class="text-primary text-sm mb-3">{{ error }}</p>
 
-        <button type="submit" class="btn-primary btn-full" :disabled="loading">
+        <button type="submit" class="w-full inline-flex items-center justify-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-600" :disabled="loading">
           {{ loading ? 'Création...' : 'Créer mon compte' }}
         </button>
       </form>
 
-      <p class="auth-link">
+      <p class="mt-5 text-sm text-$muted">
         Déjà un compte ?
-        <NuxtLink to="/login">Se connecter</NuxtLink>
+        <NuxtLink to="/login" class="text-primary hover:underline">Se connecter</NuxtLink>
       </p>
     </div>
   </div>
@@ -50,113 +50,9 @@ async function handleRegister() {
     await refreshSession()
     navigateTo('/dashboard')
   } catch (e: any) {
-    error.value = e.data?.statusMessage || 'Erreur lors de l\'inscription'
+    error.value = e.data?.statusMessage || "Erreur lors de l'inscription"
   } finally {
     loading.value = false
   }
 }
 </script>
-
-<style scoped>
-.auth-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 112px);
-  padding: 20px;
-}
-
-.auth-card {
-  width: 100%;
-  max-width: 380px;
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius);
-  padding: 40px 32px;
-  text-align: center;
-}
-
-.auth-card h1 {
-  font-size: 1.5rem;
-  margin-bottom: 4px;
-}
-
-.auth-sub {
-  color: var(--c-muted);
-  font-size: 0.85rem;
-  margin-bottom: 24px;
-}
-
-form {
-  text-align: left;
-}
-
-.field {
-  margin-bottom: 12px;
-}
-
-.input {
-  width: 100%;
-  padding: 10px 14px;
-  background: var(--c-bg);
-  border: 1px solid var(--c-border);
-  border-radius: 8px;
-  color: var(--c-text);
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.input:focus {
-  border-color: var(--c-accent);
-}
-
-.error {
-  color: var(--c-accent);
-  font-size: 0.85rem;
-  margin-bottom: 12px;
-}
-
-.btn-full {
-  width: 100%;
-  justify-content: center;
-  margin-top: 4px;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  background: var(--c-accent);
-  color: #fff;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-primary:hover {
-  background: var(--c-accent-hover);
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.auth-link {
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: var(--c-muted);
-}
-
-.auth-link a {
-  color: var(--c-accent);
-}
-
-.auth-link a:hover {
-  text-decoration: underline;
-}
-</style>
