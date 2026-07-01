@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   // Configure the demo app
   srcDir: 'src/demo/',
 
+  // Server directory for API routes (defaults to <srcDir>/server)
+  serverDir: './server',
+
   // Use the Tronche module for development
   modules: ['./src/module.ts'],
 

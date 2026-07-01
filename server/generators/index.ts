@@ -1,0 +1,7 @@
+export { generate as marble } from './marble'
+export { generate as beam } from './beam'
+export { generate as pixel } from './pixel'
+export { generate as sunset } from './sunset'
+export { generate as ring } from './ring'
+export { generate as bauhaus } from './bauhaus'
+export type { AvatarOptions } from './types'
