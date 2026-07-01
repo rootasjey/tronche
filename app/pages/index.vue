@@ -63,15 +63,23 @@
 
           <div class="flex flex-col gap-2">
             <label class="text-xs font-semibold text-muted uppercase tracking-wide">Couleurs</label>
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 items-center">
               <button
                 v-for="(palette, i) in palettes"
                 :key="i"
                 class="flex gap-0.5 p-1.5 rounded-lg border-2 cursor-pointer transition-colors bg-surface"
-                :class="activePalette === i ? '!border-primary' : 'border-transparent hover:border-border'"
+                :class="activePalette === i && i < palettes.length - 1 ? '!border-primary' : 'border-transparent hover:border-border'"
                 @click="activePalette = i"
               >
                 <span v-for="c in palette" :key="c" class="w-4 h-4 rounded-sm" :style="{ background: c }" />
+              </button>
+              <button
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 cursor-pointer transition-colors text-xs font-semibold bg-surface"
+                :class="lastIsActive ? '!border-primary' : 'border-transparent hover:border-border'"
+                @click="randomPalette"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+                Aléatoire
               </button>
             </div>
           </div>
@@ -120,16 +128,37 @@ const variant = ref('marble')
 const square = ref(false)
 const activePalette = ref(0)
 
-const palettes = [
+const palettes = ref<string[][]>([
   ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
   ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
   ['#6C5CE7', '#A29BFE', '#FD79A8', '#FDCB6E', '#E17055'],
   ['#00B894', '#00CEC9', '#0984E3', '#6C5CE7', '#A29BFE'],
   ['#FF9FF3', '#F368E0', '#FF6B6B', '#48DBFB', '#FF9F43'],
   ['#2D3436', '#636E72', '#B2BEC3', '#DFE6E9', '#FDCB6E'],
-]
+  [],
+])
 
-const activeColors = computed(() => palettes[activePalette.value])
+const lastIsActive = computed(() => activePalette.value === palettes.value.length - 1)
+
+const activeColors = computed(() => palettes.value[activePalette.value])
+
+function hsl(h: number, s: number, l: number): string {
+  return `hsl(${h}, ${s}%, ${l}%)`
+}
+
+function randomPalette() {
+  const h = Math.floor(Math.random() * 360)
+  const s = 55 + Math.floor(Math.random() * 25)
+  const l = 40 + Math.floor(Math.random() * 25)
+  palettes.value[palettes.value.length - 1] = [
+    hsl(h, s, l),
+    hsl((h + 50) % 360, s - 5, l + 10),
+    hsl((h + 140) % 360, s - 10, l + 5),
+    hsl((h + 210) % 360, s + 5, l - 5),
+    hsl((h + 290) % 360, s, l + 8),
+  ]
+  activePalette.value = palettes.value.length - 1
+}
 
 const allNames = [
   'Ada', 'Alice', 'Amélie', 'Anna', 'Arthur', 'Camille', 'Clara',
