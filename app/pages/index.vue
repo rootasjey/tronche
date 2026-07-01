@@ -55,7 +55,7 @@
                 :class="variant === v ? '!border-primary' : 'hover:border-border'"
                 @click="variant = v"
               >
-                <img :src="avatarUrl(name, v, 40, square, activeColors)" :alt="v" width="40" height="40" :class="square ? '' : 'rounded-full'" />
+                <img :src="avatarUrl(name, v, 40, square, activeColors.join(','))" :alt="v" width="40" height="40" :class="square ? '' : 'rounded-full'" />
                 <span class="text-xs text-muted">{{ v }}</span>
               </button>
             </div>
@@ -142,8 +142,16 @@ const lastIsActive = computed(() => activePalette.value === palettes.value.lengt
 
 const activeColors = computed(() => palettes.value[activePalette.value])
 
-function hsl(h: number, s: number, l: number): string {
-  return `hsl(${h}, ${s}%, ${l}%)`
+function hslToHex(h: number, s: number, l: number): string {
+  s /= 100
+  l /= 100
+  const a = s * Math.min(l, 1 - l)
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
+    return Math.round(255 * color).toString(16).padStart(2, '0')
+  }
+  return `#${f(0)}${f(8)}${f(4)}`
 }
 
 function randomPalette() {
@@ -151,11 +159,11 @@ function randomPalette() {
   const s = 55 + Math.floor(Math.random() * 25)
   const l = 40 + Math.floor(Math.random() * 25)
   palettes.value[palettes.value.length - 1] = [
-    hsl(h, s, l),
-    hsl((h + 50) % 360, s - 5, l + 10),
-    hsl((h + 140) % 360, s - 10, l + 5),
-    hsl((h + 210) % 360, s + 5, l - 5),
-    hsl((h + 290) % 360, s, l + 8),
+    hslToHex(h, s, l),
+    hslToHex((h + 50) % 360, s - 5, l + 10),
+    hslToHex((h + 140) % 360, s - 10, l + 5),
+    hslToHex((h + 210) % 360, s + 5, l - 5),
+    hslToHex((h + 290) % 360, s, l + 8),
   ]
   activePalette.value = palettes.value.length - 1
 }
