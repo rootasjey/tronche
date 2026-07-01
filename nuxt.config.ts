@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   // Configure the demo app
   srcDir: 'src/demo/',
 
+  // Use the Tronche module for development
+  modules: ['./src/module.ts'],
+
   // TypeScript configuration
   typescript: {
     typeCheck: false

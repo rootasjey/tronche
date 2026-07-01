@@ -25,6 +25,20 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist/module.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./module": {
+      "types": "./dist/module.d.ts",
+      "import": "./dist/module.js"
+    },
+    "./runtime/*": {
+      "import": "./dist/runtime/*"
+    }
+  },
   "files": [
     "dist/*"
   ],
@@ -32,7 +46,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "tsc --p ./tsconfig.lib.json && vite build --config vite.lib.config.ts",
+    "build": "tsc --p ./tsconfig.lib.json && vite build --config vite.lib.config.ts && tsc --p ./tsconfig.module.json && cp -r src/runtime dist/runtime",
     "build:demo": "nuxt build",
     "lint": "eslint .",
     "preview": "nuxt preview",

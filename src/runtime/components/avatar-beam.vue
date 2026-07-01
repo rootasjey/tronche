@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { hashCode, getUnit, getBoolean, getRandomColor, getContrast } from '../utilities';
-import type { AvatarProps } from './types';
+import { hashCode, getUnit, getBoolean, getRandomColor, getContrast } from '../../lib/utilities';
+import type { AvatarProps } from '../../lib/types';
 
 interface Props extends AvatarProps {}
 

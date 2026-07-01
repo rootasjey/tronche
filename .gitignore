@@ -10,6 +10,10 @@
 /build
 /dist
 
+# nuxt
+.nuxt/
+.output/
+
 # misc
 .DS_Store
 .env.local

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { hashCode, getUnit, getRandomColor } from '../utilities';
+import { hashCode, getUnit, getRandomColor } from '../../lib/utilities';
 
 interface Props {
   name?: string;

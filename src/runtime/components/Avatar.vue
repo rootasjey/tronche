@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent } from 'vue';
-import type { AvatarComponentProps, AvatarVariant } from './types';
+import type { AvatarComponentProps, AvatarVariant } from '../../lib/types';
 
 interface Props extends AvatarComponentProps {}
 
