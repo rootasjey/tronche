@@ -12,13 +12,13 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
         </button>
         <div v-for="s in samples" :key="`${s.name}-${s.variant}`" class="flex flex-col items-center gap-2">
-          <img :src="`/api/avatar/${s.name}?variant=${s.variant}&size=80`" :alt="s.name" width="80" height="80" class="rounded-full bg-surface" />
+          <img :src="avatarUrl(s.name, s.variant, 80, false, s.colors)" :alt="s.name" width="80" height="80" class="rounded-full bg-surface" />
           <span class="text-xs text-muted">{{ s.name }}</span>
         </div>
       </div>
 
       <div class="flex justify-center gap-3">
-        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary hover:text-[var(--c-text)] font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
         <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-border text-muted font-semibold text-sm no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">GitHub</a>
       </div>
     </section>
@@ -32,10 +32,10 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
         <div class="text-center sticky top-20">
           <div class="w-50 h-50 mx-auto mb-4">
-            <img :src="previewUrl" alt="avatar" width="200" height="200" class="w-full h-full rounded-full bg-surface" />
+            <img :src="previewUrl" alt="avatar" width="200" height="200" :class="['w-full h-full bg-surface', square ? '' : 'rounded-full']" />
           </div>
           <p class="text-muted text-sm mb-4">{{ name || '—' }}</p>
-          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
+          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
         </div>
 
         <div class="flex flex-col gap-6">
@@ -54,21 +54,39 @@
                 :class="variant === v ? '!border-primary' : 'hover:border-border'"
                 @click="variant = v"
               >
-                <img :src="`/api/avatar/${name}?variant=${v}&size=40`" :alt="v" width="40" height="40" class="rounded-full" />
+                <img :src="avatarUrl(name, v, 40, square, activeColors)" :alt="v" width="40" height="40" :class="square ? '' : 'rounded-full'" />
                 <span class="text-xs text-muted">{{ v }}</span>
               </button>
             </div>
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Taille : {{ size }}px</label>
-            <input v-model.number="size" type="range" min="40" max="400" class="w-full accent-primary" />
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Couleurs</label>
+            <div class="flex flex-wrap gap-2">
+              <button
+                v-for="(palette, i) in palettes"
+                :key="i"
+                class="flex gap-0.5 p-1.5 rounded-lg border-2 cursor-pointer transition-colors bg-surface"
+                :class="activePalette === i ? '!border-primary' : 'border-transparent hover:border-border'"
+                @click="activePalette = i"
+              >
+                <span v-for="c in palette" :key="c" class="w-4 h-4 rounded-sm" :style="{ background: c }" />
+              </button>
+            </div>
           </div>
 
-          <label class="flex items-center gap-2 text-sm cursor-pointer">
-            <input v-model="square" type="checkbox" class="accent-primary" />
-            Carré
-          </label>
+          <div class="flex items-center gap-3">
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Forme</label>
+            <button
+              class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border-2 cursor-pointer transition-colors text-sm"
+              :class="square ? '!border-primary' : 'border-transparent hover:border-border'"
+              @click="square = !square"
+            >
+              <svg v-if="!square" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+              <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              {{ square ? 'Carré' : 'Rond' }}
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -81,7 +99,7 @@
 
       <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
         <code class="text-sm font-mono whitespace-pre shrink-0">&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&amp;size=80" /&gt;</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
       </div>
 
       <div class="flex flex-col gap-2">
@@ -97,8 +115,19 @@
 <script setup lang="ts">
 const name = ref('Clara Barton')
 const variant = ref('marble')
-const size = ref(200)
 const square = ref(false)
+const activePalette = ref(0)
+
+const palettes = [
+  ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
+  ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
+  ['#6C5CE7', '#A29BFE', '#FD79A8', '#FDCB6E', '#E17055'],
+  ['#00B894', '#00CEC9', '#0984E3', '#6C5CE7', '#A29BFE'],
+  ['#FF9FF3', '#F368E0', '#FF6B6B', '#48DBFB', '#FF9F43'],
+  ['#2D3436', '#636E72', '#B2BEC3', '#DFE6E9', '#FDCB6E'],
+]
+
+const activeColors = computed(() => palettes[activePalette.value])
 
 const allNames = [
   'Ada', 'Alice', 'Amélie', 'Anna', 'Arthur', 'Camille', 'Clara',
@@ -128,6 +157,7 @@ const samples = computed(() =>
   pick(allNames, 6, seed.value).map((name, i) => ({
     name,
     variant: variants[i % variants.length],
+    colors: palettes[i % palettes.length].join(','),
   })),
 )
 
@@ -135,20 +165,24 @@ function reshuffle() {
   seed.value = Date.now()
 }
 
+function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string): string {
+  const base = `/api/avatar/${encodeURIComponent(n || '?')}`
+  const p = new URLSearchParams({ variant: v, size: String(s) })
+  if (sq) p.set('square', 'true')
+  if (colors) p.set('colors', colors)
+  return `${base}?${p}`
+}
+
+const previewUrl = computed(() =>
+  avatarUrl(name.value, variant.value, 200, square.value, activeColors.value.join(',')),
+)
+
 const params = [
   ['variant', 'marble, beam, pixel, sunset, ring, bauhaus'],
   ['size', '16 – 512'],
   ['square', 'true | false'],
   ['colors', 'liste de couleurs hex séparées par des virgules'],
 ]
-
-const previewUrl = computed(() => {
-  const base = `/api/avatar/${encodeURIComponent(name.value || '?')}`
-  const p = new URLSearchParams({ variant: variant.value })
-  if (size.value !== 200) p.set('size', String(size.value))
-  if (square.value) p.set('square', 'true')
-  return `${base}?${p}`
-})
 
 function download() {
   const link = document.createElement('a')
