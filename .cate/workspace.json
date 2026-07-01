@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "boring-avatars",
+  "color": "",
+  "canvas": {
+    "nodes": [],
+    "regions": [],
+    "zoomLevel": 1,
+    "viewportOffset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "dockState": {
+    "zones": {
+      "left": {
+        "position": "left",
+        "visible": false,
+        "size": 260,
+        "layout": null
+      },
+      "right": {
+        "position": "right",
+        "visible": false,
+        "size": 260,
+        "layout": null
+      },
+      "bottom": {
+        "position": "bottom",
+        "visible": false,
+        "size": 240,
+        "layout": null
+      },
+      "center": {
+        "position": "center",
+        "visible": true,
+        "size": 0,
+        "layout": {
+          "type": "tabs",
+          "id": "067af1cc-c722-4487-9473-9699b5e68210",
+          "panelIds": [
+            "355c9151-8c40-4d49-a5c2-1288824f3588"
+          ],
+          "activeIndex": 0
+        }
+      }
+    },
+    "locations": {
+      "355c9151-8c40-4d49-a5c2-1288824f3588": {
+        "type": "dock",
+        "zone": "center",
+        "stackId": "067af1cc-c722-4487-9473-9699b5e68210"
+      }
+    }
+  },
+  "dockPanels": {
+    "355c9151-8c40-4d49-a5c2-1288824f3588": {
+      "type": "canvas",
+      "title": "Canvas"
+    }
+  }
+}

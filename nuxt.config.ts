@@ -1,22 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2025-12-31',
   devtools: { enabled: false },
 
-  // Configure the demo app
-  srcDir: 'src/demo/',
+  modules: [
+    '@nuxthub/core',
+    'nuxt-auth-utils',
+    './src/module.ts',
+  ],
 
-  // Server directory for API routes (defaults to <srcDir>/server)
-  serverDir: './server',
-
-  // Use the Tronche module for development
-  modules: ['./src/module.ts'],
-
-  // TypeScript configuration
-  typescript: {
-    typeCheck: false
+  hub: {
+    db: 'sqlite',
+    kv: true,
+    blob: true,
+    cache: true,
   },
 
-  // App configuration
+  nitro: {
+    preset: 'cloudflare-module',
+  },
+
   app: {
     head: {
       title: 'Tronche - Avatar generator',
@@ -25,11 +28,26 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
-          content: 'Tronche generates custom, SVG-based avatars from any username and color palette.'
-        }
-      ]
-    }
+          content: 'Tronche generates custom, SVG-based avatars from any username and color palette.',
+        },
+      ],
+    },
   },
 
-  compatibilityDate: '2025-08-18'
+  typescript: {
+    strict: false,
+    tsConfig: {
+      compilerOptions: {
+        noImplicitAny: true,
+        strictNullChecks: true,
+      },
+    },
+  },
+
+  runtimeConfig: {
+    authSecret: process.env.NUXT_AUTH_SECRET,
+    public: {
+      authUrl: process.env.NUXT_AUTH_ORIGIN || 'http://localhost:3000',
+    },
+  },
 })

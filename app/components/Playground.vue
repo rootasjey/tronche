@@ -24,7 +24,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import AvatarMarble from '../../runtime/components/avatar-marble.vue'
+import AvatarMarble from '../../src/runtime/components/avatar-marble.vue'
 
 const sampleNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank'];
 const defaultColors = ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'];

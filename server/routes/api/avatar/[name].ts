@@ -1,12 +1,21 @@
 import * as generators from '../../../generators'
 import type { AvatarOptions } from '../../../generators/types'
+import { checkRateLimit } from '../../../utils/rate-limit'
 
 const VALID_VARIANTS = ['marble', 'beam', 'pixel', 'sunset', 'ring', 'bauhaus']
 const DEFAULT_COLORS = ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const { name } = getRouterParams(event)
   const query = getQuery(event)
+
+  const ip = getRequestHeader(event, 'x-forwarded-for') || getRequestIP(event) || 'unknown'
+  const rl = await checkRateLimit(ip)
+  if (!rl.allowed) {
+    setResponseStatus(event, 429)
+    setHeader(event, 'Retry-After', String(Math.ceil((rl.resetAt - Date.now()) / 1000)))
+    return { error: 'rate_limit_exceeded', message: 'Too many requests. Please try again later.' }
+  }
 
   const variant = (query.variant as string) || 'marble'
   if (!VALID_VARIANTS.includes(variant)) {
