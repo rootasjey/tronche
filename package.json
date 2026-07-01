@@ -1,0 +1,61 @@
+{
+  "name": "tronche",
+  "description": "Tronche generates custom, SVG-based avatars from any username and color palette. Vue.js/Nuxt.js library with a free API tier.",
+  "homepage": "https://github.com/rootasjey/tronche",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rootasjey/tronche"
+  },
+  "bugs": {
+    "url": "https://github.com/rootasjey/tronche/issues"
+  },
+  "keywords": [
+    "avatar",
+    "gravatar",
+    "profile picture",
+    "user avatar",
+    "avatar generator",
+    "avatar placeholder",
+    "vue",
+    "nuxt",
+    "vue3",
+    "nuxt3",
+    "tronche"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "tsc --p ./tsconfig.lib.json && vite build --config vite.lib.config.ts",
+    "build:demo": "nuxt build",
+    "lint": "eslint .",
+    "preview": "nuxt preview",
+    "generate": "nuxt generate"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0",
+    "nuxt": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^24.1.0",
+    "eslint": "^8.57.0",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint-plugin-vue": "^9.20.1",
+    "globals": "^16.2.0",
+    "nice-color-palettes": "^4.0.0",
+    "nuxt": "^3.13.0",
+    "typescript": "~5.8.3",
+    "vite-plugin-dts": "^4.5.4",
+    "vite": "^7.0.0",
+    "vue": "^3.4.0",
+    "vue-tsc": "^2.0.0"
+  }
+}
