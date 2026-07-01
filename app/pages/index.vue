@@ -15,8 +15,8 @@
       </div>
 
       <div class="flex justify-center gap-3">
-        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
-        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-[#1e1e22] text-white font-semibold text-sm no-underline hover:border-white transition-colors">GitHub</a>
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary hover:text-[var(--c-text)] font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
+        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-border text-muted font-semibold text-sm no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">GitHub</a>
       </div>
     </section>
 
@@ -32,13 +32,13 @@
             <img :src="previewUrl" alt="avatar" width="200" height="200" class="w-full h-full rounded-full bg-surface" />
           </div>
           <p class="text-muted text-sm mb-4">{{ name || '—' }}</p>
-          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
+          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
         </div>
 
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
             <label class="text-xs font-semibold text-muted uppercase tracking-wide">Nom</label>
-            <input v-model="name" type="text" placeholder="Entrez un nom..." class="px-3.5 py-2.5 rounded-xl bg-surface border border-[#1e1e22] text-white text-sm outline-none transition-colors focus:border-primary" />
+            <input v-model="name" type="text" placeholder="Entrez un nom..." class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-colors focus:border-primary" />
           </div>
 
           <div class="flex flex-col gap-2">
@@ -48,7 +48,7 @@
                 v-for="v in variants"
                 :key="v"
                 class="flex flex-col items-center gap-1 p-2 rounded-xl bg-surface border-2 border-transparent cursor-pointer transition-colors"
-                :class="variant === v ? '!border-primary' : 'hover:border-[#1e1e22]'"
+                :class="variant === v ? '!border-primary' : 'hover:border-border'"
                 @click="variant = v"
               >
                 <img :src="`/api/avatar/${name}?variant=${v}&size=40`" :alt="v" width="40" height="40" class="rounded-full" />
@@ -76,9 +76,9 @@
         <p class="text-muted">Intégration simple, résultat immédiat</p>
       </div>
 
-      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-[#1e1e22] mb-4 overflow-x-auto">
+      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
         <code class="text-sm font-mono whitespace-pre shrink-0">&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&amp;size=80" /&gt;</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
       </div>
 
       <div class="flex flex-col gap-2">
@@ -97,16 +97,28 @@ const variant = ref('marble')
 const size = ref(200)
 const square = ref(false)
 
+const allNames = [
+  'Ada', 'Alice', 'Amélie', 'Anna', 'Arthur', 'Camille', 'Clara',
+  'Chloé', 'Emma', 'Ethan', 'Gabriel', 'Hugo', 'Inès', 'Jade',
+  'Jules', 'Léo', 'Léon', 'Liam', 'Louise', 'Lucas', 'Léa',
+  'Manon', 'Marguerite', 'Marie', 'Mathis', 'Mila', 'Nathan',
+  'Noah', 'Noémie', 'Pierre', 'Raphaël', 'Rose', 'Sacha', 'Sarah',
+  'Simon', 'Tom', 'Zoé',
+]
+
+function pick<T>(arr: T[], n: number): T[] {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, n)
+}
+
 const variants = ['marble', 'beam', 'pixel', 'sunset', 'ring', 'bauhaus']
 
-const samples = [
-  { name: 'Marguerite', variant: 'marble' },
-  { name: 'Amélie', variant: 'beam' },
-  { name: 'Pierre', variant: 'pixel' },
-  { name: 'Camille', variant: 'sunset' },
-  { name: 'Léon', variant: 'ring' },
-  { name: 'Manon', variant: 'bauhaus' },
-]
+const samples = computed(() =>
+  pick(allNames, 6).map((name, i) => ({
+    name,
+    variant: variants[i % variants.length],
+  })),
+)
 
 const params = [
   ['variant', 'marble, beam, pixel, sunset, ring, bauhaus'],

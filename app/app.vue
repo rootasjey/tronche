@@ -34,7 +34,7 @@
             v-for="option in themeOptions"
             :key="option.value"
             class="text-xs px-3 py-1.5 rounded-full border-none cursor-pointer transition-colors"
-            :class="theme === option.value ? 'bg-primary text-white' : 'bg-transparent text-[var(--c-muted)] hover:text-[var(--c-text)]'"
+            :class="theme === option.value ? 'bg-primary hover:text-[var(--c-text)]' : 'bg-transparent text-[var(--c-muted)] hover:text-[var(--c-text)]'"
             @click="set(option.value)"
           >
             {{ option.label }}
