@@ -188,7 +188,7 @@ const samples = computed(() =>
   pick(allNames, 6, seed.value).map((name, i) => ({
     name,
     variant: variants[i % variants.length],
-    colors: palettes[i % palettes.length].join(','),
+    colors: palettes.value[i % palettes.value.length].join(','),
   })),
 )
 
