@@ -23,8 +23,8 @@
       </div>
     </section>
 
-    <section id="playground" class="px-5 py-15" style="background: linear-gradient(180deg, var(--c-bg) 0%, color-mix(in srgb, var(--c-surface) 70%, var(--c-bg)) 100%);">
-      <div class="max-w-240 mx-auto">
+    <section class="px-5 py-15 max-w-240 mx-auto">
+      <div id="playground" class="rounded-2xl p-8 md:p-10" style="background: var(--c-surface); border: 1px solid var(--c-border);">
       <div class="text-center mb-10">
         <h2 class="text-3xl font-bold mb-2">Playground</h2>
         <p class="text-muted">Customisez votre avatar en direct</p>
