@@ -23,7 +23,8 @@
       </div>
     </section>
 
-    <section id="playground" class="px-5 py-15 max-w-240 mx-auto">
+    <section id="playground" class="px-5 py-15" style="background: linear-gradient(180deg, var(--c-bg) 0%, color-mix(in srgb, var(--c-surface) 70%, var(--c-bg)) 100%);">
+      <div class="max-w-240 mx-auto">
       <div class="text-center mb-10">
         <h2 class="text-3xl font-bold mb-2">Playground</h2>
         <p class="text-muted">Customisez votre avatar en direct</p>
@@ -84,10 +85,11 @@
             >
               <svg v-if="!square" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-              {{ square ? 'Carré' : 'Rond' }}
+              {{ square ? 'Carrée' : 'Ronde' }}
             </button>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
