@@ -7,14 +7,14 @@
       </h1>
       <p class="text-muted text-lg mb-10">Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.</p>
 
-      <div class="flex justify-center gap-5 flex-wrap mb-10 relative">
+      <div class="flex justify-center items-center gap-5 flex-wrap mb-10">
+        <button class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]" title="Nouveaux avatars" @click="reshuffle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+        </button>
         <div v-for="s in samples" :key="`${s.name}-${s.variant}`" class="flex flex-col items-center gap-2">
           <img :src="`/api/avatar/${s.name}?variant=${s.variant}&size=80`" :alt="s.name" width="80" height="80" class="rounded-full bg-surface" />
           <span class="text-xs text-muted">{{ s.name }}</span>
         </div>
-        <button class="absolute -right-2 top-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]" title="Nouveaux avatars" @click="reshuffle">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-        </button>
       </div>
 
       <div class="flex justify-center gap-3">
