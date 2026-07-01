@@ -13,6 +13,7 @@
 
         <nav class="nav">
           <NuxtLink to="/" class="nav-link">Playground</NuxtLink>
+          <NuxtLink to="/docs" class="nav-link">Docs</NuxtLink>
           <a href="/api/avatar/test" class="nav-link" target="_blank">API</a>
           <NuxtLink v-if="!user" to="/login" class="nav-link">Connexion</NuxtLink>
           <NuxtLink v-if="user" to="/dashboard" class="nav-link">Dashboard</NuxtLink>

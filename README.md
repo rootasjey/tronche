@@ -1,56 +1,47 @@
 # Tronche
 
-Tronche generates custom, SVG-based avatars from any username and color palette. Vue.js/Nuxt.js library with a free API tier.
+Des avatars qui ont de la gueule.
 
-## Install
+Tronche génère des avatars SVG uniques à partir d'un nom et d'une palette de couleurs. Proposé sous forme de librairie Vue.js/Nuxt.js, d'API REST gratuite, et de service d'API key pour plus de volume.
 
-```bash
-npm install tronche
+## Utilisation rapide
+
+**Module Nuxt :**
+
+```ts
+// nuxt.config.ts
+modules: ['tronche/module'],
 ```
-
-## Usage
-
-### Vue.js / Nuxt.js
 
 ```vue
-<template>
-  <Avatar name="Maria Mitchell" />
-</template>
-
-<script setup>
-import Avatar from 'tronche/src/lib/components/Avatar.vue'
-</script>
+<Avatar name="Maria Mitchell" variant="beam" />
 ```
 
-### Props
+**API REST :**
 
-| Prop    | Type                                                         | Default                                                   |
-|---------|--------------------------------------------------------------|-----------------------------------------------------------|
-| size    | number or string                                             | `80`                                                      |
-| square  | boolean                                                      | `false`                                                   |
-| title   | boolean                                                      | `false`                                                   |
-| name    | string                                                       | `Clara Barton`                                            |
-| variant | `marble`, `beam`, `pixel`, `sunset`, `ring`, `bauhaus`       | `marble`                                                  |
-| colors  | string[]                                                     | `['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']` |
+```
+GET /api/avatar/Clara%20Barton?variant=beam&size=200
+```
 
 ## Variants
 
-- **marble** — organic blobs with blur
-- **beam** — faces with expressions
-- **pixel** — 8x8 pixel art
-- **sunset** — gradient landscapes
-- **ring** — concentric rings
-- **bauhaus** — geometric shapes
+| Variant | Style |
+|---------|-------|
+| marble | Formes organiques floues |
+| beam | Visages avec expressions |
+| pixel | Pixel art 8×8 |
+| sunset | Dégradés de couleurs |
+| ring | Cercles concentriques |
+| bauhaus | Formes géométriques |
 
-## Features
+## Stack
 
-- 6 unique avatar styles
-- Deterministic: same name always generates the same avatar
-- Customizable colors
-- Vue 3 & Nuxt 3
-- TypeScript support
-- Free API tier (coming soon)
+- **Nuxt 4** — Site vitrine + API (Nitro)
+- **@nuxthub/core** — Déploiement Cloudflare (D1, KV, R2)
+- **nuxt-auth-utils** — Sessions et authentification
+- **Drizzle ORM** — Base de données SQLite/D1
+- **@noble/hashes** — Password hashing (scrypt)
 
-## License
+## Licence
 
 MIT
