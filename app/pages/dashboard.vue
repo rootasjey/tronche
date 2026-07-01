@@ -2,10 +2,10 @@
   <div class="max-w-240 mx-auto px-5 pt-10 pb-15">
     <div class="mb-8">
       <h1 class="text-3xl font-bold">Dashboard</h1>
-      <p class="text-$muted mt-1">Gérez vos clés API</p>
+      <p class="text-muted mt-1">Gérez vos clés API</p>
     </div>
 
-    <div class="bg-$surface border border-[#1e1e22] rounded-xl p-6">
+    <div class="bg-surface border border-[#1e1e22] rounded-xl p-6">
       <div class="flex items-center justify-between mb-5">
         <h2 class="text-lg font-semibold">Vos clés</h2>
         <button class="inline-flex items-center px-4 py-2 rounded-full bg-primary text-white font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">+ Nouvelle clé</button>
@@ -18,12 +18,12 @@
       </div>
 
       <div v-if="createdKey" class="bg-[#1a1a1a] border border-primary rounded-xl p-4 mb-5">
-        <p class="text-sm text-$muted mb-2">🔑 Votre nouvelle clé (copiez-la, elle ne sera plus affichée) :</p>
+        <p class="text-sm text-muted mb-2">🔑 Votre nouvelle clé (copiez-la, elle ne sera plus affichée) :</p>
         <div class="font-mono text-xs bg-[#0a0a0b] p-3 rounded-lg break-all mb-3">{{ createdKey }}</div>
         <button class="inline-flex items-center px-4 py-2 rounded-full bg-primary text-white font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyKey">Copier</button>
       </div>
 
-      <div v-if="keys.length === 0 && !loading" class="text-center py-10 text-$muted">Aucune clé pour le moment.</div>
+      <div v-if="keys.length === 0 && !loading" class="text-center py-10 text-muted">Aucune clé pour le moment.</div>
 
       <div v-else class="flex flex-col gap-2">
         <div v-for="key in keys" :key="key.id" class="flex items-center justify-between gap-2 p-3.5 bg-[#0a0a0b] rounded-lg flex-wrap">
@@ -31,7 +31,7 @@
             <span class="font-semibold text-sm">{{ key.name }}</span>
             <span class="text-xs px-2 py-0.5 rounded-full uppercase font-semibold bg-primary/15 text-primary">{{ key.tier }}</span>
           </div>
-          <div class="text-xs text-$muted flex gap-4">
+          <div class="text-xs text-muted flex gap-4">
             <span v-if="key.lastUsedAt">Dernière utilisation : {{ formatDate(key.lastUsedAt) }}</span>
             <span v-else>Jamais utilisé</span>
             <span>Créée le {{ formatDate(key.createdAt) }}</span>

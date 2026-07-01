@@ -38,13 +38,9 @@ export default defineNuxtConfig({
           800: '#991b1b',
           900: '#7f1d1d',
         },
-        surface: {
-          DEFAULT: '#141416',
-          light: '#1a1a1e',
-        },
-        muted: {
-          DEFAULT: '#6b6b7b',
-        },
+        surface: 'var(--c-surface)',
+        muted: 'var(--c-muted)',
+        border: 'var(--c-border)',
       },
     },
   },

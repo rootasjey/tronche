@@ -1,8 +1,8 @@
 <template>
   <div class="flex items-center justify-center min-h-[calc(100vh-112px)] px-5">
-    <div class="w-full max-w-sm bg-$surface border border-[#1e1e22] rounded-xl p-10 text-center">
+    <div class="w-full max-w-sm bg-surface border border-[#1e1e22] rounded-xl p-10 text-center">
       <h1 class="text-2xl font-bold mb-1">Connexion</h1>
-      <p class="text-$muted text-sm mb-6">Créez-vous un compte pour gérer vos clés API</p>
+      <p class="text-muted text-sm mb-6">Créez-vous un compte pour gérer vos clés API</p>
 
       <form class="text-left" @submit.prevent="handleLogin">
         <div class="mb-3">
@@ -19,7 +19,7 @@
         </button>
       </form>
 
-      <p class="mt-5 text-sm text-$muted">
+      <p class="mt-5 text-sm text-muted">
         Pas encore de compte ?
         <NuxtLink to="/register" class="text-primary hover:underline">S'inscrire</NuxtLink>
       </p>
