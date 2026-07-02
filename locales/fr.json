@@ -19,7 +19,7 @@
     "hero": {
       "title": "Des avatars",
       "highlight": "qui vous ressemblent pas",
-      "subtitle": "Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.",
+      "subtitle": "Générez des avatars SVG uniques à partir d'un nom. Open source, API REST.",
       "reshuffle": "Nouveaux avatars",
       "try": "Essayer",
       "github": "GitHub"

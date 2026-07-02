@@ -19,7 +19,7 @@
     "hero": {
       "title": "Avatars",
       "highlight": "nothing like you",
-      "subtitle": "Generate unique SVG avatars from a name. Open source, free API.",
+      "subtitle": "Generate unique SVG avatars from a name. Open source, REST API.",
       "reshuffle": "New avatars",
       "try": "Try it",
       "github": "GitHub"
