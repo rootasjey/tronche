@@ -38,7 +38,7 @@
       "round": "Round"
     },
     "api": {
-      "title": "Free API",
+      "title": "API",
       "subtitle": "Simple integration, instant results",
       "copy": "Copy",
       "paramColors": "comma-separated hex colors"
