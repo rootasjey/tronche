@@ -2,7 +2,7 @@
 
 Avatars nothing like you.
 
-Tronche generates unique SVG avatars from a name and a color palette. Available as a [Nuxt module](#nuxt-module), a [standalone Vue component](#vue-usage), and a [free REST API](#rest-api).
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [Nuxt module](#nuxt-module), a [standalone Vue component](#vue-usage), and a [REST API](#rest-api).
 
 ## Installation
 
