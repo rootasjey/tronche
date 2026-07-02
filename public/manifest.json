@@ -4,5 +4,8 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#F05D5E",
-  "background_color": "#0a0a0b"
+  "background_color": "#0a0a0b",
+  "icons": [
+    { "src": "/images/tronche-250.png", "sizes": "250x250", "type": "image/png" }
+  ]
 }

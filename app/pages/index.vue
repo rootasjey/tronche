@@ -2,13 +2,13 @@
   <div>
     <section class="text-center px-5 pt-20 pb-15 max-w-240 mx-auto">
       <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
-        Des avatars<br />
-        <span class="bg-gradient-to-r from-primary to-[#FF8A5C] bg-clip-text text-transparent">qui ont de la gueule</span>
+        {{ $t('home.hero.title') }}<br />
+        <span class="bg-gradient-to-r from-primary to-[#FF8A5C] bg-clip-text text-transparent">{{ $t('home.hero.highlight') }}</span>
       </h1>
-      <p class="text-muted text-lg mb-10">Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.</p>
+      <p class="text-muted text-lg mb-10">{{ $t('home.hero.subtitle') }}</p>
 
       <div class="flex justify-center items-center gap-5 flex-wrap mb-10">
-        <button class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]" title="Nouveaux avatars" @click="reshuffle">
+        <button class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]" :title="$t('home.hero.reshuffle')" @click="reshuffle">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
         </button>
         <div v-for="s in samples" :key="`${s.name}-${s.variant}`" class="flex flex-col items-center gap-2">
@@ -18,16 +18,16 @@
       </div>
 
       <div class="flex justify-center gap-3">
-        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">Essayer</a>
-        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-border text-muted font-semibold text-sm no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">GitHub</a>
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">{{ $t('home.hero.try') }}</a>
+        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-border text-muted font-semibold text-sm no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">{{ $t('home.hero.github') }}</a>
       </div>
     </section>
 
     <section class="px-5 py-15 max-w-240 mx-auto">
       <div id="playground" class="rounded-2xl p-8 md:p-10" style="background: var(--c-surface); border: 1px solid var(--c-border);">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold mb-2">Playground</h2>
-        <p class="text-muted">Customisez votre avatar en direct</p>
+        <h2 class="text-3xl font-bold mb-2">{{ $t('home.playground.title') }}</h2>
+        <p class="text-muted">{{ $t('home.playground.subtitle') }}</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -36,17 +36,17 @@
             <img :src="previewUrl" alt="avatar" width="200" height="200" :class="['w-full h-full bg-surface', square ? '' : 'rounded-full']" />
           </div>
           <p class="text-muted text-sm mb-4">{{ name || '—' }}</p>
-          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">Télécharger SVG</button>
+          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">{{ $t('home.playground.download') }}</button>
         </div>
 
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Nom</label>
-            <input v-model="name" type="text" placeholder="Entrez un nom..." class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-colors focus:border-primary" />
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.name') }}</label>
+            <input v-model="name" type="text" :placeholder="$t('home.playground.namePlaceholder')" class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-colors focus:border-primary" />
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Variant</label>
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.variant') }}</label>
             <div class="grid grid-cols-3 gap-2">
               <button
                 v-for="v in variants"
@@ -62,7 +62,7 @@
           </div>
 
           <div class="flex flex-col gap-2">
-            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Couleurs</label>
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.colors') }}</label>
             <div class="flex flex-wrap gap-2 items-center">
               <button
                 v-for="(palette, i) in palettes"
@@ -79,13 +79,13 @@
                 @click="randomPalette"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-                Aléatoire
+                {{ $t('home.playground.random') }}
               </button>
             </div>
           </div>
 
           <div class="flex items-center gap-3">
-            <label class="text-xs font-semibold text-muted uppercase tracking-wide">Forme</label>
+            <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.shape') }}</label>
             <button
               class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border-2 cursor-pointer transition-colors text-sm"
               :class="square ? '!border-primary' : 'border-transparent hover:border-border'"
@@ -93,7 +93,7 @@
             >
               <svg v-if="!square" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-              {{ square ? 'Carrée' : 'Ronde' }}
+              {{ square ? $t('home.playground.square') : $t('home.playground.round') }}
             </button>
           </div>
         </div>
@@ -103,13 +103,13 @@
 
     <section class="px-5 py-15 max-w-240 mx-auto">
       <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold mb-2">API gratuite</h2>
-        <p class="text-muted">Intégration simple, résultat immédiat</p>
+        <h2 class="text-3xl font-bold mb-2">{{ $t('home.api.title') }}</h2>
+        <p class="text-muted">{{ $t('home.api.subtitle') }}</p>
       </div>
 
       <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
         <code class="text-sm font-mono whitespace-pre shrink-0">&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&amp;size=80" /&gt;</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">Copier</button>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">{{ $t('home.api.copy') }}</button>
       </div>
 
       <div class="flex flex-col gap-2">
@@ -216,12 +216,14 @@ const previewUrl = computed(() =>
   avatarUrl(name.value, variant.value, 200, square.value, activeColors.value.join(',')),
 )
 
-const params = [
+const { $t } = useI18n()
+
+const params = computed(() => [
   ['variant', 'marble, beam, pixel, sunset, ring, bauhaus'],
   ['size', '16 – 512'],
   ['square', 'true | false'],
-  ['colors', 'liste de couleurs hex séparées par des virgules'],
-]
+  ['colors', $t('home.api.paramColors')],
+])
 
 function download() {
   const link = document.createElement('a')

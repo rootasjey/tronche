@@ -1,0 +1,162 @@
+{
+  "nav": {
+    "playground": "Playground",
+    "docs": "Docs",
+    "api": "API",
+    "login": "Connexion",
+    "dashboard": "Dashboard",
+    "logout": "Déconnexion"
+  },
+  "theme": {
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système"
+  },
+  "footer": {
+    "tagline": "tronche — des avatars qui ont de la gueule"
+  },
+  "home": {
+    "hero": {
+      "title": "Des avatars",
+      "highlight": "qui ont de la gueule",
+      "subtitle": "Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.",
+      "reshuffle": "Nouveaux avatars",
+      "try": "Essayer",
+      "github": "GitHub"
+    },
+    "playground": {
+      "title": "Playground",
+      "subtitle": "Customisez votre avatar en direct",
+      "download": "Télécharger SVG",
+      "name": "Nom",
+      "namePlaceholder": "Entrez un nom...",
+      "variant": "Variant",
+      "colors": "Couleurs",
+      "random": "Aléatoire",
+      "shape": "Forme",
+      "square": "Carrée",
+      "round": "Ronde"
+    },
+    "api": {
+      "title": "API gratuite",
+      "subtitle": "Intégration simple, résultat immédiat",
+      "copy": "Copier",
+      "paramColors": "liste de couleurs hex séparées par des virgules"
+    }
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Tout pour intégrer Tronche dans vos projets",
+    "copy": "Copier",
+    "sections": {
+      "installation": "Installation",
+      "nuxt": "Module Nuxt",
+      "vue": "Vue.js",
+      "api": "API REST",
+      "variants": "Variants"
+    },
+    "installation": {
+      "text": "Ajoutez le module dans votre"
+    },
+    "nuxt": {
+      "addModule": "Ajoutez le module dans votre",
+      "autoImport": "Les composants sont auto-importés :"
+    },
+    "vue": {
+      "props": {
+        "name": "Nom pour générer l'avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Taille en pixels",
+        "square": "Avatar carré",
+        "colors": "5 couleurs hexadécimales",
+        "title": "Balise title"
+      }
+    },
+    "api": {
+      "subtitle": "Générez des avatars à distance via notre API.",
+      "endpoint": "Endpoint",
+      "table": {
+        "variantDesc": "marble, beam, pixel, sunset, ring, bauhaus",
+        "sizeDesc": "De 16 à 512",
+        "squareDesc": "true ou false",
+        "colorsDesc": "Couleurs hex séparées par des virgules"
+      },
+      "examples": "Exemples",
+      "rateLimiting": "Rate limiting",
+      "rateLimitingText": "Le plan gratuit autorise",
+      "rateLimitingBold": "100 requêtes par minute",
+      "rateLimitingPerIp": "par IP.",
+      "upgrade": "Pour un volume plus élevé,",
+      "createAccount": "créez un compte",
+      "useApiKey": "et utilisez une clé API."
+    },
+    "table": {
+      "prop": "Prop",
+      "type": "Type",
+      "default": "Défaut",
+      "description": "Description"
+    },
+    "apiTable": {
+      "parameter": "Paramètre",
+      "type": "Type",
+      "default": "Défaut",
+      "description": "Description"
+    },
+    "variants": {
+      "marble": "Formes organiques floues",
+      "beam": "Visages expressifs",
+      "pixel": "Pixel art 8×8",
+      "sunset": "Dégradés de couleurs",
+      "ring": "Cercles concentriques",
+      "bauhaus": "Formes géométriques"
+    }
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Créez-vous un compte pour gérer vos clés API",
+    "email": "Email",
+    "password": "Mot de passe",
+    "loading": "Connexion...",
+    "submit": "Se connecter",
+    "noAccount": "Pas encore de compte ?",
+    "signup": "S'inscrire",
+    "error": "Erreur de connexion"
+  },
+  "register": {
+    "title": "Créer un compte",
+    "subtitle": "Pour générer des clés API et monitorer votre utilisation",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe (8+ caractères)",
+    "loading": "Création...",
+    "submit": "Créer mon compte",
+    "hasAccount": "Déjà un compte ?",
+    "login": "Se connecter",
+    "error": "Erreur lors de l'inscription"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Gérez vos clés API",
+    "keys": "Vos clés",
+    "newKey": "+ Nouvelle clé",
+    "keyNamePlaceholder": "Nom de la clé (ex: production, dev...)",
+    "create": "Créer",
+    "cancel": "Annuler",
+    "newKeyCreated": "Votre nouvelle clé (copiez-la, elle ne sera plus affichée) :",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "noKeys": "Aucune clé pour le moment.",
+    "lastUsed": "Dernière utilisation :",
+    "neverUsed": "Jamais utilisé",
+    "createdOn": "Créée le",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "disable": "Désactiver",
+    "enable": "Activer",
+    "delete": "Supprimer",
+    "confirmDelete": "Supprimer cette clé API ? Cette action est irréversible.",
+    "editName": "Modifier le nom",
+    "active": "Actif",
+    "inactive": "Inactif"
+  }
+}

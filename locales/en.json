@@ -1,0 +1,162 @@
+{
+  "nav": {
+    "playground": "Playground",
+    "docs": "Docs",
+    "api": "API",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "logout": "Log out"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "footer": {
+    "tagline": "tronche — avatars with character"
+  },
+  "home": {
+    "hero": {
+      "title": "Avatars",
+      "highlight": "with character",
+      "subtitle": "Generate unique SVG avatars from a name. Open source, free API.",
+      "reshuffle": "New avatars",
+      "try": "Try it",
+      "github": "GitHub"
+    },
+    "playground": {
+      "title": "Playground",
+      "subtitle": "Customize your avatar live",
+      "download": "Download SVG",
+      "name": "Name",
+      "namePlaceholder": "Enter a name...",
+      "variant": "Variant",
+      "colors": "Colors",
+      "random": "Random",
+      "shape": "Shape",
+      "square": "Square",
+      "round": "Round"
+    },
+    "api": {
+      "title": "Free API",
+      "subtitle": "Simple integration, instant results",
+      "copy": "Copy",
+      "paramColors": "comma-separated hex colors"
+    }
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Everything to integrate Tronche into your projects",
+    "copy": "Copy",
+    "sections": {
+      "installation": "Installation",
+      "nuxt": "Nuxt Module",
+      "vue": "Vue.js",
+      "api": "REST API",
+      "variants": "Variants"
+    },
+    "installation": {
+      "text": "Add the module in your"
+    },
+    "nuxt": {
+      "addModule": "Add the module in your",
+      "autoImport": "Components are auto-imported:"
+    },
+    "vue": {
+      "props": {
+        "name": "Name to generate the avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Size in pixels",
+        "square": "Square avatar",
+        "colors": "5 hexadecimal colors",
+        "title": "Title tag"
+      }
+    },
+    "api": {
+      "subtitle": "Generate avatars remotely via our API.",
+      "endpoint": "Endpoint",
+      "table": {
+        "variantDesc": "marble, beam, pixel, sunset, ring, bauhaus",
+        "sizeDesc": "16 to 512",
+        "squareDesc": "true or false",
+        "colorsDesc": "Comma-separated hex colors"
+      },
+      "examples": "Examples",
+      "rateLimiting": "Rate limiting",
+      "rateLimitingText": "The free plan allows",
+      "rateLimitingBold": "100 requests per minute",
+      "rateLimitingPerIp": "per IP.",
+      "upgrade": "For higher volume,",
+      "createAccount": "create an account",
+      "useApiKey": "and use an API key."
+    },
+    "table": {
+      "prop": "Prop",
+      "type": "Type",
+      "default": "Default",
+      "description": "Description"
+    },
+    "apiTable": {
+      "parameter": "Parameter",
+      "type": "Type",
+      "default": "Default",
+      "description": "Description"
+    },
+    "variants": {
+      "marble": "Blurry organic shapes",
+      "beam": "Expressive faces",
+      "pixel": "8×8 pixel art",
+      "sunset": "Color gradients",
+      "ring": "Concentric circles",
+      "bauhaus": "Geometric shapes"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Create an account to manage your API keys",
+    "email": "Email",
+    "password": "Password",
+    "loading": "Logging in...",
+    "submit": "Log in",
+    "noAccount": "Don't have an account yet?",
+    "signup": "Sign up",
+    "error": "Login error"
+  },
+  "register": {
+    "title": "Create an account",
+    "subtitle": "To generate API keys and monitor your usage",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password (8+ characters)",
+    "loading": "Creating...",
+    "submit": "Create my account",
+    "hasAccount": "Already have an account?",
+    "login": "Log in",
+    "error": "Registration error"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Manage your API keys",
+    "keys": "Your keys",
+    "newKey": "+ New key",
+    "keyNamePlaceholder": "Key name (e.g. production, dev...)",
+    "create": "Create",
+    "cancel": "Cancel",
+    "newKeyCreated": "Your new key (copy it now, it won't be shown again):",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "noKeys": "No keys yet.",
+    "lastUsed": "Last used:",
+    "neverUsed": "Never used",
+    "createdOn": "Created on",
+    "edit": "Edit",
+    "save": "Save",
+    "disable": "Disable",
+    "enable": "Enable",
+    "delete": "Delete",
+    "confirmDelete": "Delete this API key? This action cannot be undone.",
+    "editName": "Edit name",
+    "active": "Active",
+    "inactive": "Inactive"
+  }
+}

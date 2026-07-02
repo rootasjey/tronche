@@ -6,15 +6,33 @@ export default defineNuxtConfig({
   modules: [
     '@nuxthub/core',
     'nuxt-auth-utils',
-    '@unocss/nuxt',
+    '@una-ui/nuxt',
+    'nuxt-i18n-micro',
     './src/module.ts',
   ],
+
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', dir: 'ltr' },
+      { code: 'fr', iso: 'fr-FR', dir: 'ltr' },
+    ],
+    defaultLocale: 'en',
+    translationDir: 'locales',
+    strategy: 'no_prefix',
+    meta: true,
+    localeCookie: 'user-locale',
+  },
 
   hub: {
     db: 'sqlite',
     kv: true,
     blob: true,
     cache: true,
+  },
+
+  una: {
+    prefix: 'N',
+    themeable: true,
   },
 
   nitro: {
@@ -59,7 +77,7 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', href: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" rx="160" fill="%23F05D5E"/><path d="M32.414 59.35L50.376 70.5H72.5v-71H33.728L26.5 13.381l19.057 27.08L32.414 59.35z" fill="%232B2D42" transform="translate(0 0) rotate(15 40 40) scale(1.3)"/><path d="M22.216 24L0 46.75l14.108 38.129L78 86l-3.081-59.276-22.378 4.005 12.972 20.186-23.35 27.395L22.215 24z" fill="%232B2D42" transform="translate(0 0) rotate(-10 40 40) scale(1.2)"/></svg>' },
+        { rel: 'icon', href: '/images/favicon.ico' },
       ],
     },
   },

@@ -64,8 +64,10 @@
     "@libsql/client": "^0.17.4",
     "@noble/hashes": "^2.2.0",
     "@nuxthub/core": "^0.10.7",
+    "@una-ui/nuxt": "^1.0.0-alpha.17",
     "drizzle-orm": "^0.45.2",
-    "nuxt-auth-utils": "^0.5.29"
+    "nuxt-auth-utils": "^0.5.29",
+    "nuxt-i18n-micro": "^3.21.2"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.102",
