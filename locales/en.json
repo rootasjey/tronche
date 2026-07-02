@@ -13,12 +13,12 @@
     "system": "System"
   },
   "footer": {
-    "tagline": "tronche — avatars with character"
+    "tagline": "tronche — avatars nothing like you"
   },
   "home": {
     "hero": {
       "title": "Avatars",
-      "highlight": "with character",
+      "highlight": "nothing like you",
       "subtitle": "Generate unique SVG avatars from a name. Open source, free API.",
       "reshuffle": "New avatars",
       "try": "Try it",

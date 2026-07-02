@@ -1,47 +1,106 @@
 # Tronche
 
-Des avatars qui ont de la gueule.
+Avatars nothing like you.
 
-Tronche génère des avatars SVG uniques à partir d'un nom et d'une palette de couleurs. Proposé sous forme de librairie Vue.js/Nuxt.js, d'API REST gratuite, et de service d'API key pour plus de volume.
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [Nuxt module](#nuxt-module), a [standalone Vue component](#vue-usage), and a [free REST API](#rest-api).
 
-## Utilisation rapide
+## Installation
 
-**Module Nuxt :**
+```sh
+npm install tronche
+```
+
+## Nuxt Module
+
+Add the module to your `nuxt.config.ts` — components are auto-imported.
 
 ```ts
-// nuxt.config.ts
-modules: ['tronche/module'],
+export default defineNuxtConfig({
+  modules: ['tronche/module'],
+})
 ```
 
 ```vue
-<Avatar name="Maria Mitchell" variant="beam" />
+<template>
+  <Avatar name="Maria Mitchell" variant="beam" />
+</template>
 ```
 
-**API REST :**
+### Module options
+
+```ts
+tronche: {
+  prefix: 'T',  // components become TAvatar, TAvatarBeam, etc.
+}
+```
+
+## Vue Usage
+
+```vue
+<script setup>
+import Avatar from 'tronche/src/runtime/components/Avatar.vue'
+</script>
+<template>
+  <Avatar
+    name="Grace Hopper"
+    :colors="['#fb6900', '#f63700', '#004853']"
+    variant="marble"
+    :size="120"
+    square
+  />
+</template>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | `Clara Barton` | Seed for deterministic generation |
+| `variant` | `string` | `marble` | Avatar style: `marble`, `beam`, `pixel`, `sunset`, `ring`, `bauhaus` |
+| `size` | `number` | `80` | Width/height in pixels |
+| `square` | `boolean` | `false` | Square crop (otherwise rounded) |
+| `colors` | `string[]` | built-in palette | Custom hex colors |
+| `title` | `boolean` | `false` | Show title element |
+
+## REST API
 
 ```
-GET /api/avatar/Clara%20Barton?variant=beam&size=200
+GET /api/avatar/:name
 ```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `variant` | `string` | `marble` | `marble`, `beam`, `pixel`, `sunset`, `ring`, `bauhaus` |
+| `size` | `number` | `80` | Size in pixels (clamped 16–512) |
+| `square` | `boolean` | `false` | Square crop |
+| `colors` | `string` | default palette | Comma-separated hex colors (e.g. `FF6B6B,4ECDC4`) |
+
+```sh
+curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"
+curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"
+```
+
+**Rate limit:** 100 requests/min per IP. [Create an account](https://tronche.app/register) for API key access with higher limits.
 
 ## Variants
 
 | Variant | Style |
 |---------|-------|
-| marble | Formes organiques floues |
-| beam | Visages avec expressions |
-| pixel | Pixel art 8×8 |
-| sunset | Dégradés de couleurs |
-| ring | Cercles concentriques |
-| bauhaus | Formes géométriques |
+| marble | Soft blurred shapes |
+| beam | Expressive faces |
+| pixel | 8×8 pixel art |
+| sunset | Color gradients |
+| ring | Concentric circles |
+| bauhaus | Geometric shapes |
 
 ## Stack
 
-- **Nuxt 4** — Site vitrine + API (Nitro)
-- **@nuxthub/core** — Déploiement Cloudflare (D1, KV, R2)
-- **nuxt-auth-utils** — Sessions et authentification
-- **Drizzle ORM** — Base de données SQLite/D1
+- **Nuxt 4** — Frontend + API (Nitro)
+- **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)
+- **nuxt-auth-utils** — Sessions and authentication
+- **Drizzle ORM** — SQLite/D1 database
 - **@noble/hashes** — Password hashing (scrypt)
 
-## Licence
+## License
 
 MIT

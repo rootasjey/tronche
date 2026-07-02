@@ -13,12 +13,12 @@
     "system": "Système"
   },
   "footer": {
-    "tagline": "tronche — des avatars qui ont de la gueule"
+    "tagline": "tronche — des avatars qui vous ressemblent pas"
   },
   "home": {
     "hero": {
       "title": "Des avatars",
-      "highlight": "qui ont de la gueule",
+      "highlight": "qui vous ressemblent pas",
       "subtitle": "Générez des avatars SVG uniques à partir d'un nom. Open source, API gratuite.",
       "reshuffle": "Nouveaux avatars",
       "try": "Essayer",
