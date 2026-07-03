@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { hashCode, getUnit, getBoolean, getRandomColor, getContrast } from '../../lib/utilities';
-import type { AvatarProps } from '../../lib/types';
 
-interface Props extends AvatarProps {}
+interface Props {
+  name?: string;
+  colors?: string[];
+  title?: boolean;
+  square?: boolean;
+  size?: number | string;
+}
 
 const props = withDefaults(defineProps<Props>(), {
   name: 'Clara Barton',

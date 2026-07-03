@@ -1,6 +1,7 @@
 {
   "nav": {
     "playground": "Playground",
+    "gallery": "Gallery",
     "docs": "Docs",
     "api": "API",
     "login": "Login",
@@ -14,6 +15,14 @@
   },
   "footer": {
     "tagline": "tronche — avatars nothing like you"
+  },
+  "gallery": {
+    "hero": {
+      "title": "Fun ways to use",
+      "highlight": "tronche",
+      "subtitle": "Discover the possibilities of custom avatars with our open-source library. From social apps to games and SaaS platforms, it's easy to add a personal touch to any project."
+    },
+    "copy": "Copy"
   },
   "home": {
     "hero": {

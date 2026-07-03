@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { hashCode, getRandomColor } from '../../lib/utilities';
-import type { AvatarProps } from '../../lib/types';
 
-interface Props extends AvatarProps {}
+interface Props {
+  name?: string;
+  colors?: string[];
+  title?: boolean;
+  square?: boolean;
+  size?: number | string;
+}
 
 const props = withDefaults(defineProps<Props>(), {
   name: 'Clara Barton',
@@ -54,42 +59,9 @@ const maskID = computed(() => `mask-${hashCode(props.name)}`);
       <rect :width="SIZE" :height="SIZE" :rx="props.square ? undefined : SIZE * 2" fill="#FFFFFF" />
     </mask>
     <g :mask="`url(#${maskID})`">
-      <!-- Generate 8x8 pixel grid -->
-      <rect width="10" height="10" :fill="pixelColors[0]" />
-      <rect x="20" width="10" height="10" :fill="pixelColors[1]" />
-      <rect x="40" width="10" height="10" :fill="pixelColors[2]" />
-      <rect x="60" width="10" height="10" :fill="pixelColors[3]" />
-      <rect x="10" width="10" height="10" :fill="pixelColors[4]" />
-      <rect x="30" width="10" height="10" :fill="pixelColors[5]" />
-      <rect x="50" width="10" height="10" :fill="pixelColors[6]" />
-      <rect x="70" width="10" height="10" :fill="pixelColors[7]" />
-      
-      <!-- Row 2 -->
-      <rect y="10" width="10" height="10" :fill="pixelColors[8]" />
-      <rect y="20" width="10" height="10" :fill="pixelColors[9]" />
-      <rect y="30" width="10" height="10" :fill="pixelColors[10]" />
-      <rect y="40" width="10" height="10" :fill="pixelColors[11]" />
-      <rect y="50" width="10" height="10" :fill="pixelColors[12]" />
-      <rect y="60" width="10" height="10" :fill="pixelColors[13]" />
-      <rect y="70" width="10" height="10" :fill="pixelColors[14]" />
-      
-      <!-- Continue with remaining pixels... -->
-      <rect x="20" y="10" width="10" height="10" :fill="pixelColors[15]" />
-      <rect x="20" y="20" width="10" height="10" :fill="pixelColors[16]" />
-      <rect x="20" y="30" width="10" height="10" :fill="pixelColors[17]" />
-      <rect x="20" y="40" width="10" height="10" :fill="pixelColors[18]" />
-      <rect x="20" y="50" width="10" height="10" :fill="pixelColors[19]" />
-      <rect x="20" y="60" width="10" height="10" :fill="pixelColors[20]" />
-      <rect x="20" y="70" width="10" height="10" :fill="pixelColors[21]" />
-      
-      <!-- Add remaining pixels for complete 8x8 grid -->
-      <rect v-for="(color, index) in pixelColors.slice(22)" 
-            :key="index + 22"
-            :x="((index + 22) % 8) * 10" 
-            :y="Math.floor((index + 22) / 8) * 10" 
-            width="10" 
-            height="10" 
-            :fill="color" />
+      <rect v-for="(color, index) in pixelColors" :key="index"
+            :x="(index % 8) * 10" :y="Math.floor(index / 8) * 10"
+            width="10" height="10" :fill="color" />
     </g>
   </svg>
 </template>

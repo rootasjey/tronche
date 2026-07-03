@@ -9,6 +9,7 @@
 
         <nav class="flex items-center gap-3">
           <NuxtLink to="/" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.playground') }}</NuxtLink>
+          <NuxtLink to="/gallery" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.gallery') }}</NuxtLink>
           <NuxtLink to="/docs" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.docs') }}</NuxtLink>
           <a href="/api/avatar/test" target="_blank" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.api') }}</a>
           <NuxtLink v-if="!user" to="/login" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.login') }}</NuxtLink>

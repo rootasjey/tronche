@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent } from 'vue';
-import type { AvatarComponentProps, AvatarVariant } from '../../lib/types';
 
-interface Props extends AvatarComponentProps {}
+interface Props {
+  variant?: 'marble' | 'bauhaus' | 'beam' | 'pixel' | 'ring' | 'sunset';
+  name?: string;
+  colors?: string[];
+  title?: boolean;
+  square?: boolean;
+  size?: number | string;
+}
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'marble',
@@ -48,6 +54,5 @@ const componentProps = computed(() => {
   <component 
     :is="AvatarComponent" 
     v-bind="componentProps"
-    v-bind="$attrs"
   />
 </template>

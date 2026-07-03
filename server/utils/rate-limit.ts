@@ -1,5 +1,5 @@
 const WINDOW_MS = 60_000
-const MAX_REQUESTS = 100
+const MAX_REQUESTS = 1000
 
 const memory = new Map<string, { count: number; resetAt: number }>()
 

@@ -1,6 +1,7 @@
 {
   "nav": {
     "playground": "Playground",
+    "gallery": "Galerie",
     "docs": "Docs",
     "api": "API",
     "login": "Connexion",
@@ -14,6 +15,14 @@
   },
   "footer": {
     "tagline": "tronche — des avatars qui vous ressemblent pas"
+  },
+  "gallery": {
+    "hero": {
+      "title": "Des façons amusantes d'utiliser",
+      "highlight": "tronche",
+      "subtitle": "Découvrez les possibilités des avatars personnalisés avec notre bibliothèque open source. Des applications sociales aux jeux et plateformes SaaS, il est facile d'ajouter une touche personnelle à n'importe quel projet."
+    },
+    "copy": "Copier"
   },
   "home": {
     "hero": {
