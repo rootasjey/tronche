@@ -190,7 +190,7 @@ function pick<T>(arr: T[], n: number, seed: number): T[] {
   return idx.slice(0, n).map(({ i }) => arr[i])
 }
 
-const seed = ref(Date.now())
+const seed = useState('homepage-seed', () => Date.now())
 
 const samples = computed(() =>
   pick(allNames, 6, seed.value).map((name, i) => ({

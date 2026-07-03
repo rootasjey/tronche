@@ -26,23 +26,51 @@
       <div class="max-w-240 mx-auto flex items-center justify-between gap-4 flex-wrap">
         <p class="text-xs text-[var(--c-muted)] m-0">{{ $t('footer.tagline') }}</p>
         <div class="flex items-center gap-3">
-          <button
-            class="text-xs font-semibold text-[var(--c-muted)] bg-transparent border border-[var(--c-border)] rounded-full px-3 py-1 cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)] uppercase"
-            @click="toggleLocale"
+          <NCombobox
+            v-model="selectedLocale"
+            :items="locales"
+            by="value"
+            :_combobox-trigger="{
+              size: 'xs',
+              btn: 'ghost',
+              class: 'text-xs font-semibold text-[var(--c-muted)] border border-[var(--c-border)] rounded-full px-3 py-1 cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)] uppercase min-w-0 w-auto',
+              una: {
+                btnDefaultVariant: 'btn-ghost',
+              },
+            }"
+            size="xs"
+            :_combobox-list="{
+              align: 'end',
+            }"
           >
-            {{ locale === 'fr' ? 'EN' : 'FR' }}
-          </button>
-          <div class="flex items-center gap-1.5 bg-[var(--c-surface)] rounded-full p-0.5 border border-[var(--c-border)]">
-            <button
-              v-for="option in themeOptions"
-              :key="option.value"
-              class="text-xs px-3 py-1.5 rounded-full border-none cursor-pointer transition-colors"
-              :class="theme === option.value ? 'bg-primary hover:text-[var(--c-text)]' : 'bg-transparent text-[var(--c-muted)] hover:text-[var(--c-text)]'"
-              @click="set(option.value)"
-            >
-              {{ $t(option.label) }}
-            </button>
-          </div>
+            <template #trigger="{ modelValue }">
+              {{ modelValue?.value?.toUpperCase() || locale.toUpperCase() }}
+            </template>
+          </NCombobox>
+          <NCombobox
+            v-model="selectedTheme"
+            :items="themeOptions"
+            by="value"
+            :_combobox-trigger="{
+              size: 'xs',
+              btn: 'ghost',
+              class: 'text-xs text-[var(--c-muted)] border border-[var(--c-border)] rounded-full px-3 py-1 cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)] min-w-0 w-auto',
+              una: {
+                btnDefaultVariant: 'btn-ghost',
+              },
+            }"
+            size="xs"
+            :_combobox-list="{
+              align: 'end',
+            }"
+          >
+            <template #trigger="{ modelValue }">
+              {{ $t(modelValue?.label || 'theme.system') }}
+            </template>
+            <template #label="{ item }">
+              {{ $t(item.label) }}
+            </template>
+          </NCombobox>
         </div>
       </div>
     </footer>
@@ -55,15 +83,29 @@ const { theme, set, cssVars } = useTheme()
 const { locale } = useI18nLocale()
 const { $switchLocale } = useI18n()
 
+const locales = [
+  { value: 'en', label: 'EN' },
+  { value: 'fr', label: 'FR' },
+]
+const selectedLocale = computed({
+  get: () => locales.find(l => l.value === locale.value),
+  set: (val) => {
+    if (val) $switchLocale(val.value)
+  },
+})
+
+const selectedTheme = computed({
+  get: () => themeOptions.find(o => o.value === theme.value),
+  set: (val) => {
+    if (val) set(val.value)
+  },
+})
+
 const themeOptions = [
   { value: 'dark' as const, label: 'theme.dark' },
   { value: 'light' as const, label: 'theme.light' },
   { value: 'system' as const, label: 'theme.system' },
 ]
-
-function toggleLocale() {
-  $switchLocale(locale.value === 'fr' ? 'en' : 'fr')
-}
 
 async function handleLogout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
