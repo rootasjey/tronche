@@ -1,1 +1,27 @@
-{}
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Manage your API keys",
+    "keys": "Your keys",
+    "newKey": "+ New key",
+    "keyNamePlaceholder": "Key name (e.g. production, dev...)",
+    "create": "Create",
+    "cancel": "Cancel",
+    "newKeyCreated": "Your new key (copy it now, it won't be shown again):",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "noKeys": "No keys yet.",
+    "lastUsed": "Last used:",
+    "neverUsed": "Never used",
+    "createdOn": "Created on",
+    "edit": "Edit",
+    "save": "Save",
+    "disable": "Disable",
+    "enable": "Enable",
+    "delete": "Delete",
+    "confirmDelete": "Delete this API key? This action cannot be undone.",
+    "editName": "Edit name",
+    "active": "Active",
+    "inactive": "Inactive"
+  }
+}

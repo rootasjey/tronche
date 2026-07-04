@@ -1,1 +1,69 @@
-{}
+{
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Tout pour intégrer Tronche dans vos projets",
+    "copy": "Copier",
+    "sections": {
+      "installation": "Installation",
+      "nuxt": "Module Nuxt",
+      "vue": "Vue.js",
+      "api": "API REST",
+      "variants": "Variants"
+    },
+    "installation": {
+      "text": "Ajoutez le module dans votre"
+    },
+    "nuxt": {
+      "addModule": "Ajoutez le module dans votre",
+      "autoImport": "Les composants sont auto-importés :"
+    },
+    "vue": {
+      "props": {
+        "name": "Nom pour générer l'avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Taille en pixels",
+        "square": "Avatar carré",
+        "colors": "5 couleurs hexadécimales",
+        "title": "Balise title"
+      }
+    },
+    "api": {
+      "subtitle": "Générez des avatars à distance via notre API.",
+      "endpoint": "Endpoint",
+      "table": {
+        "variantDesc": "marble, beam, pixel, sunset, ring, bauhaus",
+        "sizeDesc": "De 16 à 512",
+        "squareDesc": "true ou false",
+        "colorsDesc": "Couleurs hex séparées par des virgules"
+      },
+      "examples": "Exemples",
+      "rateLimiting": "Rate limiting",
+      "rateLimitingText": "Le plan gratuit autorise",
+      "rateLimitingBold": "100 requêtes par minute",
+      "rateLimitingPerIp": "par IP.",
+      "upgrade": "Pour un volume plus élevé,",
+      "createAccount": "créez un compte",
+      "useApiKey": "et utilisez une clé API."
+    },
+    "table": {
+      "prop": "Prop",
+      "type": "Type",
+      "default": "Défaut",
+      "description": "Description"
+    },
+    "apiTable": {
+      "parameter": "Paramètre",
+      "type": "Type",
+      "default": "Défaut",
+      "description": "Description"
+    },
+    "variants": {
+      "marble": "Formes organiques floues",
+      "beam": "Visages expressifs",
+      "pixel": "Pixel art 8×8",
+      "sunset": "Dégradés de couleurs",
+      "ring": "Cercles concentriques",
+      "bauhaus": "Formes géométriques"
+    }
+  }
+}

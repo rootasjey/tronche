@@ -1,1 +1,13 @@
-{}
+{
+  "login": {
+    "title": "Login",
+    "subtitle": "Create an account to manage your API keys",
+    "email": "Email",
+    "password": "Password",
+    "loading": "Logging in...",
+    "submit": "Log in",
+    "noAccount": "Don't have an account yet?",
+    "signup": "Sign up",
+    "error": "Login error"
+  }
+}

@@ -1,1 +1,13 @@
-{}
+{
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Créez-vous un compte pour gérer vos clés API",
+    "email": "Email",
+    "password": "Mot de passe",
+    "loading": "Connexion...",
+    "submit": "Se connecter",
+    "noAccount": "Pas encore de compte ?",
+    "signup": "S'inscrire",
+    "error": "Erreur de connexion"
+  }
+}

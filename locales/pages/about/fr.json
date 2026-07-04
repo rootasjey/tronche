@@ -1,0 +1,28 @@
+{
+  "about": {
+    "title": "À propos",
+    "subtitle": "Pourquoi tronche existe",
+    "origin": {
+      "title": "Origine",
+      "text": "tronche est né d'un constat simple : les applications modernes centrées sur l'utilisateur ont besoin d'avatars. Que ce soit pour les profils, les commentaires ou les messages, un identifiant visuel unique rend l'expérience plus personnelle et engageante."
+    },
+    "inspiration": {
+      "title": "Inspiration",
+      "text": "L'excellent projet boring-avatars répondait philosophiquement à ce besoin : générer des avatars uniques à partir d'un nom, sans upload.",
+      "limitations": "Mais en pratique, il n'était pas adapté à notre cas :",
+      "limit1": "Pas de module Nuxt ou Vue pour une intégration facile",
+      "limit2": "Le service API nécessite un paiement immédiat, pas de gratuit pour prototyper",
+      "limit3": "Gestion très restrictive des domaines : seulement 1 domaine de prod et 1 domaine de dev",
+      "limit4": "Tout changement nécessite 24 heures d'attente",
+      "source": "Source :"
+    },
+    "solution": {
+      "title": "Notre solution",
+      "text": "Devant le peu de praticité de l'API boring-avatars, le chemin le plus simple a été de créer notre propre service. tronche est un service open-source et auto-hébergeable de génération d'avatars avec une API REST, un module Nuxt et un composant Vue. Il est conçu pour être réellement facile à utiliser."
+    },
+    "usedBy": {
+      "title": "Utilisé par",
+      "text": "tronche est déjà utilisé en production pour les avatars sur"
+    }
+  }
+}

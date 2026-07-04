@@ -1,1 +1,31 @@
-{}
+{
+  "home": {
+    "hero": {
+      "title": "Avatars",
+      "highlight": "nothing like you",
+      "subtitle": "Generate unique SVG avatars from a name. Open source, REST API.",
+      "reshuffle": "New avatars",
+      "try": "Try it",
+      "github": "GitHub"
+    },
+    "playground": {
+      "title": "Playground",
+      "subtitle": "Customize your avatar live",
+      "download": "Download SVG",
+      "name": "Name",
+      "namePlaceholder": "Enter a name...",
+      "variant": "Variant",
+      "colors": "Colors",
+      "random": "Random",
+      "shape": "Shape",
+      "square": "Square",
+      "round": "Round"
+    },
+    "api": {
+      "title": "API",
+      "subtitle": "Simple integration, instant results",
+      "copy": "Copy",
+      "paramColors": "comma-separated hex colors"
+    }
+  }
+}

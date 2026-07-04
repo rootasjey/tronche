@@ -1,1 +1,69 @@
-{}
+{
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Everything to integrate Tronche into your projects",
+    "copy": "Copy",
+    "sections": {
+      "installation": "Installation",
+      "nuxt": "Nuxt Module",
+      "vue": "Vue.js",
+      "api": "REST API",
+      "variants": "Variants"
+    },
+    "installation": {
+      "text": "Add the module in your"
+    },
+    "nuxt": {
+      "addModule": "Add the module in your",
+      "autoImport": "Components are auto-imported:"
+    },
+    "vue": {
+      "props": {
+        "name": "Name to generate the avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Size in pixels",
+        "square": "Square avatar",
+        "colors": "5 hexadecimal colors",
+        "title": "Title tag"
+      }
+    },
+    "api": {
+      "subtitle": "Generate avatars remotely via our API.",
+      "endpoint": "Endpoint",
+      "table": {
+        "variantDesc": "marble, beam, pixel, sunset, ring, bauhaus",
+        "sizeDesc": "16 to 512",
+        "squareDesc": "true or false",
+        "colorsDesc": "Comma-separated hex colors"
+      },
+      "examples": "Examples",
+      "rateLimiting": "Rate limiting",
+      "rateLimitingText": "The free plan allows",
+      "rateLimitingBold": "100 requests per minute",
+      "rateLimitingPerIp": "per IP.",
+      "upgrade": "For higher volume,",
+      "createAccount": "create an account",
+      "useApiKey": "and use an API key."
+    },
+    "table": {
+      "prop": "Prop",
+      "type": "Type",
+      "default": "Default",
+      "description": "Description"
+    },
+    "apiTable": {
+      "parameter": "Parameter",
+      "type": "Type",
+      "default": "Default",
+      "description": "Description"
+    },
+    "variants": {
+      "marble": "Blurry organic shapes",
+      "beam": "Expressive faces",
+      "pixel": "8×8 pixel art",
+      "sunset": "Color gradients",
+      "ring": "Concentric circles",
+      "bauhaus": "Geometric shapes"
+    }
+  }
+}

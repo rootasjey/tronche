@@ -1,1 +1,14 @@
-{}
+{
+  "register": {
+    "title": "Créer un compte",
+    "subtitle": "Pour générer des clés API et monitorer votre utilisation",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe (8+ caractères)",
+    "loading": "Création...",
+    "submit": "Créer mon compte",
+    "hasAccount": "Déjà un compte ?",
+    "login": "Se connecter",
+    "error": "Erreur lors de l'inscription"
+  }
+}

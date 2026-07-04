@@ -1,1 +1,14 @@
-{}
+{
+  "register": {
+    "title": "Create an account",
+    "subtitle": "To generate API keys and monitor your usage",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password (8+ characters)",
+    "loading": "Creating...",
+    "submit": "Create my account",
+    "hasAccount": "Already have an account?",
+    "login": "Log in",
+    "error": "Registration error"
+  }
+}

@@ -1,1 +1,27 @@
-{}
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Gérez vos clés API",
+    "keys": "Vos clés",
+    "newKey": "+ Nouvelle clé",
+    "keyNamePlaceholder": "Nom de la clé (ex: production, dev...)",
+    "create": "Créer",
+    "cancel": "Annuler",
+    "newKeyCreated": "Votre nouvelle clé (copiez-la, elle ne sera plus affichée) :",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "noKeys": "Aucune clé pour le moment.",
+    "lastUsed": "Dernière utilisation :",
+    "neverUsed": "Jamais utilisé",
+    "createdOn": "Créée le",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "disable": "Désactiver",
+    "enable": "Activer",
+    "delete": "Supprimer",
+    "confirmDelete": "Supprimer cette clé API ? Cette action est irréversible.",
+    "editName": "Modifier le nom",
+    "active": "Actif",
+    "inactive": "Inactif"
+  }
+}
