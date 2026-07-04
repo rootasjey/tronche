@@ -124,6 +124,7 @@ const navItems = computed(() => {
     { label: t('nav.gallery'), to: '/gallery' },
     { label: t('nav.docs'), to: '/docs' },
     { label: t('nav.api'), to: '/api/avatar/test', target: '_blank' },
+    { label: t('nav.about'), to: '/about' },
   ]
 
   if (!user.value) {

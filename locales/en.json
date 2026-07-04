@@ -4,6 +4,7 @@
     "gallery": "Gallery",
     "docs": "Docs",
     "api": "API",
+    "about": "About",
     "login": "Login",
     "dashboard": "Dashboard",
     "logout": "Log out",
@@ -119,6 +120,32 @@
       "sunset": "Color gradients",
       "ring": "Concentric circles",
       "bauhaus": "Geometric shapes"
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Why tronche exists",
+    "origin": {
+      "title": "Origin",
+      "text": "tronche was born from a simple observation: modern user-centric applications need avatars. Whether it's for profiles, comments, or chat messages, a unique visual identifier makes the experience more personal and engaging."
+    },
+    "inspiration": {
+      "title": "Inspiration",
+      "text": "The amazing boring-avatars project philosophically answered this need perfectly: generate unique avatars from a name, no upload required.",
+      "limitations": "But in practice, it fell short for our use case:",
+      "limit1": "No Nuxt or Vue module available for easy integration",
+      "limit2": "The API service requires immediate payment, no free tier for prototyping",
+      "limit3": "Very restrictive domain management: only 1 production domain and 1 development domain",
+      "limit4": "Any change requires waiting 24 hours to take effect",
+      "source": "Source:"
+    },
+    "solution": {
+      "title": "Our solution",
+      "text": "Faced with zero practicality when using the boring-avatars API, the simplest path was to create our own service. tronche is an open-source, self-hostable avatar generation service with a REST API, a Nuxt module, and a Vue component. It's designed to be truly easy to use."
+    },
+    "usedBy": {
+      "title": "Used by",
+      "text": "tronche is already powering avatars in production on"
     }
   },
   "login": {
