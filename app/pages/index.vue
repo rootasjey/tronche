@@ -1,25 +1,28 @@
 <template>
   <div>
     <section class="text-center px-5 pt-20 pb-15 max-w-240 mx-auto">
-      <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
-        {{ $t('home.hero.title') }}<br />
-        <span class="bg-gradient-to-r from-primary to-[#FF8A5C] bg-clip-text text-transparent">{{ $t('home.hero.highlight') }}</span>
-      </h1>
-      <p class="text-muted text-lg mb-10">{{ $t('home.hero.subtitle') }}</p>
+      <div class="animate-in" style="animation-delay: 0ms">
+        <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
+          {{ $t('home.hero.title') }}<br />
+          <span class="text-primary">{{ $t('home.hero.highlight') }}</span>
+        </h1>
+      </div>
+      <div class="animate-in" style="animation-delay: 100ms">
+        <p class="text-muted text-lg mb-10">{{ $t('home.hero.subtitle') }}</p>
+      </div>
 
-      <div class="flex justify-center items-center gap-5 flex-wrap mb-10">
-        <button class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]" :title="$t('home.hero.reshuffle')" @click="reshuffle">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+      <div class="flex justify-center items-center gap-5 flex-wrap mb-10 animate-in" style="animation-delay: 200ms">
+        <button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-border text-muted cursor-pointer transition-all hover:text-[var(--c-text)] hover:border-[var(--c-text)] hover:scale-105 active:scale-95" :title="$t('home.hero.reshuffle')" @click="reshuffle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
         </button>
-        <div v-for="s in samples" :key="`${s.name}-${s.variant}`" class="flex flex-col items-center gap-2">
-          <img :src="avatarUrl(s.name, s.variant, 80, false, s.colors)" :alt="s.name" width="80" height="80" class="rounded-full bg-surface" />
+        <div v-for="(s, i) in samples" :key="`${s.name}-${s.variant}`" class="flex flex-col items-center gap-2 avatar-sample" :style="{ animationDelay: `${300 + i * 80}ms` }">
+          <img :src="avatarUrl(s.name, s.variant, 80, false, s.colors)" :alt="s.name" width="80" height="80" class="rounded-full bg-surface hover:scale-105 transition-transform duration-300" />
           <span class="text-xs text-muted">{{ s.name }}</span>
         </div>
       </div>
 
-      <div class="flex justify-center gap-3">
-        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-colors">{{ $t('home.hero.try') }}</a>
-        <a href="https://github.com/rootasjey/tronche" target="_blank" class="inline-flex items-center px-7 py-3 rounded-full border border-border text-muted font-semibold text-sm no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">{{ $t('home.hero.github') }}</a>
+      <div class="animate-in" style="animation-delay: 600ms">
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-all hover:scale-105">{{ $t('home.hero.try') }}</a>
       </div>
     </section>
 
@@ -31,18 +34,24 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        <div class="text-center sticky top-20">
-          <div class="w-50 h-50 mx-auto mb-4">
-            <img :src="previewUrl" alt="avatar" width="200" height="200" :class="['w-full h-full bg-surface', square ? '' : 'rounded-full']" />
+        <div class="text-center lg:sticky lg:top-24">
+          <div class="w-56 h-56 mx-auto mb-4 relative group">
+            <Transition name="fade" mode="out-in">
+              <img :key="previewUrl" :src="previewUrl" alt="avatar" width="224" height="224" :class="['w-full h-full bg-surface', square ? 'rounded-2xl' : 'rounded-full']" />
+            </Transition>
+            <div class="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" :class="square ? 'rounded-2xl' : 'rounded-full'" />
           </div>
-          <p class="text-muted text-sm mb-4">{{ name || '—' }}</p>
-          <button class="inline-flex items-center px-5 py-2 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="download">{{ $t('home.playground.download') }}</button>
+          <p class="text-muted text-sm mb-4 min-h-5">{{ displayName }}</p>
+          <button class="w-full max-w-56 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-all hover:scale-105 active:scale-95" @click="download">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            {{ $t('home.playground.download') }}
+          </button>
         </div>
 
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
             <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.name') }}</label>
-            <input v-model="name" type="text" :placeholder="$t('home.playground.namePlaceholder')" class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-colors focus:border-primary" />
+            <input v-model="name" type="text" :placeholder="$t('home.playground.namePlaceholder')" class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-all focus:border-primary" />
           </div>
 
           <div class="flex flex-col gap-2">
@@ -51,7 +60,7 @@
               <button
                 v-for="v in variants"
                 :key="v"
-                class="flex flex-col items-center gap-1 p-2 rounded-xl bg-surface border-2 border-transparent cursor-pointer transition-colors"
+                class="flex flex-col items-center gap-1 p-2 rounded-xl bg-surface border-2 border-transparent cursor-pointer transition-all"
                 :class="variant === v ? '!border-primary' : 'hover:border-border'"
                 @click="variant = v"
               >
@@ -67,14 +76,14 @@
               <button
                 v-for="(palette, i) in palettes"
                 :key="i"
-                class="flex gap-0.5 p-1.5 rounded-lg border-2 cursor-pointer transition-colors bg-surface"
+                class="flex gap-0.5 p-1.5 rounded-lg border-2 cursor-pointer transition-all bg-surface"
                 :class="activePalette === i && i < palettes.length - 1 ? '!border-primary' : 'border-transparent hover:border-border'"
                 @click="activePalette = i"
               >
                 <span v-for="c in palette" :key="c" class="w-4 h-4 rounded-sm" :style="{ background: c }" />
               </button>
               <button
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 cursor-pointer transition-colors text-xs font-semibold bg-surface"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 cursor-pointer transition-all text-xs font-semibold bg-surface"
                 :class="lastIsActive ? '!border-primary' : 'border-transparent hover:border-border'"
                 @click="randomPalette"
               >
@@ -87,7 +96,7 @@
           <div class="flex items-center gap-3">
             <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.shape') }}</label>
             <button
-              class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border-2 cursor-pointer transition-colors text-sm"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border-2 cursor-pointer transition-all text-sm"
               :class="square ? '!border-primary' : 'border-transparent hover:border-border'"
               @click="square = !square"
             >
@@ -109,7 +118,7 @@
 
       <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
         <code class="text-sm font-mono whitespace-pre shrink-0">&lt;img src="https://tronche.app/api/avatar/Maria%20Mitchell?variant=beam&amp;size=80" /&gt;</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyCode">{{ $t('home.api.copy') }}</button>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg text-white text-xs border-none cursor-pointer transition-all active:scale-95" :class="copied ? 'bg-[#22c55e]' : 'bg-primary hover:bg-primary-600'" @click="copyCode">{{ copyLabel }}</button>
       </div>
 
       <div class="flex flex-col gap-2">
@@ -127,6 +136,7 @@ const name = ref('Clara Barton')
 const variant = ref('beam')
 const square = ref(false)
 const activePalette = ref(0)
+const copied = ref(false)
 
 const palettes = ref<string[][]>([
   ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'],
@@ -141,6 +151,8 @@ const palettes = ref<string[][]>([
 const lastIsActive = computed(() => activePalette.value === palettes.value.length - 1)
 
 const activeColors = computed(() => palettes.value[activePalette.value])
+
+const displayName = computed(() => name.value || 'Enter a name to generate an avatar')
 
 function hslToHex(h: number, s: number, l: number): string {
   s /= 100
@@ -225,6 +237,8 @@ const params = computed(() => [
   ['colors', $t('home.api.paramColors')],
 ])
 
+const copyLabel = computed(() => copied.value ? 'Copied!' : $t('home.api.copy'))
+
 function download() {
   const link = document.createElement('a')
   link.download = `tronche-${name.value || 'avatar'}.svg`
@@ -232,7 +246,41 @@ function download() {
   link.click()
 }
 
-function copyCode() {
-  navigator.clipboard.writeText(`<img src="https://tronche.app/api/avatar/${encodeURIComponent(name.value || 'avatar')}?variant=${variant.value}&size=80" />`)
+async function copyCode() {
+  await navigator.clipboard.writeText(`<img src="https://tronche.app/api/avatar/${encodeURIComponent(name.value || 'avatar')}?variant=${variant.value}&size=80" />`)
+  copied.value = true
+  setTimeout(() => { copied.value = false }, 2000)
 }
 </script>
+
+<style scoped>
+.animate-in {
+  animation: animate-in 0.6s ease forwards;
+  opacity: 0;
+}
+
+.avatar-sample {
+  animation: animate-in 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

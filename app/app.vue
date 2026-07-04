@@ -120,11 +120,11 @@ const themeOptions = [
 
 const navItems = computed(() => {
   const items = [
-    { label: t('nav.playground'), to: '/' },
     { label: t('nav.gallery'), to: '/gallery' },
     { label: t('nav.docs'), to: '/docs' },
     { label: t('nav.api'), to: '/api/avatar/test', target: '_blank' },
     { label: t('nav.about'), to: '/about' },
+    { label: 'GitHub', to: 'https://github.com/rootasjey/tronche', target: '_blank' },
   ]
 
   if (!user.value) {
@@ -175,7 +175,7 @@ async function handleLogout() {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
 }
