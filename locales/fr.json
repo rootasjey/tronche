@@ -6,7 +6,8 @@
     "api": "API",
     "login": "Connexion",
     "dashboard": "Dashboard",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "account": "Compte"
   },
   "theme": {
     "dark": "Sombre",

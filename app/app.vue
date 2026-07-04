@@ -7,15 +7,25 @@
           tronche
         </NuxtLink>
 
-        <nav class="flex items-center gap-3">
-          <NuxtLink to="/" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.playground') }}</NuxtLink>
-          <NuxtLink to="/gallery" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.gallery') }}</NuxtLink>
-          <NuxtLink to="/docs" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.docs') }}</NuxtLink>
-          <a href="/api/avatar/test" target="_blank" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.api') }}</a>
-          <NuxtLink v-if="!user" to="/login" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.login') }}</NuxtLink>
-          <NuxtLink v-if="user" to="/dashboard" class="text-sm text-[var(--c-muted)] hover:text-[var(--c-text)] transition-colors no-underline">{{ $t('nav.dashboard') }}</NuxtLink>
-          <button v-if="user" class="text-sm text-[var(--c-muted)] border border-[var(--c-border)] rounded-full px-3.5 py-1 bg-transparent cursor-pointer transition-colors hover:text-primary hover:border-primary" @click="handleLogout">{{ $t('nav.logout') }}</button>
-        </nav>
+        <NNavigationMenu
+          :items="navItems"
+          size="sm"
+          class="flex-initial"
+          navigation-menu-link="ghost-white"
+          :_navigation-menu-viewport="{
+            una: {
+              navigationMenuViewportWrapper: '!left-auto !right-0 !justify-end',
+            },
+          }"
+        >
+          <template #account-content="{ items }">
+            <ul class="grid gap-1 p-1.5 w-44">
+              <li v-for="item in items" :key="item.label">
+                <NNavigationMenuContentItem v-bind="item" class="rounded-md w-full" />
+              </li>
+            </ul>
+          </template>
+        </NNavigationMenu>
       </div>
     </header>
 
@@ -82,7 +92,7 @@
 const { user, clear } = useUserSession()
 const { theme, set, cssVars } = useTheme()
 const { locale } = useI18nLocale()
-const { $switchLocale } = useI18n()
+const { t, $switchLocale } = useI18n()
 
 const locales = [
   { value: 'en', label: 'EN' },
@@ -107,6 +117,30 @@ const themeOptions = [
   { value: 'light' as const, label: 'theme.light' },
   { value: 'system' as const, label: 'theme.system' },
 ]
+
+const navItems = computed(() => {
+  const items = [
+    { label: t('nav.playground'), to: '/' },
+    { label: t('nav.gallery'), to: '/gallery' },
+    { label: t('nav.docs'), to: '/docs' },
+    { label: t('nav.api'), to: '/api/avatar/test', target: '_blank' },
+  ]
+
+  if (!user.value) {
+    items.push({ label: t('nav.login'), to: '/login' })
+  } else {
+    items.push({
+      label: t('nav.account'),
+      slot: 'account',
+      items: [
+        { label: t('nav.dashboard'), to: '/dashboard' },
+        { label: t('nav.logout'), onSelect: handleLogout },
+      ],
+    })
+  }
+
+  return items
+})
 
 async function handleLogout() {
   await $fetch('/api/auth/logout', { method: 'POST' })

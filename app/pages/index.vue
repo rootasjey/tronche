@@ -124,12 +124,12 @@
 
 <script setup lang="ts">
 const name = ref('Clara Barton')
-const variant = ref('marble')
+const variant = ref('beam')
 const square = ref(false)
 const activePalette = ref(0)
 
 const palettes = ref<string[][]>([
-  ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
+  ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'],
   ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
   ['#6C5CE7', '#A29BFE', '#FD79A8', '#FDCB6E', '#E17055'],
   ['#00B894', '#00CEC9', '#0984E3', '#6C5CE7', '#A29BFE'],
@@ -177,7 +177,7 @@ const allNames = [
   'Simon', 'Tom', 'Zoé',
 ]
 
-const variants = ['marble', 'beam', 'pixel', 'sunset', 'ring', 'bauhaus']
+const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
 
 function seededRandom(seed: number): number {
   const x = Math.sin(seed) * 10000

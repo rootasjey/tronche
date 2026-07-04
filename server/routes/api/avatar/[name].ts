@@ -3,7 +3,7 @@ import type { AvatarOptions } from '../../../generators/types'
 import { checkRateLimit } from '../../../utils/rate-limit'
 
 const VALID_VARIANTS = ['marble', 'beam', 'pixel', 'sunset', 'ring', 'bauhaus']
-const DEFAULT_COLORS = ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']
+const DEFAULT_COLORS = ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F']
 
 export default defineEventHandler(async (event) => {
   const { name } = getRouterParams(event)

@@ -130,12 +130,12 @@ import { snippets } from '../composables/snippets'
 const { $t } = useI18n()
 
 const variants = computed(() => [
-  { name: 'marble', desc: $t('docs.variants.marble') },
   { name: 'beam', desc: $t('docs.variants.beam') },
   { name: 'pixel', desc: $t('docs.variants.pixel') },
   { name: 'sunset', desc: $t('docs.variants.sunset') },
   { name: 'ring', desc: $t('docs.variants.ring') },
   { name: 'bauhaus', desc: $t('docs.variants.bauhaus') },
+  { name: 'marble', desc: $t('docs.variants.marble') },
 ])
 
 const props = computed(() => [

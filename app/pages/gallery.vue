@@ -157,7 +157,7 @@ const variantSections = [
     name: 'beam',
     title: 'Beam duotone',
     description: 'Expressive faces with duotone color schemes',
-    colors: ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
+    colors: ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'],
   },
   {
     name: 'pixel',

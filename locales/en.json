@@ -6,7 +6,8 @@
     "api": "API",
     "login": "Login",
     "dashboard": "Dashboard",
-    "logout": "Log out"
+    "logout": "Log out",
+    "account": "Account"
   },
   "theme": {
     "dark": "Dark",
