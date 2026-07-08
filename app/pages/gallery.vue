@@ -12,9 +12,11 @@
       <div class="mb-6">
         <h2 class="text-2xl font-bold mb-2">{{ v.title }}</h2>
         <p class="text-muted text-sm mb-4">{{ v.description }}</p>
-        <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border overflow-x-auto">
-          <code class="text-sm font-mono whitespace-pre shrink-0">&lt;Avatar name="Mahalia Jackson" variant="{{ v.name }}" :colors="[{{ v.colors.map(c => `'${c}'`).join(', ') }}]" /&gt;</code>
-          <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copySnippet(v.name, v.colors)">{{ $t('gallery.copy') }}</button>
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border">
+          <div class="flex-1 overflow-x-auto">
+            <code class="text-sm font-mono whitespace-pre" v-html="highlightVue(snippetCode(v))"></code>
+          </div>
+          <button class="shrink-0 px-3.5 py-1.5 rounded-lg border-none cursor-pointer transition-colors text-xs" :class="copiedVariant === v.name ? 'bg-green-600 text-white' : 'bg-primary text-white hover:bg-primary-600'" @click="copySnippet(v.name, v.colors)">{{ copiedVariant === v.name ? $t('gallery.copied') : $t('gallery.copy') }}</button>
         </div>
       </div>
 
@@ -154,6 +156,7 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const copiedVariant = ref<string | null>(null)
 const { data: zimaData } = await useFetch('/api/zimablue/images')
 const zimaImages = computed(() => zimaData.value?.data ?? [])
 
@@ -229,8 +232,13 @@ function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string
   return `${base}?${p}`
 }
 
+function snippetCode(v: { name: string; colors: string[] }): string {
+  return `<Avatar name="Mahalia Jackson" variant="${v.name}" :colors="[${v.colors.map(c => `'${c}'`).join(', ')}]" />`
+}
+
 function copySnippet(variant: string, colors: string[]) {
-  const code = `<Avatar name="Mahalia Jackson" variant="${variant}" :colors="[${colors.map(c => `'${c}'`).join(', ')}]" />`
-  navigator.clipboard.writeText(code)
+  navigator.clipboard.writeText(snippetCode({ name: variant, colors }))
+  copiedVariant.value = variant
+  setTimeout(() => { copiedVariant.value = null }, 2000)
 }
 </script>

@@ -160,6 +160,10 @@ async function handleLogout() {
   --c-border: #1e1e22;
   --c-text: #e8e8e8;
   --c-muted: #6b6b7b;
+  --c-syntax-tag: #f07178;
+  --c-syntax-attr: #ffcb6b;
+  --c-syntax-string: #c3e88d;
+  --c-syntax-comment: #5a5a6a;
 }
 
 [data-theme="light"] {
@@ -168,6 +172,10 @@ async function handleLogout() {
   --c-border: #e5e5e0;
   --c-text: #1a1a1a;
   --c-muted: #8a8a9a;
+  --c-syntax-tag: #d73a49;
+  --c-syntax-attr: #6f42c1;
+  --c-syntax-string: #032f62;
+  --c-syntax-comment: #6e7781;
 }
 
 *, *::before, *::after {
