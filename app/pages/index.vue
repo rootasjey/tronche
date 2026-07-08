@@ -22,7 +22,7 @@
       </div>
 
       <div class="animate-in" style="animation-delay: 600ms">
-        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-all hover:scale-105">{{ $t('home.hero.try') }}</a>
+        <a href="#playground" class="inline-flex items-center px-7 py-3 rounded-full bg-primary text-white font-semibold text-sm no-underline hover:bg-primary-600 transition-all hover:scale-105 cursor-pointer" @click.prevent="scrollToPlayground">{{ $t('home.hero.try') }}</a>
       </div>
     </section>
 
@@ -51,7 +51,12 @@
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-2">
             <label class="text-xs font-semibold text-muted uppercase tracking-wide">{{ $t('home.playground.name') }}</label>
-            <input v-model="name" type="text" :placeholder="$t('home.playground.namePlaceholder')" class="px-3.5 py-2.5 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-all focus:border-primary" />
+            <div class="relative">
+              <input v-model="name" type="text" :placeholder="$t('home.playground.namePlaceholder')" class="w-full px-3.5 py-2.5 pr-10 rounded-xl bg-surface border border-border text-[var(--c-text)] text-sm outline-none transition-all focus:border-primary" />
+              <button class="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-lg text-muted hover:text-[var(--c-text)] hover:bg-black/5 dark:hover:bg-white/10 transition-all cursor-pointer active:scale-90" :title="$t('home.playground.random')" @click="randomizeName">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+              </button>
+            </div>
           </div>
 
           <div class="flex flex-col gap-2">
@@ -214,6 +219,14 @@ const samples = computed(() =>
 
 function reshuffle() {
   seed.value = Date.now()
+}
+
+function randomizeName() {
+  name.value = allNames[Math.floor(Math.random() * allNames.length)]
+}
+
+function scrollToPlayground() {
+  document.getElementById('playground')?.scrollIntoView({ behavior: 'smooth' })
 }
 
 function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string): string {
