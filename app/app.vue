@@ -4,7 +4,7 @@
       <div class="max-w-240 mx-auto px-5 h-14 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-2 font-bold text-lg no-underline text-[var(--c-text)] hover:no-underline">
           <img src="/images/tronche-250.png" width="28" height="28" alt="Tronche" class="shrink-0">
-          tronche
+          <span :class="isHome ? 'hidden' : ''">tronche</span>
         </NuxtLink>
 
         <NNavigationMenu
@@ -93,6 +93,8 @@ const { user, clear } = useUserSession()
 const { theme, set, cssVars } = useTheme()
 const { locale } = useI18nLocale()
 const { t, $switchLocale } = useI18n()
+const route = useRoute()
+const isHome = computed(() => route.path === '/')
 
 const locales = [
   { value: 'en', label: 'EN' },
@@ -175,9 +177,13 @@ async function handleLogout() {
 
 body {
   margin: 0;
-  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
+}
+
+.font-heading {
+  font-family: 'Fraunces', serif;
 }
 
 a {

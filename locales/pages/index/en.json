@@ -1,12 +1,16 @@
 {
   "home": {
     "hero": {
-      "title": "Avatars",
-      "highlight": "nothing like you",
-      "subtitle": "Generate unique SVG avatars from a name. Open source, REST API.",
+      "prefix": "Avatars ",
+      "highlight": "nothing",
+      "suffix": " like you.",
+      "subtitle": "Generate unique SVG avatars from a name and a color palette. Open source, REST API.",
       "reshuffle": "New avatars",
       "try": "Make yours",
       "github": "GitHub"
+    },
+    "integration": {
+      "tab": "app.vue"
     },
     "playground": {
       "title": "Playground",
