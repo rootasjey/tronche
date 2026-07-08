@@ -35,7 +35,8 @@
               <p class="text-xs text-muted m-0">2 hours ago</p>
             </div>
           </div>
-          <div class="w-full h-32 rounded-xl bg-gradient-to-br from-primary/20 to-[#FF8A5C]/20 mb-3" />
+          <img v-if="feedPhoto" :src="feedPhoto.thumbnailUrl" :alt="feedPhoto.name" class="w-full h-32 rounded-xl object-cover mb-3" loading="lazy" />
+          <div v-else class="w-full h-32 rounded-xl bg-gradient-to-br from-primary/20 to-[#FF8A5C]/20 mb-3" />
           <div class="flex items-center gap-2 mb-3">
             <div class="flex -space-x-2">
               <img v-for="n in feedLikers" :key="n" :src="avatarUrl(n, v.name, 28, false, v.colors)" alt="" width="28" height="28" class="rounded-full border-2 border-surface" />
@@ -57,6 +58,7 @@
               <p class="text-sm text-muted m-0">I need a hobby so I think I'm gonna start calling the phone numbers on missing cat posters and just "meow" at whoever answers</p>
             </div>
           </div>
+          <img v-if="commentImage" :src="commentImage.url" :alt="commentImage.name" class="w-full h-28 rounded-xl object-cover mb-3" loading="lazy" />
           <div class="flex gap-3 text-xs text-muted mb-4 pl-12">
             <button class="bg-transparent border-none text-muted cursor-pointer text-xs hover:text-[var(--c-text)]">Reply</button>
             <button class="bg-transparent border-none text-muted cursor-pointer text-xs hover:text-[var(--c-text)]">React</button>
@@ -95,7 +97,8 @@
 
         <!-- Profile Header -->
         <div class="rounded-2xl bg-surface border border-border overflow-hidden">
-          <div class="h-24 bg-gradient-to-r from-primary/30 to-[#FF8A5C]/30" />
+          <img v-if="coverPhoto" :src="coverPhoto.thumbnailUrl" :alt="coverPhoto.name" class="w-full h-24 object-cover" loading="lazy" />
+          <div v-else class="h-24 bg-gradient-to-r from-primary/30 to-[#FF8A5C]/30" />
           <div class="px-5 pb-5 -mt-10 text-center">
             <img :src="avatarUrl('Mary Edwards', v.name, 80, false, v.colors)" alt="" width="80" height="80" class="rounded-full border-4 border-surface mx-auto mb-3" />
             <p class="text-sm font-semibold m-0 mb-0.5">Mary Edwards</p>
@@ -151,6 +154,12 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const { data: zimaData } = await useFetch('/api/zimablue/images')
+const zimaImages = computed(() => zimaData.value?.data ?? [])
+
+const feedPhoto = computed(() => zimaImages.value[0] ?? null)
+const coverPhoto = computed(() => zimaImages.value[1] ?? null)
+const commentImage = computed(() => zimaImages.value[2] ?? null)
 
 const variantSections = [
   {

@@ -101,8 +101,10 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     authSecret: process.env.NUXT_AUTH_SECRET,
+    zimaBlueApiKey: process.env.NUXT_ZIMA_BLUE_API_KEY || '',
     public: {
       authUrl: process.env.NUXT_AUTH_ORIGIN || 'http://localhost:3000',
+      zimaBlueBaseUrl: 'https://zimablue.cc',
     },
   },
 })
