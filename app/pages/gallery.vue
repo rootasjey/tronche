@@ -2,26 +2,20 @@
   <div>
     <section class="text-center px-5 pt-20 pb-10 max-w-240 mx-auto">
       <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
-        {{ $t('gallery.hero.title') }}<br />
-        <span class="bg-gradient-to-r from-primary to-[#FF8A5C] bg-clip-text text-transparent">{{ $t('gallery.hero.highlight') }}</span>
+        <span class="block">{{ $t('gallery.hero.title') }}</span>
+        <span class="text-primary">{{ $t('gallery.hero.highlight') }}</span>
       </h1>
-      <p class="text-muted text-lg mb-10">{{ $t('gallery.hero.subtitle') }}</p>
+      <p class="text-muted text-lg">{{ $t('gallery.hero.subtitle') }}</p>
     </section>
 
-    <section v-for="v in variantSections" :key="v.name" class="px-5 py-10 max-w-240 mx-auto">
+    <section v-for="v in variantSections" :key="v.name" class="px-5 py-10 max-w-240 mx-auto section-reveal" :style="{ '--reveal-delay': `${variantSections.indexOf(v) * 0.15}s` }">
       <div class="mb-6">
         <h2 class="text-2xl font-bold mb-2">{{ v.title }}</h2>
-        <p class="text-muted text-sm mb-4">{{ v.description }}</p>
-        <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border">
-          <div class="flex-1 overflow-x-auto">
-            <code class="text-sm font-mono whitespace-pre" v-html="highlightVue(snippetCode(v))"></code>
-          </div>
-          <button class="shrink-0 px-3.5 py-1.5 rounded-lg border-none cursor-pointer transition-colors text-xs" :class="copiedVariant === v.name ? 'bg-green-600 text-white' : 'bg-primary text-white hover:bg-primary-600'" @click="copySnippet(v.name, v.colors)">{{ copiedVariant === v.name ? $t('gallery.copied') : $t('gallery.copy') }}</button>
-        </div>
+        <p class="text-muted text-sm">{{ v.description }}</p>
       </div>
 
-      <div class="flex gap-3 flex-wrap mb-8">
-        <div v-for="name in sampleNames" :key="name" class="flex flex-col items-center gap-1.5">
+      <div class="flex gap-3 overflow-x-auto pb-2 mb-8">
+        <div v-for="name in sampleNames" :key="name" class="flex flex-col items-center gap-1.5 shrink-0">
           <img :src="avatarUrl(name, v.name, 64, false, v.colors)" :alt="name" width="64" height="64" class="rounded-full bg-surface" />
           <span class="text-xs text-muted">{{ name.split(' ')[0] }}</span>
         </div>
@@ -29,7 +23,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <!-- Social Feed -->
-        <div class="rounded-2xl p-5 bg-surface border border-border">
+        <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0s;">
           <div class="flex items-center gap-3 mb-3">
             <img :src="avatarUrl('Mahalia Jackson', v.name, 40, false, v.colors)" alt="" width="40" height="40" class="rounded-full shrink-0" />
             <div class="min-w-0">
@@ -52,7 +46,7 @@
         </div>
 
         <!-- Comments -->
-        <div class="rounded-2xl p-5 bg-surface border border-border">
+        <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.05s;">
           <div class="flex items-start gap-3 mb-4">
             <img :src="avatarUrl('Margaret Bourke', v.name, 36, false, v.colors)" alt="" width="36" height="36" class="rounded-full shrink-0 mt-0.5" />
             <div class="rounded-xl p-3 bg-[var(--c-bg)] flex-1">
@@ -74,7 +68,7 @@
         </div>
 
         <!-- Profile Card -->
-        <div class="rounded-2xl p-5 bg-surface border border-border">
+        <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.1s;">
           <div class="flex items-center gap-4 mb-4">
             <img :src="avatarUrl('Alicia Dickerson', v.name, 56, false, v.colors)" alt="" width="56" height="56" class="rounded-full shrink-0" />
             <div class="grid grid-cols-3 gap-2 text-center flex-1">
@@ -98,7 +92,7 @@
         </div>
 
         <!-- Profile Header -->
-        <div class="rounded-2xl bg-surface border border-border overflow-hidden">
+        <div class="rounded-2xl bg-surface border border-border overflow-hidden card-reveal" style="--card-delay: 0.15s;">
           <img v-if="coverPhoto" :src="coverPhoto.thumbnailUrl" :alt="coverPhoto.name" class="w-full h-24 object-cover" loading="lazy" />
           <div v-else class="h-24 bg-gradient-to-r from-primary/30 to-[#FF8A5C]/30" />
           <div class="px-5 pb-5 -mt-10 text-center">
@@ -110,7 +104,7 @@
         </div>
 
         <!-- Chat List -->
-        <div class="rounded-2xl p-5 bg-surface border border-border">
+        <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.2s;">
           <p class="text-sm font-bold m-0 mb-4">Chat</p>
           <div class="flex flex-col gap-0">
             <div v-for="(user, i) in chatUsers" :key="user.name" class="flex items-center gap-3 py-2.5" :class="i < chatUsers.length - 1 ? 'border-b border-border' : ''">
@@ -128,7 +122,7 @@
         </div>
 
         <!-- Mutual Followers -->
-        <div class="rounded-2xl p-5 bg-surface border border-border">
+        <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.25s;">
           <p class="text-sm font-bold m-0 mb-4">Mutual followers</p>
           <div class="grid grid-cols-2 gap-3">
             <div v-for="n in mutualFollowers" :key="n" class="flex flex-col items-center gap-2 p-3 rounded-xl border border-border">
@@ -139,16 +133,13 @@
           </div>
         </div>
 
-        <!-- Share Grid -->
-        <div class="rounded-2xl p-5 bg-surface border border-border md:col-span-2 lg:col-span-1">
-          <p class="text-sm font-bold m-0 mb-4">Share</p>
-          <div class="grid grid-cols-4 gap-3">
-            <div v-for="n in shareNames" :key="n" class="flex flex-col items-center gap-1.5">
-              <img :src="avatarUrl(n, v.name, 48, false, v.colors)" alt="" width="48" height="48" class="rounded-full" />
-              <span class="text-xs text-muted">{{ n.split(' ')[0] }}</span>
-            </div>
-          </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border mt-8">
+        <div class="flex-1 overflow-x-auto">
+          <code class="text-sm font-mono whitespace-pre" v-html="highlightVue(snippetCode(v))"></code>
         </div>
+        <button class="shrink-0 px-3.5 py-1.5 rounded-lg border-none cursor-pointer transition-colors text-xs" :class="copiedVariant === v.name ? 'bg-green-600 text-white' : 'bg-primary text-white hover:bg-primary-600'" @click="copySnippet(v.name, v.colors)">{{ copiedVariant === v.name ? $t('gallery.copied') : $t('gallery.copy') }}</button>
       </div>
     </section>
   </div>
@@ -222,8 +213,6 @@ const chatUsers = [
 
 const mutualFollowers = ['Willa', 'Coretta', 'Harriet', 'Fabiola']
 
-const shareNames = ['Ma', 'Julia', 'Irene', 'Babe', 'Lyda', 'Annie', 'Maud', 'Betty']
-
 function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string[]): string {
   const base = `/api/avatar/${encodeURIComponent(n)}`
   const p = new URLSearchParams({ variant: v, size: String(s) })
@@ -242,3 +231,26 @@ function copySnippet(variant: string, colors: string[]) {
   setTimeout(() => { copiedVariant.value = null }, 2000)
 }
 </script>
+
+<style scoped>
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-reveal {
+  animation: fadeSlideUp 0.6s ease both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+.card-reveal {
+  animation: fadeSlideUp 0.5s ease both;
+  animation-delay: var(--card-delay, 0s);
+}
+</style>
