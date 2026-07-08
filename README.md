@@ -1,4 +1,6 @@
-# Tronche
+![Tronche](./public/images/tronche.jpeg)
+
+# tronche
 
 Avatars nothing like you.
 
