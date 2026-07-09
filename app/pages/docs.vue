@@ -13,41 +13,44 @@
 
     <section id="start" class="mb-12 fade-in" style="animation-delay: 200ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.installation') }}</h2>
-      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
-        <code class="text-sm font-mono whitespace-pre shrink-0">npm install tronche</code>
-        <button class="shrink-0 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('npm-install')">{{ copied === 'npm-install' ? 'Copied!' : $t('docs.copy') }}</button>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">Shell</span>
+          <button class="copy-btn" :class="{ copied: copied === 'npm-install' }" @click="copy('npm-install', $event)">{{ copied === 'npm-install' ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(snippets['npm-install'], 'sh')"></div>
       </div>
     </section>
 
     <section id="nuxt" class="mb-12 fade-in" style="animation-delay: 300ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.nuxt') }}</h2>
       <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
-      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
-        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('nuxt-config')">{{ copied === 'nuxt-config' ? 'Copied!' : $t('docs.copy') }}</button>
-        <pre class="text-sm font-mono whitespace-pre m-0">export default defineNuxtConfig({
-  modules: ['tronche/module'],
-})</pre>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">JavaScript</span>
+          <button class="copy-btn" :class="{ copied: copied === 'nuxt-config' }" @click="copy('nuxt-config', $event)">{{ copied === 'nuxt-config' ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(snippets['nuxt-config'], 'js')"></div>
       </div>
 
       <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.autoImport') }}</p>
-      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
-        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('nuxt-template')">{{ copied === 'nuxt-template' ? 'Copied!' : $t('docs.copy') }}</button>
-        <pre class="text-sm font-mono whitespace-pre m-0">&lt;template&gt;
-  &lt;Avatar name="Maria Mitchell" variant="beam" /&gt;
-&lt;/template&gt;</pre>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">Vue</span>
+          <button class="copy-btn" :class="{ copied: copied === 'nuxt-template' }" @click="copy('nuxt-template', $event)">{{ copied === 'nuxt-template' ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(snippets['nuxt-template'], 'vue')"></div>
       </div>
     </section>
 
     <section id="vue" class="mb-12 fade-in" style="animation-delay: 400ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.vue') }}</h2>
-      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
-        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('vue-import')">{{ copied === 'vue-import' ? 'Copied!' : $t('docs.copy') }}</button>
-        <pre class="text-sm font-mono whitespace-pre m-0">&lt;script setup&gt;
-import Avatar from 'tronche/src/runtime/components/Avatar.vue'
-&lt;/script&gt;
-&lt;template&gt;
-  &lt;Avatar name="Grace Hopper" :colors="['#fb6900', '#f63700', '#004853']" /&gt;
-&lt;/template&gt;</pre>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">Vue</span>
+          <button class="copy-btn" :class="{ copied: copied === 'vue-import' }" @click="copy('vue-import', $event)">{{ copied === 'vue-import' ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(snippets['vue-import'], 'vue')"></div>
       </div>
 
       <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
@@ -78,7 +81,6 @@ import Avatar from 'tronche/src/runtime/components/Avatar.vue'
       <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border mb-4">
         <span class="text-xs font-bold px-2 py-0.5 rounded uppercase bg-[#22c55e]/15 text-[#22c55e]">GET</span>
         <code class="text-sm flex-1">/api/avatar/:name</code>
-        <span class="text-xs font-medium px-2 py-0.5 rounded-full uppercase bg-transparent text-muted border border-border">Free</span>
       </div>
 
       <table class="w-full border-collapse mb-6">
@@ -101,9 +103,12 @@ import Avatar from 'tronche/src/runtime/components/Avatar.vue'
       </table>
 
       <h3 class="text-lg font-semibold font-heading mb-3">{{ $t('docs.api.examples') }}</h3>
-      <div v-for="(ex, i) in examples" :key="i" class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
-        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy(ex.id)">{{ copied === ex.id ? 'Copied!' : $t('docs.copy') }}</button>
-        <code class="text-sm font-mono whitespace-pre shrink-0">{{ ex.code }}</code>
+      <div v-for="(ex, i) in examples" :key="i" class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">Shell</span>
+          <button class="copy-btn" :class="{ copied: copied === ex.id }" @click="copy(ex.id, $event)">{{ copied === ex.id ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(ex.code, 'sh')"></div>
       </div>
 
       <h3 class="text-lg font-semibold font-heading mt-6 mb-2">{{ $t('docs.api.rateLimiting') }}</h3>
@@ -174,9 +179,10 @@ const sectionLinks = [
   { id: 'variants', label: 'docs.sections.variants' },
 ]
 
-function copy(id: string) {
+function copy(id: string, e: Event) {
   navigator.clipboard.writeText(snippets[id])
   copied.value = id
+  sparkle(e.target as HTMLElement)
   setTimeout(() => { copied.value = null }, 2000)
 }
 

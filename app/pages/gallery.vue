@@ -135,11 +135,12 @@
 
       </div>
 
-      <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border mt-8">
-        <div class="flex-1 overflow-x-auto">
-          <code class="text-sm font-mono whitespace-pre" v-html="highlightVue(snippetCode(v))"></code>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">{{ v.name }}</span>
+          <button class="copy-btn" :class="{ copied: copiedVariant === v.name }" @click="copySnippet(v.name, v.colors, $event)">{{ copiedVariant === v.name ? 'Copied!' : $t('gallery.copy') }}</button>
         </div>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg border-none cursor-pointer transition-colors text-xs" :class="copiedVariant === v.name ? 'bg-green-600 text-white' : 'bg-primary text-white hover:bg-primary-600'" @click="copySnippet(v.name, v.colors)">{{ copiedVariant === v.name ? $t('gallery.copied') : $t('gallery.copy') }}</button>
+        <div v-html="$highlight(snippetCode(v), 'vue')"></div>
       </div>
     </section>
   </div>
@@ -225,9 +226,10 @@ function snippetCode(v: { name: string; colors: string[] }): string {
   return `<Avatar name="Mahalia Jackson" variant="${v.name}" :colors="[${v.colors.map(c => `'${c}'`).join(', ')}]" />`
 }
 
-function copySnippet(variant: string, colors: string[]) {
+function copySnippet(variant: string, colors: string[], e: Event) {
   navigator.clipboard.writeText(snippetCode({ name: variant, colors }))
   copiedVariant.value = variant
+  sparkle(e.target as HTMLElement)
   setTimeout(() => { copiedVariant.value = null }, 2000)
 }
 </script>

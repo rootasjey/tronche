@@ -164,6 +164,8 @@ async function handleLogout() {
   --c-syntax-attr: #ffcb6b;
   --c-syntax-string: #c3e88d;
   --c-syntax-comment: #5a5a6a;
+  --c-syntax-keyword: #c792ea;
+  --c-syntax-number: #f78c6c;
 }
 
 [data-theme="light"] {
@@ -176,6 +178,8 @@ async function handleLogout() {
   --c-syntax-attr: #6f42c1;
   --c-syntax-string: #032f62;
   --c-syntax-comment: #6e7781;
+  --c-syntax-keyword: #8250df;
+  --c-syntax-number: #0550ae;
 }
 
 *, *::before, *::after {
@@ -197,5 +201,97 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.shiki {
+  font-family: 'DM Mono', 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--c-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-block {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--c-border);
+  margin-bottom: 1rem;
+}
+
+.code-block .shiki {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.code-block-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--c-muted);
+}
+
+[data-theme="dark"] .shiki,
+[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style, inherit) !important;
+  font-weight: var(--shiki-dark-font-weight, inherit) !important;
+  text-decoration: var(--shiki-dark-text-decoration, inherit) !important;
+}
+
+[data-theme="light"] .shiki,
+[data-theme="light"] .shiki span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style, inherit) !important;
+  font-weight: var(--shiki-light-font-weight, inherit) !important;
+  text-decoration: var(--shiki-light-text-decoration, inherit) !important;
+}
+
+.copy-btn {
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--c-border);
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: var(--c-text);
+  border-color: var(--c-text);
+}
+
+.copy-btn:active {
+  transform: translateY(1px);
+}
+
+.copy-btn.copied {
+  color: #22c55e;
+  border-color: #22c55e;
+  animation: copy-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes copy-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+  100% { transform: scale(1); }
 }
 </style>

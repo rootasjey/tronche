@@ -22,8 +22,8 @@
           </svg>
           <span class="font-heading text-base font-bold tracking-tight">tronche</span>
         </div>
-        <h1 class="font-heading text-5xl md:text-6xl leading-tight tracking-tight mb-5 font-bold">
-          {{ $t('home.hero.prefix') }}<em class="text-primary font-heading">{{ $t('home.hero.highlight') }}</em>{{ $t('home.hero.suffix') }}
+        <h1 class="font-heading text-5xl md:text-6xl leading-tight tracking-tight mb-5 font-600">
+          {{ $t('home.hero.prefix') }}<span class="text-primary italic font-600">{{ $t('home.hero.highlight') }}</span>{{ $t('home.hero.suffix') }}
         </h1>
       </div>
       <div class="animate-in" style="animation-delay: 100ms">
@@ -43,25 +43,29 @@
     </section>
 
     <section class="px-5 pb-14 max-w-240 mx-auto">
-      <div class="rounded-2xl overflow-hidden border border-[var(--c-border)] max-w-xl mx-auto animate-in" style="animation-delay: 300ms; background: var(--c-surface);">
-        <div class="flex items-center gap-1.5 px-5 py-3 border-b border-[var(--c-border)]" style="background: var(--c-surface);">
-          <span class="w-2.5 h-2.5 rounded-full" style="background: #ff5f57"></span>
-          <span class="w-2.5 h-2.5 rounded-full" style="background: #febc2e"></span>
-          <span class="w-2.5 h-2.5 rounded-full" style="background: #28c840"></span>
-          <span class="ml-3 text-xs font-semibold" style="color: var(--c-muted);">{{ $t('home.integration.tab') }}</span>
+      <div class="code-block max-w-xl mx-auto animate-in" style="animation-delay: 300ms">
+        <div class="code-block-header">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full" style="background: #ff5f57"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background: #febc2e"></span>
+            <span class="w-2.5 h-2.5 rounded-full" style="background: #28c840"></span>
+            <span class="ml-3 text-xs font-semibold text-muted">{{ $t('home.integration.tab') }}</span>
+          </div>
+          <button class="copy-btn" :class="{ copied: copied === 'home-nuxt' }" @click="copy('home-nuxt', $event)">{{ copied === 'home-nuxt' ? 'Copied!' : 'Copy' }}</button>
         </div>
-        <div class="p-5 md:p-6 font-mono text-sm leading-loose overflow-x-auto" style="color: var(--c-text);">
-          <span style="color: #5a5a6a;">&lt;!-- Nuxt module — components auto-imported --&gt;</span><br>
-          <span style="color: #f07178;">&lt;template&gt;</span><br>
-          &nbsp;&nbsp;<span style="color: #f07178;">&lt;Avatar</span> <span style="color: #ffcb6b;">name</span>=<span style="color: #c3e88d;">&quot;Maria Mitchell&quot;</span> <span style="color: #ffcb6b;">variant</span>=<span style="color: #c3e88d;">&quot;beam&quot;</span> <span style="color: #f07178;">/&gt;</span><br>
-          <span style="color: #f07178;">&lt;/template&gt;</span>
-        </div>
+        <div v-html="$highlight(snippets['home-nuxt'], 'vue')"></div>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { snippets } from '../composables/snippets'
+
+const { $t } = useI18n()
+
+const copied = ref<string | null>(null)
+
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
 
 const variantColors = [
@@ -81,7 +85,12 @@ function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string
   return `${base}?${p}`
 }
 
-const { $t } = useI18n()
+function copy(id: string, e: Event) {
+  navigator.clipboard.writeText(snippets[id])
+  copied.value = id
+  sparkle(e.target as HTMLElement)
+  setTimeout(() => { copied.value = null }, 2000)
+}
 </script>
 
 <style scoped>

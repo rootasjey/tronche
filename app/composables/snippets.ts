@@ -25,4 +25,10 @@ export const snippets: Record<string, string> = {
   ].join('\n'),
   'curl-example': 'curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"',
   'curl-colors': 'curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"',
+  'home-nuxt': [
+    '<!-- Nuxt module — components auto-imported -->',
+    '<template>',
+    '  <Avatar name="Maria Mitchell" variant="beam" />',
+    '</template>',
+  ].join('\n'),
 }
