@@ -33,7 +33,7 @@
 
     <section class="px-5 pb-14 max-w-240 mx-auto">
       <div class="flex justify-center items-start gap-6 flex-wrap animate-in" style="animation-delay: 200ms">
-        <div v-for="(v, i) in variants" :key="v" class="flex flex-col items-center gap-3">
+        <div v-for="(v, i) in variants" :key="v" class="flex flex-col items-center gap-3 cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v, variantColors[i])">
           <div class="w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg transition-transform duration-200 hover:scale-110">
             <img :src="avatarUrl('Clara Barton', v, 72, false, variantColors[i])" :alt="v" width="72" height="72" class="w-full h-full block" />
           </div>
@@ -85,6 +85,13 @@ const variantColors = [
   '#ffe3b3,#ff9a52,#ff5252,#c91e5a,#3d2922',
   '#5b1d99,#0074b4,#00b34c,#ffd41f,#fc6e3d',
 ]
+
+function goToPlayground(variant: string, colors: string) {
+  navigateTo({
+    path: '/playground',
+    query: { name: 'Clara Barton', variant, colors },
+  })
+}
 
 function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string): string {
   const base = `/api/avatar/${encodeURIComponent(n || '?')}`

@@ -121,8 +121,8 @@
     <section id="variants" class="mb-12 fade-in" style="animation-delay: 600ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.variants') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div v-for="v in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl">
-          <img :src="`/api/avatar/Demo?variant=${v.name}&size=40`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
+        <div v-for="(v, i) in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v.name, v.name, variantColors[i])">
+          <img :src="`/api/avatar/Demo?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
           <div>
             <h3 class="text-base font-semibold font-heading mb-1">{{ v.name }}</h3>
             <p class="text-sm text-muted m-0">{{ v.desc }}</p>
@@ -140,6 +140,10 @@ const { $t } = useI18n()
 
 const activeSection = ref('start')
 const copied = ref<string | null>(null)
+
+const docsColors = '#4300FF,#0065F8,#00CAFF,#00FFDE,#00FF9C'
+
+const variantColors = Array(6).fill(docsColors)
 
 const variants = computed(() => [
   { name: 'beam', desc: $t('docs.variants.beam') },
@@ -178,6 +182,13 @@ const sectionLinks = [
   { id: 'api', label: 'docs.sections.api' },
   { id: 'variants', label: 'docs.sections.variants' },
 ]
+
+function goToPlayground(name: string, variant: string, colors: string) {
+  navigateTo({
+    path: '/playground',
+    query: { name, variant, colors },
+  })
+}
 
 function copy(id: string, e: Event) {
   navigator.clipboard.writeText(snippets[id])

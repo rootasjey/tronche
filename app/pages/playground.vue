@@ -121,7 +121,7 @@
               @click="activeTab = tab.id"
             >{{ tab.label }}</button>
           </div>
-          <button class="copy-btn" :class="{ copied: copied === 'code' }" @click="copyCode">{{ copied === 'code' ? 'Copied!' : $t('playground.copy') }}</button>
+          <button class="copy-btn" :class="{ copied: copied === 'code' }" @click="copyCode($event)">{{ copied === 'code' ? 'Copied!' : $t('playground.copy') }}</button>
         </div>
         <div v-html="$highlight(activeCode, 'sh')"></div>
       </div>
@@ -227,9 +227,10 @@ function syncUrl() {
 
 watch([name, variant, size, square, colors, customColors], syncUrl)
 
-function copyCode() {
+function copyCode(e: Event) {
   navigator.clipboard.writeText(activeCode.value)
   copied.value = 'code'
+  sparkle(e.target as HTMLElement)
   setTimeout(() => { copied.value = null }, 2000)
 }
 
