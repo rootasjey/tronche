@@ -33,6 +33,8 @@
       <NuxtPage />
     </main>
 
+    <NToaster />
+
     <footer class="border-t border-[var(--c-border)] py-6 px-5">
       <div class="max-w-240 mx-auto flex items-center justify-between gap-4 flex-wrap">
         <p class="text-xs text-[var(--c-muted)] m-0">{{ $t('footer.tagline') }}</p>
