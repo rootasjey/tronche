@@ -74,7 +74,7 @@
               @click="randomColors"
               :title="$t('api.form.random')"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M17.5 6.5L21 3M21 3h-4M21 3v4"/><path d="M3 7l2.5 2.5M3 7l2.5-2.5M3 7h6"/><path d="M17.5 17.5L21 21M21 21h-4M21 21v-4"/><path d="M3 17l2.5 2.5M3 17l2.5-2.5M3 17h6"/></svg>
+              <NIcon name="i-tabler-arrows-shuffle" />
               <span>{{ $t('api.form.random') }}</span>
             </button>
           </div>
@@ -99,12 +99,15 @@
             <span>16</span>
             <span>512</span>
           </div>
-          <p class="text-xs text-muted/60 mt-2 text-center lg:text-left">{{ $t('api.form.sizeHint') }}</p>
+          <div class="mt-2 flex items-center gap-2 text-xs rounded-lg bg-primary/5 border border-primary/10 px-3 py-2 text-center lg:text-left">
+            <div class="py-.5 px-1 rounded-1 bg-primary/15"><NIcon name="i-tabler-pointer-exclamation" /></div>
+            {{ $t('api.form.sizeHint') }}
+          </div>
         </div>
       </section>
     </div>
 
-    <section class="max-w-2xl mx-auto mt-12 animate-in" style="animation-delay: 300ms">
+    <section class="max-w-200 mx-auto mt-12 animate-in" style="animation-delay: 300ms">
       <div class="code-block">
         <div class="code-block-header">
           <div class="flex gap-0">
@@ -140,12 +143,12 @@ const square = ref(route.query.square === 'true')
 const customColors = ref((route.query.colors as string) || '')
 
 const palettes = [
-  ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'],
-  ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
-  ['#6C5CE7', '#A29BFE', '#FD79A8', '#FDCB6E', '#E17055'],
-  ['#5b1d99', '#0074b4', '#00b34c', '#ffd41f', '#fc6e3d'],
-  ['#ff6b6b', '#ee5a24', '#f0932b', '#ffbe76', '#badc58'],
-  ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
+  ['#1B4EF5', '#3874FF', '#5996FF', '#F4CEFF', '#9FA1FF'],
+  ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FEEAA7'],
+  ['#6B5CE7', '#A29BFE', '#FD79A8', '#FDCB6E', '#E27055'],
+  ['#F5F5DC', '#FBC02D', '#FF8F00', '#C62828', '#F1DEC4'],
+  ['#FF6B6B', '#EE5A24', '#F0932B', '#FFBE76', '#BADC58'],
+  ['#FFCA95', '#FF7873', '#E22F80', '#8140DC', '#FBEFEF'],
 ]
 
 const colors = ref(
@@ -222,8 +225,7 @@ function syncUrl() {
   router.replace({ query })
 }
 
-watch([name, variant, size, square], syncUrl)
-watch(customColors, syncUrl)
+watch([name, variant, size, square, colors, customColors], syncUrl)
 
 function copyCode() {
   navigator.clipboard.writeText(activeCode.value)
