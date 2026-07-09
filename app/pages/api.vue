@@ -69,6 +69,14 @@
                 :style="{ backgroundColor: c }"
               />
             </button>
+            <button
+              class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-border text-xs text-muted transition-all cursor-pointer hover:text-[var(--c-text)] hover:border-[var(--c-text)]"
+              @click="randomColors"
+              :title="$t('api.form.random')"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M17.5 6.5L21 3M21 3h-4M21 3v4"/><path d="M3 7l2.5 2.5M3 7l2.5-2.5M3 7h6"/><path d="M17.5 17.5L21 21M21 21h-4M21 21v-4"/><path d="M3 17l2.5 2.5M3 17l2.5-2.5M3 17h6"/></svg>
+              <span>{{ $t('api.form.random') }}</span>
+            </button>
           </div>
           <input
             v-model="customColors"
@@ -150,10 +158,33 @@ watch(customColors, (val) => {
   if (val.trim()) {
     const parsed = val.split(',').map(c => c.trim()).filter(Boolean)
     if (parsed.length >= 2) colors.value = parsed
-  } else {
-    colors.value = palettes[0]
   }
 })
+
+function hslToHex(h: number, s: number, l: number): string {
+  s /= 100
+  l /= 100
+  const a = s * Math.min(l, 1 - l)
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12
+    return Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))))
+  }
+  const toHex = (n: number) => n.toString(16).padStart(2, '0')
+  return `#${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`
+}
+
+function randomColors() {
+  const hue = Math.random() * 360
+  const goldenAngle = 137.508
+  const palette = Array.from({ length: 5 }, (_, i) => {
+    const h = (hue + i * goldenAngle) % 360
+    const s = 50 + Math.floor(Math.random() * 25)
+    const l = 35 + Math.floor(Math.random() * 30)
+    return hslToHex(h, s, l)
+  })
+  colors.value = palette
+  customColors.value = palette.join(',')
+}
 
 const variants = [
   { name: 'beam' },
@@ -187,7 +218,7 @@ function syncUrl() {
   if (variant.value !== 'beam') query.variant = variant.value
   if (size.value !== 200) query.size = String(size.value)
   if (square.value) query.square = 'true'
-  if (customColors.value.trim()) query.colors = customColors.value.trim()
+  if (colors.value.length) query.colors = colors.value.join(',')
   router.replace({ query })
 }
 
