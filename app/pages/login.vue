@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center min-h-[calc(100vh-112px)] px-5">
     <div class="w-full max-w-sm bg-surface border border-border rounded-xl p-10 text-center">
-      <h1 class="text-2xl font-bold mb-1">{{ $t('login.title') }}</h1>
+      <h1 class="font-heading text-2xl font-bold mb-1">{{ $t('login.title') }}</h1>
       <p class="text-muted text-sm mb-6">{{ $t('login.subtitle') }}</p>
 
       <form class="text-left" @submit.prevent="handleLogin">

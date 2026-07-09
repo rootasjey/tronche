@@ -7,7 +7,9 @@
       "subtitle": "Générez des avatars SVG uniques à partir d'un nom et d'une palette de couleurs. Open source, API REST.",
       "reshuffle": "Nouveaux avatars",
       "try": "Créez le vôtre",
-      "github": "GitHub"
+      "github": "GitHub",
+      "ctaDocs": "Lire la doc",
+      "ctaRegister": "Créer un compte"
     },
     "integration": {
       "tab": "app.vue"

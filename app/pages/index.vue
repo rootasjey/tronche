@@ -55,6 +55,15 @@
         </div>
         <div v-html="$highlight(snippets['home-nuxt'], 'vue')"></div>
       </div>
+
+      <div class="mt-8 animate-in flex justify-center gap-3 flex-wrap" style="animation-delay: 350ms">
+        <NuxtLink to="/docs" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold no-underline hover:bg-primary-600 transition-colors">
+          {{ $t('home.hero.ctaDocs') }} &rarr;
+        </NuxtLink>
+        <NuxtLink to="/register" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-muted no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">
+          {{ $t('home.hero.ctaRegister') }} &rarr;
+        </NuxtLink>
+      </div>
     </section>
   </div>
 </template>
