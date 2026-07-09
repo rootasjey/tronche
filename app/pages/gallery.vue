@@ -1,16 +1,16 @@
 <template>
   <div>
     <section class="text-center px-5 pt-20 pb-10 max-w-240 mx-auto">
-      <h1 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">
+      <h1 class="text-5xl font-heading font-extrabold leading-tight tracking-tight mb-4">
         <span class="block">{{ $t('gallery.hero.title') }}</span>
-        <span class="text-primary">{{ $t('gallery.hero.highlight') }}</span>
+        <span class="text-primary italic">{{ $t('gallery.hero.highlight') }}</span>
       </h1>
       <p class="text-muted text-lg">{{ $t('gallery.hero.subtitle') }}</p>
     </section>
 
     <section v-for="v in variantSections" :key="v.name" class="px-5 py-10 max-w-240 mx-auto section-reveal" :style="{ '--reveal-delay': `${variantSections.indexOf(v) * 0.15}s` }">
       <div class="mb-6">
-        <h2 class="text-2xl font-bold mb-2">{{ v.title }}</h2>
+        <h2 class="text-2xl font-bold font-heading mb-2">{{ v.title }}</h2>
         <p class="text-muted text-sm">{{ v.description }}</p>
       </div>
 
