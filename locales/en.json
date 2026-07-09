@@ -3,7 +3,6 @@
     "playground": "Playground",
     "gallery": "Gallery",
     "docs": "Docs",
-    "api": "API",
     "about": "About",
     "login": "Login",
     "dashboard": "Dashboard",
@@ -15,9 +14,9 @@
     "light": "Light",
     "system": "System"
   },
-  "api": {
-    "title": "API Playground",
-    "subtitle": "Test the avatar API live — tweak parameters and copy the URL or cURL command",
+  "playground": {
+    "title": "Playground",
+    "subtitle": "Test the avatar API live. Tweak parameters and copy the URL or cURL command",
     "form": {
       "name": "Name",
       "variant": "Variant",

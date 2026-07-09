@@ -2,9 +2,9 @@
   <div class="px-5 pt-10 pb-20 max-w-240 mx-auto">
     <section class="text-center mb-12 animate-in" style="animation-delay: 0ms">
       <h1 class="font-heading text-4xl md:text-5xl font-700 tracking-tight mb-3">
-        {{ $t('api.title') }}
+        {{ $t('playground.title') }}
       </h1>
-      <p class="text-muted text-lg max-w-lg mx-auto leading-relaxed">{{ $t('api.subtitle') }}</p>
+      <p class="text-muted text-lg max-w-lg mx-auto leading-relaxed">{{ $t('playground.subtitle') }}</p>
     </section>
 
     <div class="lg:flex lg:gap-12 lg:max-w-200 lg:mx-auto">
@@ -20,16 +20,16 @@
             v-model="name"
             type="text"
             class="w-full px-5 py-3 rounded-xl bg-surface border border-border text-center lg:text-left text-lg outline-none transition-colors focus:border-primary"
-            :placeholder="$t('api.form.name')"
+            :placeholder="$t('playground.form.name')"
           />
           <div class="flex items-center justify-center lg:justify-start gap-3 mt-3">
             <NSwitch v-model="square" size="sm" />
-            <span class="text-sm font-semibold">{{ $t('api.form.square') }}</span>
+            <span class="text-sm font-semibold">{{ $t('playground.form.square') }}</span>
           </div>
         </div>
 
         <div>
-          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-3 block text-center lg:text-left">{{ $t('api.form.variant') }}</label>
+          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-3 block text-center lg:text-left">{{ $t('playground.form.variant') }}</label>
           <div class="flex justify-center lg:justify-start gap-3 flex-wrap">
             <button
               v-for="v in variants"
@@ -53,7 +53,7 @@
         </div>
 
         <div>
-          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-3 block text-center lg:text-left">{{ $t('api.form.colors') }}</label>
+          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-3 block text-center lg:text-left">{{ $t('playground.form.colors') }}</label>
           <div class="flex justify-center lg:justify-start gap-2 flex-wrap">
             <button
               v-for="(palette, i) in palettes"
@@ -72,22 +72,22 @@
             <button
               class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-border text-xs text-muted transition-all cursor-pointer hover:text-[var(--c-text)] hover:border-[var(--c-text)]"
               @click="randomColors"
-              :title="$t('api.form.random')"
+              :title="$t('playground.form.random')"
             >
               <NIcon name="i-tabler-arrows-shuffle" />
-              <span>{{ $t('api.form.random') }}</span>
+              <span>{{ $t('playground.form.random') }}</span>
             </button>
           </div>
           <input
             v-model="customColors"
             type="text"
-            :placeholder="$t('api.form.colorsPlaceholder')"
+            :placeholder="$t('playground.form.colorsPlaceholder')"
             class="w-full px-4 py-2.5 mt-3 rounded-xl bg-surface border border-border text-sm text-center lg:text-left outline-none font-mono transition-colors focus:border-primary text-muted"
           />
         </div>
 
         <div>
-          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-2 block text-center lg:text-left">{{ $t('api.form.size') }} &middot; {{ size }}px</label>
+          <label class="text-xs font-semibold uppercase tracking-wider text-muted mb-2 block text-center lg:text-left">{{ $t('playground.form.size') }} &middot; {{ size }}px</label>
           <input
             v-model.number="size"
             type="range"
@@ -101,7 +101,7 @@
           </div>
           <div class="mt-2 flex items-center gap-2 text-xs rounded-lg bg-primary/5 border border-primary/10 px-3 py-2 text-center lg:text-left">
             <div class="py-.5 px-1 rounded-1 bg-primary/15"><NIcon name="i-tabler-pointer-exclamation" /></div>
-            {{ $t('api.form.sizeHint') }}
+            {{ $t('playground.form.sizeHint') }}
           </div>
         </div>
       </section>
@@ -121,7 +121,7 @@
               @click="activeTab = tab.id"
             >{{ tab.label }}</button>
           </div>
-          <button class="copy-btn" :class="{ copied: copied === 'code' }" @click="copyCode">{{ copied === 'code' ? 'Copied!' : $t('api.copy') }}</button>
+          <button class="copy-btn" :class="{ copied: copied === 'code' }" @click="copyCode">{{ copied === 'code' ? 'Copied!' : $t('playground.copy') }}</button>
         </div>
         <div v-html="$highlight(activeCode, 'sh')"></div>
       </div>
@@ -233,7 +233,7 @@ function copyCode() {
   setTimeout(() => { copied.value = null }, 2000)
 }
 
-useHead({ title: 'API Playground | Tronche' })
+useHead({ title: 'Playground | Tronche' })
 </script>
 
 <style scoped>

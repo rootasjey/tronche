@@ -152,7 +152,7 @@
           <NuxtLink to="/docs" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold no-underline hover:bg-primary-600 transition-colors">
             {{ $t('gallery.cta.docs') }} &rarr;
           </NuxtLink>
-          <NuxtLink to="/api" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-muted no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">
+          <NuxtLink to="/playground" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-muted no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">
             {{ $t('gallery.cta.api') }} &rarr;
           </NuxtLink>
         </div>

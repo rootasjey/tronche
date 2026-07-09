@@ -3,7 +3,6 @@
     "playground": "Playground",
     "gallery": "Galerie",
     "docs": "Docs",
-    "api": "API",
     "about": "À propos",
     "login": "Connexion",
     "dashboard": "Dashboard",
@@ -15,9 +14,9 @@
     "light": "Clair",
     "system": "Système"
   },
-  "api": {
-    "title": "API Playground",
-    "subtitle": "Testez l'API avatar en direct — ajustez les paramètres et copiez l'URL ou la commande cURL",
+  "playground": {
+    "title": "Playground",
+    "subtitle": "Testez l'API avatar en direct. Ajustez les paramètres et copiez l'URL ou la commande cURL",
     "form": {
       "name": "Nom",
       "variant": "Variante",
