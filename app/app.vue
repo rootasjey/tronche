@@ -134,13 +134,18 @@ const navItems = computed(() => {
   if (!user.value) {
     items.push({ label: t('nav.login'), to: '/login' })
   } else {
+    const accountItems: any[] = [
+      { label: t('nav.dashboard'), to: '/dashboard' },
+    ]
+    if (user.value.role === 'admin') {
+      accountItems.push({ label: t('nav.admin'), to: '/admin' })
+    }
+    accountItems.push({ label: t('nav.logout'), onSelect: handleLogout })
+
     items.push({
       label: t('nav.account'),
       slot: 'account',
-      items: [
-        { label: t('nav.dashboard'), to: '/dashboard' },
-        { label: t('nav.logout'), onSelect: handleLogout },
-      ],
+      items: accountItems,
     })
   }
 

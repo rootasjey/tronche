@@ -6,6 +6,7 @@
     "about": "About",
     "login": "Login",
     "dashboard": "Dashboard",
+    "admin": "Admin",
     "logout": "Log out",
     "account": "Account"
   },

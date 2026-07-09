@@ -1,0 +1,62 @@
+{
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Gérez la plateforme",
+    "stats": {
+      "users": "Utilisateurs",
+      "admins": "Administrateurs",
+      "activeUsers": "Actifs",
+      "apiKeys": "Clés API",
+      "activeKeys": "Clés actives",
+      "recentUsers": "Utilisateurs récents"
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "subtitle": "Gérez tous les utilisateurs inscrits",
+      "id": "ID",
+      "name": "Nom",
+      "email": "Email",
+      "role": "Rôle",
+      "status": "Statut",
+      "active": "Actif",
+      "inactive": "Inactif",
+      "createdAt": "Création",
+      "actions": "Actions",
+      "promote": "Promouvoir admin",
+      "demote": "Rétrograder utilisateur",
+      "deactivate": "Désactiver",
+      "activate": "Activer",
+      "delete": "Supprimer",
+      "confirmDelete": "Supprimer cet utilisateur ? Ses clés API seront aussi supprimées.",
+      "noUsers": "Aucun utilisateur trouvé.",
+      "roleUser": "Utilisateur",
+      "roleAdmin": "Administrateur"
+    },
+    "apiKeys": {
+      "title": "Clés API",
+      "subtitle": "Voir toutes les clés API de la plateforme",
+      "id": "ID",
+      "name": "Nom",
+      "key": "Clé",
+      "tier": "Palier",
+      "status": "Statut",
+      "active": "Active",
+      "inactive": "Inactive",
+      "user": "Utilisateur",
+      "lastUsed": "Dernière utilisation",
+      "createdAt": "Création",
+      "neverUsed": "Jamais",
+      "noKeys": "Aucune clé API trouvée.",
+      "confirmDelete": "Supprimer cette clé API ? Cette action est irréversible.",
+      "deactivate": "Désactiver",
+      "activate": "Activer",
+      "delete": "Supprimer"
+    },
+    "dashboard": {
+      "title": "Vue d'ensemble",
+      "totalUsers": "Total utilisateurs",
+      "totalKeys": "Total clés API",
+      "activeKeys": "Clés actives"
+    }
+  }
+}

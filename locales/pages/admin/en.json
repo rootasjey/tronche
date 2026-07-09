@@ -1,0 +1,62 @@
+{
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Manage the platform",
+    "stats": {
+      "users": "Users",
+      "admins": "Admins",
+      "activeUsers": "Active",
+      "apiKeys": "API Keys",
+      "activeKeys": "Active keys",
+      "recentUsers": "Recent users"
+    },
+    "users": {
+      "title": "Users",
+      "subtitle": "Manage all registered users",
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "createdAt": "Created",
+      "actions": "Actions",
+      "promote": "Promote to admin",
+      "demote": "Demote to user",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "delete": "Delete",
+      "confirmDelete": "Delete this user? Their API keys will also be deleted.",
+      "noUsers": "No users found.",
+      "roleUser": "User",
+      "roleAdmin": "Admin"
+    },
+    "apiKeys": {
+      "title": "API Keys",
+      "subtitle": "View all API keys across the platform",
+      "id": "ID",
+      "name": "Name",
+      "key": "Key",
+      "tier": "Tier",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "user": "User",
+      "lastUsed": "Last used",
+      "createdAt": "Created",
+      "neverUsed": "Never",
+      "noKeys": "No API keys found.",
+      "confirmDelete": "Delete this API key? This action cannot be undone.",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "delete": "Delete"
+    },
+    "dashboard": {
+      "title": "Overview",
+      "totalUsers": "Total users",
+      "totalKeys": "Total API keys",
+      "activeKeys": "Active keys"
+    }
+  }
+}
