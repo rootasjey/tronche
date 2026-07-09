@@ -8,7 +8,7 @@
       <p class="text-muted text-lg">{{ $t('gallery.hero.subtitle') }}</p>
     </section>
 
-    <section v-for="v in variantSections" :key="v.name" class="px-5 py-10 max-w-240 mx-auto section-reveal" :style="{ '--reveal-delay': `${variantSections.indexOf(v) * 0.15}s` }">
+    <section v-for="(v, i) in variantSections" :key="v.name" class="px-5 py-10 max-w-240 mx-auto section-reveal" :style="{ '--reveal-delay': `${i * 0.15}s` }">
       <div class="mb-6">
         <h2 class="text-2xl font-bold font-heading mb-2">{{ v.title }}</h2>
         <p class="text-muted text-sm">{{ v.description }}</p>
@@ -31,7 +31,7 @@
               <p class="text-xs text-muted m-0">2 hours ago</p>
             </div>
           </div>
-          <img v-if="feedPhoto" :src="feedPhoto.thumbnailUrl" :alt="feedPhoto.name" class="w-full h-32 rounded-xl object-cover mb-3" loading="lazy" />
+          <img v-if="sectionImages[i].feedPhoto" :src="sectionImages[i].feedPhoto.thumbnailUrl" :alt="sectionImages[i].feedPhoto.name" class="w-full h-32 rounded-xl object-cover mb-3 cursor-pointer" loading="lazy" @click="goToZimaBlue(sectionImages[i].feedPhoto.slug)" />
           <div v-else class="w-full h-32 rounded-xl bg-gradient-to-br from-primary/20 to-[#FF8A5C]/20 mb-3" />
           <div class="flex items-center gap-2 mb-3">
             <div class="flex -space-x-2">
@@ -54,7 +54,7 @@
               <p class="text-sm text-muted m-0">I need a hobby so I think I'm gonna start calling the phone numbers on missing cat posters and just "meow" at whoever answers</p>
             </div>
           </div>
-          <img v-if="commentImage" :src="commentImage.url" :alt="commentImage.name" class="w-full h-28 rounded-xl object-cover mb-3" loading="lazy" />
+          <img v-if="sectionImages[i].commentImage" :src="sectionImages[i].commentImage.url" :alt="sectionImages[i].commentImage.name" class="w-full h-28 rounded-xl object-cover mb-3 cursor-pointer" loading="lazy" @click="goToZimaBlue(sectionImages[i].commentImage.slug)" />
           <div class="flex gap-3 text-xs text-muted mb-4 pl-12">
             <button class="bg-transparent border-none text-muted cursor-pointer text-xs hover:text-[var(--c-text)]">Reply</button>
             <button class="bg-transparent border-none text-muted cursor-pointer text-xs hover:text-[var(--c-text)]">React</button>
@@ -93,7 +93,7 @@
 
         <!-- Profile Header -->
         <div class="rounded-2xl bg-surface border border-border overflow-hidden card-reveal" style="--card-delay: 0.15s;">
-          <img v-if="coverPhoto" :src="coverPhoto.thumbnailUrl" :alt="coverPhoto.name" class="w-full h-24 object-cover" loading="lazy" />
+          <img v-if="sectionImages[i].coverPhoto" :src="sectionImages[i].coverPhoto.thumbnailUrl" :alt="sectionImages[i].coverPhoto.name" class="w-full h-24 object-cover cursor-pointer" loading="lazy" @click="goToZimaBlue(sectionImages[i].coverPhoto.slug)" />
           <div v-else class="h-24 bg-gradient-to-r from-primary/30 to-[#FF8A5C]/30" />
           <div class="px-5 pb-5 -mt-10 text-center">
             <img :src="avatarUrl('Mary Edwards', v.name, 80, false, v.colors)" alt="" width="80" height="80" class="rounded-full border-4 border-surface mx-auto mb-3 cursor-pointer" @click="goToPlayground('Mary Edwards', v.name, v.colors.join(','))" />
@@ -167,10 +167,6 @@ const copiedVariant = ref<string | null>(null)
 const { data: zimaData } = await useFetch('/api/zimablue/images')
 const zimaImages = computed(() => zimaData.value?.data ?? [])
 
-const feedPhoto = computed(() => zimaImages.value[0] ?? null)
-const coverPhoto = computed(() => zimaImages.value[1] ?? null)
-const commentImage = computed(() => zimaImages.value[2] ?? null)
-
 const variantSections = [
   {
     name: 'beam',
@@ -210,6 +206,12 @@ const variantSections = [
   },
 ]
 
+const sectionImages = computed(() => variantSections.map((_, i) => ({
+  feedPhoto: zimaImages.value[i * 3] ?? null,
+  coverPhoto: zimaImages.value[i * 3 + 1] ?? null,
+  commentImage: zimaImages.value[i * 3 + 2] ?? null,
+})))
+
 const sampleNames = [
   'Mary', 'Amelia', 'Sarah', 'Margaret', 'Lucy',
   'Mahalia', 'Maya', 'Eunice', 'Carrie', 'Elizabeth',
@@ -234,6 +236,10 @@ function goToPlayground(name: string, variant: string, colors: string) {
     path: '/playground',
     query: { name, variant, colors },
   })
+}
+
+function goToZimaBlue(slug: string) {
+  window.open(`https://zimablue.cc/?image=${slug}`, '_blank', 'noopener,noreferrer')
 }
 
 function avatarUrl(n: string, v: string, s: number, sq: boolean, colors?: string[]): string {

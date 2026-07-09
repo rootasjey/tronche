@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const images = await fetchRandomImages(event, 5)
+  const images = await fetchRandomImages(event, 18)
 
   const galleryImages = images.map((img) => ({
     id: img.id,
