@@ -1,54 +1,56 @@
 <template>
   <div class="max-w-200 mx-auto px-5 pt-10 pb-20">
-    <div class="mb-10">
-      <h1 class="text-3xl font-bold">{{ $t('docs.title') }}</h1>
+    <div class="mb-10 fade-in" style="animation-delay: 0ms">
+      <h1 class="text-3xl font-bold font-heading">{{ $t('docs.title') }}</h1>
       <p class="text-muted mt-1">{{ $t('docs.subtitle') }}</p>
     </div>
 
-    <nav class="flex gap-2 flex-wrap mb-10 pb-6 border-b border-border">
-      <a v-for="s in sectionLinks" :key="s.id" :href="`#${s.id}`" class="text-sm px-3.5 py-1.5 rounded-full bg-surface border border-border text-muted transition-colors no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)]">{{ $t(s.label) }}</a>
+    <nav class="flex gap-2 flex-wrap mb-10 pb-6 border-b border-border fade-in" style="animation-delay: 100ms">
+      <a v-for="s in sectionLinks" :key="s.id" :href="`#${s.id}`"
+         class="text-sm px-3.5 py-1.5 rounded-full bg-surface border border-border text-muted transition-all no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)]"
+         :class="{ '!bg-primary/15 !text-primary !border-primary': activeSection === s.id }">{{ $t(s.label) }}</a>
     </nav>
 
-    <section id="start" class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">{{ $t('docs.sections.installation') }}</h2>
+    <section id="start" class="mb-12 fade-in" style="animation-delay: 200ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.installation') }}</h2>
       <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
         <code class="text-sm font-mono whitespace-pre shrink-0">npm install tronche</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copy('npm-install')">{{ $t('docs.copy') }}</button>
+        <button class="shrink-0 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('npm-install')">{{ copied === 'npm-install' ? 'Copied!' : $t('docs.copy') }}</button>
       </div>
     </section>
 
-    <section id="nuxt" class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">{{ $t('docs.sections.nuxt') }}</h2>
+    <section id="nuxt" class="mb-12 fade-in" style="animation-delay: 300ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.nuxt') }}</h2>
       <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
-      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
+      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
+        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('nuxt-config')">{{ copied === 'nuxt-config' ? 'Copied!' : $t('docs.copy') }}</button>
         <pre class="text-sm font-mono whitespace-pre m-0">export default defineNuxtConfig({
   modules: ['tronche/module'],
 })</pre>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copy('nuxt-config')">{{ $t('docs.copy') }}</button>
       </div>
 
       <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.autoImport') }}</p>
-      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
+      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
+        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('nuxt-template')">{{ copied === 'nuxt-template' ? 'Copied!' : $t('docs.copy') }}</button>
         <pre class="text-sm font-mono whitespace-pre m-0">&lt;template&gt;
   &lt;Avatar name="Maria Mitchell" variant="beam" /&gt;
 &lt;/template&gt;</pre>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copy('nuxt-template')">{{ $t('docs.copy') }}</button>
       </div>
     </section>
 
-    <section id="vue" class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">{{ $t('docs.sections.vue') }}</h2>
-      <div class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
+    <section id="vue" class="mb-12 fade-in" style="animation-delay: 400ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.vue') }}</h2>
+      <div class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
+        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy('vue-import')">{{ copied === 'vue-import' ? 'Copied!' : $t('docs.copy') }}</button>
         <pre class="text-sm font-mono whitespace-pre m-0">&lt;script setup&gt;
 import Avatar from 'tronche/src/runtime/components/Avatar.vue'
 &lt;/script&gt;
 &lt;template&gt;
   &lt;Avatar name="Grace Hopper" :colors="['#fb6900', '#f63700', '#004853']" /&gt;
 &lt;/template&gt;</pre>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copy('vue-import')">{{ $t('docs.copy') }}</button>
       </div>
 
-      <h3 class="text-lg font-semibold mt-6 mb-3">Props</h3>
+      <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
       <table class="w-full border-collapse mb-4">
         <thead>
           <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
@@ -69,14 +71,14 @@ import Avatar from 'tronche/src/runtime/components/Avatar.vue'
       </table>
     </section>
 
-    <section id="api" class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">{{ $t('docs.sections.api') }}</h2>
+    <section id="api" class="mb-12 fade-in" style="animation-delay: 500ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.api') }}</h2>
       <p class="text-muted mb-4 leading-relaxed">{{ $t('docs.api.subtitle') }}</p>
 
       <div class="flex items-center gap-3 p-4 rounded-xl bg-surface border border-border mb-4">
         <span class="text-xs font-bold px-2 py-0.5 rounded uppercase bg-[#22c55e]/15 text-[#22c55e]">GET</span>
         <code class="text-sm flex-1">/api/avatar/:name</code>
-        <span class="text-xs font-bold px-2 py-0.5 rounded-full uppercase bg-primary/15 text-primary">Free</span>
+        <span class="text-xs font-medium px-2 py-0.5 rounded-full uppercase bg-transparent text-muted border border-border">Free</span>
       </div>
 
       <table class="w-full border-collapse mb-6">
@@ -98,24 +100,26 @@ import Avatar from 'tronche/src/runtime/components/Avatar.vue'
         </tbody>
       </table>
 
-      <h3 class="text-lg font-semibold mb-3">{{ $t('docs.api.examples') }}</h3>
-      <div v-for="(ex, i) in examples" :key="i" class="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto">
+      <h3 class="text-lg font-semibold font-heading mb-3">{{ $t('docs.api.examples') }}</h3>
+      <div v-for="(ex, i) in examples" :key="i" class="relative p-4 rounded-xl bg-surface border border-border mb-4 overflow-x-auto pt-10">
+        <button class="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-xs border border-border cursor-pointer text-muted bg-transparent hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors font-semibold" @click="copy(ex.id)">{{ copied === ex.id ? 'Copied!' : $t('docs.copy') }}</button>
         <code class="text-sm font-mono whitespace-pre shrink-0">{{ ex.code }}</code>
-        <button class="shrink-0 px-3.5 py-1.5 rounded-lg bg-primary hover:text-[var(--c-text)] text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copy(ex.id)">{{ $t('docs.copy') }}</button>
       </div>
 
-      <h3 class="text-lg font-semibold mt-6 mb-2">{{ $t('docs.api.rateLimiting') }}</h3>
-      <p class="text-muted leading-relaxed">{{ $t('docs.api.rateLimitingText') }} <strong class="hover:text-[var(--c-text)]">{{ $t('docs.api.rateLimitingBold') }}</strong> {{ $t('docs.api.rateLimitingPerIp') }}</p>
-      <p class="text-muted leading-relaxed">{{ $t('docs.api.upgrade') }} <NuxtLink to="/register" class="text-primary hover:underline">{{ $t('docs.api.createAccount') }}</NuxtLink> {{ $t('docs.api.useApiKey') }}</p>
+      <h3 class="text-lg font-semibold font-heading mt-6 mb-2">{{ $t('docs.api.rateLimiting') }}</h3>
+      <p class="text-muted leading-relaxed">
+        {{ $t('docs.api.rateLimitingText') }} <strong class="text-[var(--c-text)]">{{ $t('docs.api.rateLimitingBold') }}</strong> {{ $t('docs.api.rateLimitingPerIp') }}
+        {{ $t('docs.api.upgrade') }} <NuxtLink to="/register" class="text-primary font-semibold hover:underline">{{ $t('docs.api.createAccount') }}</NuxtLink> {{ $t('docs.api.useApiKey') }}
+      </p>
     </section>
 
-    <section id="variants" class="mb-12">
-      <h2 class="text-2xl font-bold mb-4">{{ $t('docs.sections.variants') }}</h2>
+    <section id="variants" class="mb-12 fade-in" style="animation-delay: 600ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.variants') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div v-for="v in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl">
-          <img :src="`/api/avatar/Demo?variant=${v.name}&size=120`" :alt="v.name" width="120" height="120" class="rounded-full shrink-0" />
+          <img :src="`/api/avatar/Demo?variant=${v.name}&size=40`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
           <div>
-            <h3 class="text-base font-semibold mb-1">{{ v.name }}</h3>
+            <h3 class="text-base font-semibold font-heading mb-1">{{ v.name }}</h3>
             <p class="text-sm text-muted m-0">{{ v.desc }}</p>
           </div>
         </div>
@@ -128,6 +132,9 @@ import Avatar from 'tronche/src/runtime/components/Avatar.vue'
 import { snippets } from '../composables/snippets'
 
 const { $t } = useI18n()
+
+const activeSection = ref('start')
+const copied = ref<string | null>(null)
 
 const variants = computed(() => [
   { name: 'beam', desc: $t('docs.variants.beam') },
@@ -169,5 +176,41 @@ const sectionLinks = [
 
 function copy(id: string) {
   navigator.clipboard.writeText(snippets[id])
+  copied.value = id
+  setTimeout(() => { copied.value = null }, 2000)
 }
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        activeSection.value = entry.target.id
+      }
+    }
+  }, { rootMargin: '-80px 0px -50% 0px' })
+
+  for (const s of sectionLinks) {
+    const el = document.getElementById(s.id)
+    if (el) observer.observe(el)
+  }
+})
+
+useHead({ title: 'Docs | Tronche' })
 </script>
+
+<style scoped>
+.fade-in {
+  animation: fade-up 0.5s ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
