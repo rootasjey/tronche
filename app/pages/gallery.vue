@@ -135,7 +135,7 @@
 
       </div>
 
-      <div class="code-block">
+      <div class="mt-6 code-block">
         <div class="code-block-header">
           <span class="code-block-label">{{ v.name }}</span>
           <button class="copy-btn" :class="{ copied: copiedVariant === v.name }" @click="copySnippet(v.name, v.colors, $event)">{{ copiedVariant === v.name ? 'Copied!' : $t('gallery.copy') }}</button>

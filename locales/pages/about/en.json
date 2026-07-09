@@ -4,7 +4,7 @@
     "subtitle": "Why tronche exists",
     "origin": {
       "title": "Origin",
-      "text": "tronche was born from a simple observation: modern user-centric applications need avatars. Whether it's for profiles, comments, or chat messages, a unique visual identifier makes the experience more personal and engaging."
+      "text": "Every app needs faces. Whether it's profiles, comments, or chat, a unique visual identifier makes the experience feel personal. So we built tronche: avatars, nothing like you."
     },
     "inspiration": {
       "title": "Inspiration",
@@ -18,11 +18,18 @@
     },
     "solution": {
       "title": "Our solution",
-      "text": "Faced with zero practicality when using the boring-avatars API, the simplest path was to create our own service. tronche is an open-source, self-hostable avatar generation service with a REST API, a Nuxt module, and a Vue component. It's designed to be truly easy to use."
+      "text": "Faced with a paid API that wasn't fit for purpose, we did what any reasonable developer would do: we built our own. tronche is open-source, self-hostable, and shipping with a REST API, a Nuxt module, and a Vue component. Zero friction, maximum avatars.",
+      "seeGallery": "See the gallery",
+      "readDocs": "Read the docs"
     },
     "usedBy": {
       "title": "Used by",
       "text": "tronche is already powering avatars in production on"
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "text": "Create an account and start generating unique avatars for your application in minutes. No credit card required.",
+      "button": "Create your account"
     }
   }
 }
