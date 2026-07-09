@@ -120,13 +120,16 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const copied = ref<string | null>(null)
 const activeTab = ref<'url' | 'curl'>('url')
 
-const name = ref('Clara Barton')
-const variant = ref('beam')
-const size = ref(200)
-const square = ref(false)
+const name = ref((route.query.name as string) || 'Clara Barton')
+const variant = ref((route.query.variant as string) || 'beam')
+const size = ref(Number(route.query.size) || 200)
+const square = ref(route.query.square === 'true')
+const customColors = ref((route.query.colors as string) || '')
 
 const palettes = [
   ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'],
@@ -137,15 +140,16 @@ const palettes = [
   ['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90'],
 ]
 
-const colors = ref(palettes[0])
-const customColors = ref('')
+const colors = ref(
+  customColors.value
+    ? customColors.value.split(',').map(c => c.trim()).filter(Boolean)
+    : palettes[0]
+)
 
 watch(customColors, (val) => {
   if (val.trim()) {
     const parsed = val.split(',').map(c => c.trim()).filter(Boolean)
-    if (parsed.length >= 2) {
-      colors.value = parsed
-    }
+    if (parsed.length >= 2) colors.value = parsed
   } else {
     colors.value = palettes[0]
   }
@@ -176,6 +180,19 @@ const liveUrl = computed(() => {
 const activeCode = computed(() => {
   return activeTab.value === 'url' ? liveUrl.value : `curl "${liveUrl.value}"`
 })
+
+function syncUrl() {
+  const query: Record<string, string> = {}
+  if (name.value && name.value !== 'Clara Barton') query.name = name.value
+  if (variant.value !== 'beam') query.variant = variant.value
+  if (size.value !== 200) query.size = String(size.value)
+  if (square.value) query.square = 'true'
+  if (customColors.value.trim()) query.colors = customColors.value.trim()
+  router.replace({ query })
+}
+
+watch([name, variant, size, square], syncUrl)
+watch(customColors, syncUrl)
 
 function copyCode() {
   navigator.clipboard.writeText(activeCode.value)
