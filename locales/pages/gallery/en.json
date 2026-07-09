@@ -6,6 +6,12 @@
       "subtitle": "Discover the possibilities of custom avatars with our open-source library. From social apps to games and SaaS platforms, it's easy to add a personal touch to any project."
     },
     "copy": "Copy",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "cta": {
+      "title": "Ready to use tronche?",
+      "subtitle": "Integrate unique avatars into your project in minutes. Open source, lightweight, and customizable.",
+      "docs": "Read the docs",
+      "api": "Try the API"
+    }
   }
 }

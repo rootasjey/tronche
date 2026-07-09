@@ -6,6 +6,12 @@
       "subtitle": "Découvrez les possibilités des avatars personnalisés avec notre bibliothèque open source. Des applications sociales aux jeux et plateformes SaaS, il est facile d'ajouter une touche personnelle à n'importe quel projet."
     },
     "copy": "Copier",
-    "copied": "Copié !"
+    "copied": "Copié !",
+    "cta": {
+      "title": "Prêt à utiliser tronche ?",
+      "subtitle": "Intégrez des avatars uniques à votre projet en quelques minutes. Open source, léger et personnalisable.",
+      "docs": "Lire la doc",
+      "api": "Essayer l'API"
+    }
   }
 }

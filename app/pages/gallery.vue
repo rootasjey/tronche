@@ -143,6 +143,21 @@
         <div v-html="$highlight(snippetCode(v), 'vue')"></div>
       </div>
     </section>
+
+    <section class="px-5 pb-20 max-w-240 mx-auto">
+      <div class="rounded-2xl p-8 text-center bg-surface border border-border section-reveal" style="--reveal-delay: 0s;">
+        <h2 class="text-2xl font-bold font-heading mb-3">{{ $t('gallery.cta.title') }}</h2>
+        <p class="text-muted mb-6 max-w-md mx-auto leading-relaxed">{{ $t('gallery.cta.subtitle') }}</p>
+        <div class="flex justify-center gap-3 flex-wrap">
+          <NuxtLink to="/docs" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold no-underline hover:bg-primary-600 transition-colors">
+            {{ $t('gallery.cta.docs') }} &rarr;
+          </NuxtLink>
+          <NuxtLink to="/api/avatar/test" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-border text-sm font-semibold text-muted no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)] transition-colors">
+            {{ $t('gallery.cta.api') }} &rarr;
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
