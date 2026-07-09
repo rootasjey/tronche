@@ -15,6 +15,20 @@
     "light": "Clair",
     "system": "Système"
   },
+  "api": {
+    "title": "API Playground",
+    "subtitle": "Testez l'API avatar en direct — ajustez les paramètres et copiez l'URL ou la commande cURL",
+    "form": {
+      "name": "Nom",
+      "variant": "Variante",
+      "size": "Taille",
+      "square": "Forme carrée",
+      "colors": "Couleurs",
+      "colorsPlaceholder": "Personnalisé : #E07A5F,#3D405B,#81B29A,#F4D06F,#D8A47F",
+      "sizeHint": "N'affecte que l'URL générée — l'avatar reste à 200px"
+    },
+    "copy": "Copier"
+  },
   "footer": {
     "tagline": "tronche — des avatars qui vous ressemblent pas"
   }
