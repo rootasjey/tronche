@@ -1,0 +1,10 @@
+{
+  "name": "tronche",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tronche",
+      "database_id": ""
+    }
+  ]
+}

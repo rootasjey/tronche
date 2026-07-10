@@ -104,7 +104,17 @@
             <NSwitch :model-value="key.isActive" @update:model-value="() => toggleKey(key)" size="sm" />
           </div>
           <div class="flex items-center gap-2 flex-wrap">
-            <div class="text-xs text-muted hidden md:flex gap-4">
+            <div class="text-xs text-muted flex gap-3" :class="key.usage ? 'items-center' : 'hidden md:flex'">
+              <template v-if="key.usage">
+                <span class="whitespace-nowrap" :class="key.usage.daily >= key.usage.dailyLimit ? 'text-red-500 font-semibold' : ''">
+                  {{ formatNumber(key.usage.daily) }}/{{ formatNumber(key.usage.dailyLimit) }}<span class="hidden sm:inline"> today</span>
+                </span>
+                <span class="text-border hidden md:inline">·</span>
+                <span class="whitespace-nowrap hidden md:inline" :class="key.usage.monthly >= key.usage.monthlyLimit ? 'text-red-500 font-semibold' : ''">
+                  {{ formatNumber(key.usage.monthly) }}/{{ formatNumber(key.usage.monthlyLimit) }}<span class="hidden lg:inline"> this month</span>
+                </span>
+                <span class="text-border">·</span>
+              </template>
               <span v-if="key.lastUsedAt">{{ $t('dashboard.lastUsed') }} {{ formatDate(key.lastUsedAt) }}</span>
               <span v-else>{{ $t('dashboard.neverUsed') }}</span>
               <span class="hidden sm:inline">{{ $t('dashboard.createdOn') }} {{ formatDate(key.createdAt) }}</span>
@@ -274,6 +284,10 @@ function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString(locale.value === 'fr' ? 'fr-FR' : 'en-US', {
     day: 'numeric', month: 'short', year: 'numeric',
   })
+}
+
+function formatNumber(n: number) {
+  return n.toLocaleString(locale.value === 'fr' ? 'fr-FR' : 'en-US')
 }
 </script>
 

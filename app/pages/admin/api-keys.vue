@@ -50,7 +50,7 @@
               <th class="p-3 font-semibold">{{ $t('admin.apiKeys.tier') }}</th>
               <th class="p-3 font-semibold">{{ $t('admin.apiKeys.status') }}</th>
               <th class="p-3 font-semibold">{{ $t('admin.apiKeys.user') }}</th>
-              <th class="p-3 font-semibold hidden md:table-cell">{{ $t('admin.apiKeys.activity') }}</th>
+              <th class="p-3 font-semibold hidden md:table-cell">{{ $t('admin.apiKeys.usage') }}</th>
               <th class="p-3 font-semibold text-right hidden md:table-cell">{{ $t('admin.apiKeys.id') }}</th>
               <th class="p-3 font-semibold text-right">{{ $t('admin.users.actions') }}</th>
             </tr>
@@ -72,7 +72,14 @@
                 <span class="font-semibold text-[var(--c-text)]">{{ k.userName }}</span>
                 <span class="ml-1 text-muted">{{ k.userEmail }}</span>
               </td>
-              <td class="p-3 text-muted text-xs hidden md:table-cell">{{ formatActivity(k) }}</td>
+              <td class="p-3 text-muted text-xs hidden md:table-cell">
+                <div v-if="k.usage" class="flex items-center gap-2">
+                  <span class="whitespace-nowrap" :class="k.usage.daily >= k.usage.dailyLimit ? 'text-red-500 font-semibold' : ''">{{ k.usage.daily }}/{{ k.usage.dailyLimit }}d</span>
+                  <span class="text-border">|</span>
+                  <span class="whitespace-nowrap" :class="k.usage.monthly >= k.usage.monthlyLimit ? 'text-red-500 font-semibold' : ''">{{ k.usage.monthly }}/{{ k.usage.monthlyLimit }}m</span>
+                </div>
+                <div v-else>{{ formatActivity(k) }}</div>
+              </td>
               <td class="p-3 text-muted text-xs text-right hidden md:table-cell">{{ k.id }}</td>
               <td class="p-3">
                 <div class="flex items-center justify-end">

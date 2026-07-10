@@ -1,6 +1,7 @@
 import { db } from 'hub:db'
 import * as schema from '../db/schema'
 import { eq } from 'drizzle-orm'
+import { checkAndIncrement, limits } from '../utils/usage'
 
 export default defineEventHandler(async (event) => {
   const path = getRequestURL(event).pathname
@@ -19,6 +20,19 @@ export default defineEventHandler(async (event) => {
 
   if (!apiKey || !apiKey.isActive) {
     throw createError({ statusCode: 401, statusMessage: 'Invalid or inactive API key' })
+  }
+
+  const usage = await checkAndIncrement(apiKey.id, apiKey.tier)
+
+  setResponseHeaders(event, {
+    'X-Daily-Limit': String(limits[apiKey.tier]?.daily ?? limits.free.daily),
+    'X-Daily-Remaining': String(usage.dailyRemaining),
+    'X-Monthly-Limit': String(limits[apiKey.tier]?.monthly ?? limits.free.monthly),
+    'X-Monthly-Remaining': String(usage.monthlyRemaining),
+  })
+
+  if (!usage.allowed) {
+    throw createError({ statusCode: 429, statusMessage: 'API rate limit exceeded' })
   }
 
   await db.update(schema.apiKeys)
