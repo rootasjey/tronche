@@ -1,26 +1,63 @@
 <template>
   <div class="max-w-240 mx-auto px-5 pt-10 pb-15">
-    <div class="mb-8 animate-in" style="animation-delay: 0ms">
-      <h1 class="text-3xl font-bold">{{ $t('dashboard.title') }}</h1>
-      <p class="text-muted mt-1">{{ $t('dashboard.subtitle') }}</p>
+    <div class="mb-6 animate-in" style="animation-delay: 0ms">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+          <NIcon name="i-tabler-key" class="text-primary text-xl" />
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold font-heading">{{ $t('dashboard.title') }}</h1>
+          <p class="text-muted mt-0.5">{{ $t('dashboard.subtitle') }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="!loading && keys.length > 0" class="flex gap-3 mb-6 animate-in" style="animation-delay: 25ms">
+      <div class="bg-surface border border-border rounded-xl px-4 py-3 flex items-center gap-3 flex-1">
+        <div class="w-8 h-8 rounded-lg bg-[var(--c-bg)] flex items-center justify-center shrink-0">
+          <NIcon name="i-tabler-key" class="text-muted text-sm" />
+        </div>
+        <div>
+          <p class="text-2xl font-bold font-heading leading-none">{{ keys.length }}</p>
+          <p class="text-xs text-muted mt-1">{{ $t('dashboard.totalKeys') }}</p>
+        </div>
+      </div>
+      <div class="bg-surface border border-border rounded-xl px-4 py-3 flex items-center gap-3 flex-1">
+        <div class="w-8 h-8 rounded-lg bg-[var(--c-bg)] flex items-center justify-center shrink-0">
+          <NIcon name="i-tabler-circle-check-filled" class="text-green-500 text-sm" />
+        </div>
+        <div>
+          <p class="text-2xl font-bold font-heading leading-none">{{ keys.filter(k => k.isActive).length }}</p>
+          <p class="text-xs text-muted mt-1">{{ $t('dashboard.activeKeys') }}</p>
+        </div>
+      </div>
     </div>
 
     <div class="bg-surface border border-border rounded-xl p-6 animate-in" style="animation-delay: 50ms">
       <div class="flex items-center justify-between mb-5">
         <h2 class="text-lg font-semibold">{{ $t('dashboard.keys') }}</h2>
-        <button class="inline-flex items-center px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">{{ $t('dashboard.newKey') }}</button>
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">
+          <NIcon name="i-tabler-plus" class="text-sm" />
+          {{ $t('dashboard.newKey') }}
+        </button>
       </div>
 
       <div v-if="showCreate" class="flex gap-2 flex-wrap mb-4 animate-in" style="animation-delay: 0ms">
-        <input v-model="newKeyName" type="text" :placeholder="$t('dashboard.keyNamePlaceholder')" class="flex-1 min-w-50 px-3.5 py-2 rounded-xl bg-[var(--c-bg)] border border-border hover:text-[var(--c-text)] text-sm outline-none focus:border-primary" @keyup.enter="createKey" />
-        <button class="inline-flex items-center px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="createKey">{{ $t('dashboard.create') }}</button>
-        <button class="inline-flex items-center px-4 py-2 rounded-xl border border-border hover:text-[var(--c-text)] font-semibold text-xs bg-transparent cursor-pointer hover:border-[var(--c-text)] transition-colors" @click="showCreate = false">{{ $t('dashboard.cancel') }}</button>
+        <input ref="createInputRef" v-model="newKeyName" type="text" :placeholder="$t('dashboard.keyNamePlaceholder')" class="flex-1 min-w-50 px-3.5 py-2 rounded-xl bg-[var(--c-bg)] border border-border hover:text-[var(--c-text)] text-sm outline-none focus:border-primary" @keyup.enter="createKey" />
+        <button class="inline-flex items-center px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="createKey">{{ $t('dashboard.create') }}</button>
+        <button class="inline-flex items-center px-4 py-2 rounded-xl border border-border hover:text-[var(--c-text)] font-semibold text-sm bg-transparent cursor-pointer hover:border-[var(--c-text)] transition-colors" @click="showCreate = false">{{ $t('dashboard.cancel') }}</button>
       </div>
 
-      <div v-if="createdKey" class="bg-[#1a1a1a] border border-primary rounded-xl p-4 mb-5 animate-in" style="animation-delay: 0ms">
-        <p class="text-sm text-muted mb-2">🔑 {{ $t('dashboard.newKeyCreated') }}</p>
-        <div class="font-mono text-xs bg-[var(--c-bg)] p-3 rounded-lg break-all mb-3">{{ createdKey }}</div>
-        <button class="inline-flex items-center px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyKey">{{ copied ? $t('dashboard.copied') : $t('dashboard.copy') }}</button>
+      <div v-if="createdKey" class="bg-[var(--c-bg)] border border-primary rounded-xl p-4 mb-5 key-reveal">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-sm">🔑</span>
+          <p class="text-sm text-muted">{{ $t('dashboard.newKeyCreated') }}</p>
+        </div>
+        <div class="font-mono text-xs bg-surface p-3 rounded-lg break-all mb-3">{{ createdKey }}</div>
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="copyKey">
+          <NIcon :name="copied ? 'i-tabler-check' : 'i-tabler-copy'" class="text-sm" />
+          {{ copied ? $t('dashboard.copied') : $t('dashboard.copy') }}
+        </button>
       </div>
 
       <div v-if="loading" class="flex flex-col gap-2">
@@ -34,9 +71,22 @@
         </div>
       </div>
 
+      <div v-else-if="fetchError" class="text-center py-10">
+        <NIcon name="i-tabler-cloud-off" class="text-3xl text-muted mb-3" />
+        <p class="text-muted mb-4">{{ $t('dashboard.errorLoading') }}</p>
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border hover:text-[var(--c-text)] font-semibold text-sm bg-transparent cursor-pointer hover:border-[var(--c-text)] transition-colors" @click="fetchKeys">
+          <NIcon name="i-tabler-refresh" class="text-sm" />
+          {{ $t('dashboard.retry') }}
+        </button>
+      </div>
+
       <div v-else-if="keys.length === 0" class="text-center py-10">
+        <NIcon name="i-tabler-key-off" class="text-3xl text-muted mb-3" />
         <p class="text-muted mb-4">{{ $t('dashboard.noKeys') }}</p>
-        <button class="inline-flex items-center px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-xs border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">{{ $t('dashboard.newKey') }}</button>
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">
+          <NIcon name="i-tabler-plus" class="text-sm" />
+          {{ $t('dashboard.newKey') }}
+        </button>
       </div>
 
       <div v-else class="flex flex-col gap-2">
@@ -51,10 +101,10 @@
               <span class="font-semibold text-sm truncate">{{ key.name }}</span>
             </template>
             <span class="text-xs px-2 py-0.5 rounded-full uppercase font-semibold bg-primary/15 text-primary shrink-0">{{ key.tier }}</span>
-            <span class="text-xs px-2 py-0.5 rounded-full font-semibold shrink-0" :class="key.isActive ? 'bg-green-500/15 text-green-500' : 'bg-red-500/15 text-red-500'">{{ key.isActive ? $t('dashboard.active') : $t('dashboard.inactive') }}</span>
+            <NSwitch :model-value="key.isActive" @update:model-value="() => toggleKey(key)" size="sm" />
           </div>
-          <div class="flex items-center gap-3 flex-wrap">
-            <div class="text-xs text-muted flex gap-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="text-xs text-muted hidden md:flex gap-4">
               <span v-if="key.lastUsedAt">{{ $t('dashboard.lastUsed') }} {{ formatDate(key.lastUsedAt) }}</span>
               <span v-else>{{ $t('dashboard.neverUsed') }}</span>
               <span class="hidden sm:inline">{{ $t('dashboard.createdOn') }} {{ formatDate(key.createdAt) }}</span>
@@ -62,8 +112,7 @@
             <NDropdownMenu
               :items="[
                 { label: $t('dashboard.edit'), onclick: () => startEdit(key) },
-                { label: key.isActive ? $t('dashboard.disable') : $t('dashboard.enable'), onclick: () => toggleKey(key) },
-                { label: $t('dashboard.delete'), onclick: () => deleteKey(key), dropdownMenuItem: 'text-red-500!' },
+                { label: $t('dashboard.delete'), onclick: () => openDeleteDialog(key), dropdownMenuItem: 'text-red-500!' },
               ]"
               :_dropdown-menu-content="{ class: 'w-40', align: 'end', side: 'bottom' }"
             >
@@ -75,6 +124,17 @@
         </div>
       </div>
     </div>
+
+    <NAlertDialog
+      v-model:open="deleteDialogOpen"
+      :title="$t('dashboard.deleteTitle')"
+      :description="$t('dashboard.deleteDescription', { name: deletingKey?.name || '' })"
+      :_alert-dialog-action="{ class: '!bg-red-500 !text-white hover:!bg-red-600' }"
+      @action="confirmDelete"
+    >
+      <template #cancel>{{ $t('dashboard.cancel') }}</template>
+      <template #action>{{ $t('dashboard.delete') }}</template>
+    </NAlertDialog>
   </div>
 </template>
 
@@ -85,12 +145,16 @@ const { user } = useUserSession()
 
 const keys = ref<any[]>([])
 const loading = ref(true)
+const fetchError = ref(false)
 const showCreate = ref(false)
 const newKeyName = ref('')
 const createdKey = ref('')
 const copied = ref(false)
 const editingId = ref<number | null>(null)
 const editingName = ref('')
+const deleteDialogOpen = ref(false)
+const deletingKey = ref<any>(null)
+const createInputRef = ref<HTMLInputElement | null>(null)
 
 onMounted(async () => {
   if (!user.value) {
@@ -100,12 +164,22 @@ onMounted(async () => {
   await fetchKeys()
 })
 
+watch(showCreate, async (val) => {
+  if (val) {
+    await nextTick()
+    createInputRef.value?.focus()
+  }
+})
+
 async function fetchKeys() {
+  loading.value = true
+  fetchError.value = false
   try {
     const res = await $fetch<{ data: any[] }>('/api/api-keys')
     keys.value = res.data
   } catch {
     keys.value = []
+    fetchError.value = true
   } finally {
     loading.value = false
   }
@@ -123,9 +197,9 @@ async function createKey() {
     newKeyName.value = ''
     showCreate.value = false
     await fetchKeys()
-    toast({ title: 'Key created', description: `API key "${name}" created.`, toast: 'solid-green', duration: 3000 })
+    toast({ title: '🔑 Key ready!', description: `API key "${name}" created — copy it now, you won't see it again.`, toast: 'solid-green', duration: 4000 })
   } catch {
-    toast({ title: 'Error', description: 'Failed to create API key.', toast: 'solid-red', duration: 4000 })
+    toast({ title: 'Could not create key', description: 'Something went wrong. Please try again.', toast: 'solid-red', duration: 4000 })
   }
 }
 
@@ -151,35 +225,48 @@ async function saveEdit(id: number) {
     })
     editingId.value = null
     await fetchKeys()
-    toast({ title: 'Key renamed', description: `API key renamed to "${name}".`, toast: 'solid-green', duration: 3000 })
+    toast({ title: 'Renamed!', description: `API key renamed to "${name}".`, toast: 'solid-green', duration: 3000 })
   } catch {
-    toast({ title: 'Error', description: 'Failed to rename API key.', toast: 'solid-red', duration: 4000 })
+    toast({ title: 'Rename failed', description: 'Could not rename the key. Try again.', toast: 'solid-red', duration: 4000 })
   }
 }
 
 async function toggleKey(key: any) {
   const newState = !key.isActive
+  key.isActive = newState
   try {
     await $fetch(`/api/api-keys/${key.id}`, {
       method: 'PUT',
       body: { isActive: newState },
     })
-    await fetchKeys()
-    toast({ title: newState ? 'Key enabled' : 'Key disabled', description: `API key "${key.name}" ${newState ? 'enabled' : 'disabled'}.`, toast: 'solid-green', duration: 3000 })
+    toast({
+      title: newState ? 'Key enabled' : 'Key disabled',
+      description: `API key "${key.name}" ${newState ? 'is now active' : 'has been disabled'}.`,
+      toast: 'solid-green',
+      duration: 3000,
+    })
   } catch {
-    toast({ title: 'Error', description: 'Failed to update API key.', toast: 'solid-red', duration: 4000 })
+    key.isActive = !newState
+    toast({ title: 'Update failed', description: 'Could not update the key status.', toast: 'solid-red', duration: 4000 })
   }
 }
 
-async function deleteKey(key: any) {
-  if (!confirm($t('dashboard.confirmDelete'))) return
+function openDeleteDialog(key: any) {
+  deletingKey.value = key
+  deleteDialogOpen.value = true
+}
+
+async function confirmDelete() {
+  if (!deletingKey.value) return
+  const key = deletingKey.value
   const name = key.name
+  deletingKey.value = null
   try {
     await $fetch(`/api/api-keys/${key.id}`, { method: 'DELETE' })
     await fetchKeys()
-    toast({ title: 'Key deleted', description: `API key "${name}" deleted.`, toast: 'solid-green', duration: 3000 })
+    toast({ title: 'Key deleted', description: `API key "${name}" removed.`, toast: 'solid-green', duration: 3000 })
   } catch {
-    toast({ title: 'Error', description: 'Failed to delete API key.', toast: 'solid-red', duration: 4000 })
+    toast({ title: 'Delete failed', description: 'Could not delete the key. Try again.', toast: 'solid-red', duration: 4000 })
   }
 }
 
@@ -202,6 +289,17 @@ function formatDate(dateStr: string) {
   }
 }
 
+@keyframes keyReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.7; }
@@ -209,6 +307,10 @@ function formatDate(dateStr: string) {
 
 .animate-in {
   animation: fadeSlideUp 0.5s ease both;
+}
+
+.key-reveal {
+  animation: keyReveal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .key-row {
