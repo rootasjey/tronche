@@ -1,10 +1,17 @@
 {
   "name": "tronche",
+  "compatibility_date": "2025-12-31",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "no_nodejs_compat_v2"
+  ],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "tronche",
-      "database_id": "11024991-5f6b-45e7-8e7c-cdd91fee9274"
+      "database_id": "11024991-5f6b-45e7-8e7c-cdd91fee9274",
+      "migrations_table": "_hub_migrations",
+      "migrations_dir": "server/db/migrations/sqlite/"
     }
   ]
 }
