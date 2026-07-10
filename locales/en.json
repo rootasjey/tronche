@@ -28,7 +28,8 @@
       "random": "Random",
       "sizeHint": "Affects the generated URL only — preview stays at 200px"
     },
-    "copy": "Copy"
+    "copy": "Copy",
+    "download": "Download SVG"
   },
   "footer": {
     "tagline": "tronche — avatars nothing like you"

@@ -8,9 +8,32 @@
     </section>
 
     <div class="lg:flex lg:gap-12 lg:max-w-200 lg:mx-auto">
-      <section class="lg:sticky lg:top-24 lg:self-start flex justify-center mb-10 lg:mb-0 lg:shrink-0 animate-in" style="animation-delay: 100ms">
+      <section class="lg:sticky lg:top-24 lg:self-start flex flex-col items-center gap-4 mb-10 lg:mb-0 lg:shrink-0 animate-in" style="animation-delay: 100ms">
         <div class="w-[200px] h-[200px] rounded-full overflow-hidden shadow-lg transition-all duration-300 shrink-0" :class="{ '!rounded-2xl': square }">
           <img :src="liveUrl" :alt="name" width="200" height="200" class="w-full h-full block" />
+        </div>
+        <div class="flex items-center gap-0">
+          <button class="flex items-center gap-1.5 pl-4 pr-3 py-2 rounded-l-xl rounded-r-none border border-r-0 border-border text-xs font-medium text-muted cursor-pointer hover:text-[var(--c-text)] hover:border-[var(--c-text)] hover:border-r hover:z-1 transition-colors" @click="downloadFile('svg')">
+            <NIcon name="i-tabler-download" />
+            {{ $t('playground.download') }}
+          </button>
+          <NDropdownMenu>
+            <button class="flex items-center justify-center w-9 h-8.5 rounded-l-none rounded-r-xl border border-border text-muted cursor-pointer hover:text-[var(--c-text)] hover:border-[var(--c-text)] hover:z-1 transition-colors">
+              <NIcon name="i-tabler-chevron-down" />
+            </button>
+
+            <template #items>
+              <NDropdownMenuGroup>
+                <NDropdownMenuItem
+                  v-for="item in extraFormats"
+                  :key="item.value"
+                  @select="downloadFile(item.value)"
+                >
+                  {{ item.label }}
+                </NDropdownMenuItem>
+              </NDropdownMenuGroup>
+            </template>
+          </NDropdownMenu>
         </div>
       </section>
 
@@ -226,6 +249,53 @@ function syncUrl() {
 }
 
 watch([name, variant, size, square, colors, customColors], syncUrl)
+
+const downloadFormats = [
+  { value: 'svg', label: 'SVG' },
+  { value: 'png', label: 'PNG' },
+  { value: 'jpeg', label: 'JPEG' },
+  { value: 'webp', label: 'WebP' },
+]
+const extraFormats = computed(() => downloadFormats.filter(f => f.value !== 'svg'))
+
+async function downloadFile(format: string) {
+  const url = liveUrl.value
+  const filename = `${name.value || 'avatar'}-${variant.value}`
+  if (format === 'svg') {
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${filename}.svg`
+    a.click()
+  } else {
+    const mimeTypes: Record<string, string> = { png: 'image/png', jpeg: 'image/jpeg', webp: 'image/webp' }
+    const mime = mimeTypes[format]
+    if (!mime) return
+    const res = await fetch(url)
+    const svg = await res.text()
+    const blob = new Blob([svg], { type: 'image/svg+xml' })
+    const blobUrl = URL.createObjectURL(blob)
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = size.value
+      canvas.height = size.value
+      const ctx = canvas.getContext('2d')!
+      ctx.drawImage(img, 0, 0, size.value, size.value)
+      canvas.toBlob((b) => {
+        if (b) {
+          const url = URL.createObjectURL(b)
+          const a = document.createElement('a')
+          a.href = url
+          a.download = `${filename}.${format}`
+          a.click()
+          URL.revokeObjectURL(url)
+        }
+      }, mime, format === 'jpeg' ? 0.92 : undefined)
+      URL.revokeObjectURL(blobUrl)
+    }
+    img.src = blobUrl
+  }
+}
 
 function copyCode(e: Event) {
   navigator.clipboard.writeText(activeCode.value)

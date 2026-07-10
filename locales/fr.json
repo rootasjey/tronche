@@ -28,7 +28,8 @@
       "random": "Aléatoire",
       "sizeHint": "N'affecte que l'URL générée — l'avatar reste à 200px"
     },
-    "copy": "Copier"
+    "copy": "Copier",
+    "download": "Télécharger SVG"
   },
   "footer": {
     "tagline": "tronche — des avatars qui vous ressemblent pas"
