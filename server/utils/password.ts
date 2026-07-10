@@ -30,14 +30,14 @@ export async function hashPassword(plain: string): Promise<string> {
     {
       name: 'PBKDF2',
       salt,
-      iterations: 600000,
+      iterations: 100000,
       hash: 'SHA-256',
     },
     keyMaterial,
     512,
   )
   const hashBytes = new Uint8Array(derived)
-  return `$pbkdf2$i=600000,h=SHA-256$${toBase64(salt)}$${toBase64(hashBytes)}`
+  return `$pbkdf2$i=100000,h=SHA-256$${toBase64(salt)}$${toBase64(hashBytes)}`
 }
 
 export async function verifyPassword(hashed: string, plain: string): Promise<boolean> {
