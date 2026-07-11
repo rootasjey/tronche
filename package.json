@@ -52,6 +52,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
+    "typecheck": "attw --pack .",
     "preview": "nuxt preview",
     "generate": "nuxt generate",
     "db:generate": "drizzle-kit generate",
@@ -75,6 +76,7 @@
     "shiki": "^4.3.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@iconify-json/lucide": "^1.2.102",
     "@iconify-json/radix-icons": "^1.2.6",
     "@iconify-json/tabler": "^1.2.33",
