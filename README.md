@@ -183,6 +183,10 @@ curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4EC
 - **Drizzle ORM** — SQLite/D1 database
 - **@noble/hashes** — Password hashing (scrypt)
 
+## Credits
+
+Tronche is a spiritual successor to [boring-avatars](https://github.com/boringdesigners/boring-avatars) by [Boring Designs](https://boringdesigners.com/). The avatar generation algorithms are ported from the original JavaScript library.
+
 ## License
 
 MIT
