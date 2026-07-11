@@ -7,10 +7,17 @@ export default defineConfig({
   resolve: {
     alias: {
       'hub:kv': resolve(__dirname, 'server/__tests__/__mocks__/hub-kv.ts'),
+      'hub:db': resolve(__dirname, 'server/__tests__/__mocks__/hub-db.ts'),
+      '@noble/hashes/scrypt': resolve(__dirname, 'node_modules/@noble/hashes/scrypt.js'),
     },
   },
   test: {
     include: ['src/**/*.test.ts', 'server/**/*.test.ts'],
     environment: 'jsdom',
+    server: {
+      deps: {
+        inline: ['@noble/hashes'],
+      },
+    },
   },
 });

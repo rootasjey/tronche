@@ -1,5 +1,13 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
+
+vi.mock('../components/avatar-marble.vue');
+vi.mock('../components/avatar-beam.vue');
+vi.mock('../components/avatar-pixel.vue');
+vi.mock('../components/avatar-sunset.vue');
+vi.mock('../components/avatar-ring.vue');
+vi.mock('../components/avatar-bauhaus.vue');
+
 import Avatar from '../components/Avatar.vue';
 
 describe('Avatar.vue', () => {

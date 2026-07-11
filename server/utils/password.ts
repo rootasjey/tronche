@@ -88,7 +88,7 @@ export async function verifyPassword(hashed: string, plain: string): Promise<boo
       hashBytes.length * 8,
     )
     const derivedBytes = new Uint8Array(derived)
-    return derivedBytes.length === hashBytes.length && derivedBytes.every((v, i) => v === derivedBytes[i])
+    return derivedBytes.length === hashBytes.length && derivedBytes.every((v, i) => v === hashBytes[i])
   }
 
   return false
