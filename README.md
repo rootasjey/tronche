@@ -142,15 +142,21 @@ Props are the same as [Vue](#props).
 
 ## REST API
 
-```
+Base URL: `https://tronche.app`
+
+### Public avatar generation
+
+```sh
 GET /api/avatar/:name
 ```
+
+Generates an SVG avatar from a name. No auth required — IP rate limited.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `variant` | `string` | `marble` | `marble`, `beam`, `pixel`, `sunset`, `ring`, `bauhaus` |
 | `size` | `number` | `80` | Size in pixels (clamped 16–512) |
-| `square` | `boolean` | `false` | Square crop |
+| `square` | `boolean` | `false` | Square crop (otherwise rounded) |
 | `colors` | `string` | default palette | Comma-separated hex colors (e.g. `FF6B6B,4ECDC4`) |
 
 ```sh
@@ -158,7 +164,52 @@ curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"
 curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"
 ```
 
-**Rate limit:** 100 requests/min per IP. [Create an account](https://tronche.app/register) for API key access with higher limits.
+**Rate limit:** 1 000 requests/min per IP. [Create an account](https://tronche.app/register) for API key access with higher limits.
+
+### Authentication
+
+```sh
+POST /api/auth/register   # Create account
+POST /api/auth/login      # Sign in (sets session cookie)
+POST /api/auth/logout     # Sign out
+GET  /api/auth/session    # Current user (or null)
+```
+
+Register and login accept a JSON body with `email`, `name`, and `password`. Login and register set a session cookie — use it for the endpoints below.
+
+### API key management (requires session)
+
+```sh
+GET    /api/api-keys       # List your keys (with usage stats)
+POST   /api/api-keys       # Create a key (body: { name })
+PUT    /api/api-keys/:id   # Update name or isActive
+DELETE /api/api-keys/:id   # Delete a key
+```
+
+API keys are prefixed with `tr_` and used via `Authorization: Bearer tr_...` for authenticated avatar generation (v1 — coming soon).
+
+### Admin endpoints (requires admin session)
+
+```sh
+POST   /api/admin/promote/{email}   # Promote user to admin (requires secret)
+
+GET    /api/admin/stats             # System-wide stats
+GET    /api/admin/users             # List users (paginated)
+GET    /api/admin/users/:id         # User details + API keys
+PUT    /api/admin/users/:id         # Update role or isActive
+DELETE /api/admin/users/:id         # Delete user + keys
+
+GET    /api/admin/api-keys           # List all API keys (paginated)
+PUT    /api/admin/api-keys/:id       # Update any key
+DELETE /api/admin/api-keys/:id       # Delete any key
+```
+
+### Usage tiers
+
+| Tier | Daily | Monthly |
+|------|-------|---------|
+| Free | 500 | 5 000 |
+| Pro | 50 000 | 500 000 |
 
 ## Variants
 
