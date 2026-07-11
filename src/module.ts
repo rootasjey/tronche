@@ -21,7 +21,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, _nuxt) {
     const resolver = createResolver(import.meta.url)
-    const entry = resolver.resolve('./vue/index.js')
+    const entry = resolver.resolve('./vue/index')
 
     const components: [string, string][] = [
       ['Avatar', 'Avatar'],
