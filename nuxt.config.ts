@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-12-31',
   devtools: { enabled: false },
 
+  alias: {
+    'tronche': './src/lib/index.ts',
+  },
+
   modules: [
     '@nuxthub/core',
     'nuxt-auth-utils',
