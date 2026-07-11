@@ -34,6 +34,10 @@
       "types": "./dist/vue/index.d.ts",
       "import": "./dist/vue/index.js"
     },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
     "./module": {
       "types": "./dist/module.d.ts",
       "import": "./dist/module.js"
@@ -47,7 +51,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && tsc --p ./tsconfig.module.json",
+    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && tsc --p ./tsconfig.module.json",
     "build:demo": "nuxt build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -63,6 +67,8 @@
   },
   "peerDependencies": {
     "nuxt": ">=3.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
     "vue": ">=3.0.0"
   },
   "dependencies": {
@@ -83,7 +89,9 @@
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@types/node": "^24.1.0",
+    "@types/react": "^19.2.17",
     "@unocss/nuxt": "^66.7.4",
+    "@vitejs/plugin-react": "^5.2.0",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.11",
@@ -93,6 +101,8 @@
     "globals": "^16.2.0",
     "jsdom": "^29.1.1",
     "nice-color-palettes": "^4.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "nuxt": "^4.4.8",
     "typescript": "~5.8.3",
     "vite": "^7.0.0",

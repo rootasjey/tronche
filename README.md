@@ -33,6 +33,7 @@ node_modules/tronche/
 |-------------|-------------|---------|
 | `tronche` | Vanilla JS/TS | `import { generateBeamSvg } from 'tronche'` |
 | `tronche/vue` | Vue 3 | `import { Avatar } from 'tronche/vue'` |
+| `tronche/react` | React 18+ | `import { Avatar } from 'tronche/react'` |
 | `tronche/module` | Nuxt 3+ | `modules: ['tronche/module']` |
 
 ## Vanilla Usage
@@ -119,6 +120,26 @@ import { Avatar, AvatarMarble, AvatarBeam } from 'tronche/vue'
 | `colors` | `string[]` | built-in palette | Custom hex colors |
 | `title` | `boolean` | `false` | Show title element |
 
+## React Usage
+
+```tsx
+import { Avatar, AvatarMarble } from 'tronche/react'
+
+function Profile() {
+  return (
+    <Avatar
+      name="Grace Hopper"
+      colors={['#fb6900', '#f63700', '#004853']}
+      variant="marble"
+      size={120}
+      square
+    />
+  )
+}
+```
+
+Props are the same as [Vue](#props).
+
 ## REST API
 
 ```
@@ -154,6 +175,7 @@ curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4EC
 
 - **Core lib** — Framework-agnostic SVG generators (`src/lib/`)
 - **Vue components** — Thin wrappers over the core lib (`src/vue/`)
+- **React components** — Thin wrappers over the core lib (`src/react/`)
 - **Nuxt module** — Auto-import via `tronche/module` (`src/module.ts`)
 - **Nuxt 4** — Frontend + API (Nitro)
 - **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)
