@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
+import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), react()],
   resolve: {
     alias: {
       'hub:kv': resolve(__dirname, 'server/__tests__/__mocks__/hub-kv.ts'),
@@ -12,7 +13,7 @@ export default defineConfig({
     },
   },
   test: {
-    include: ['src/**/*.test.ts', 'server/**/*.test.ts'],
+    include: ['src/**/*.test.{ts,tsx}', 'server/**/*.test.ts'],
     environment: 'jsdom',
     server: {
       deps: {
