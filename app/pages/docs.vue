@@ -134,7 +134,7 @@
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.variants') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div v-for="(v, i) in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v.name, v.name, variantColors[i])">
-          <img :src="`/api/avatar/Demo?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
+          <img :src="`/api/avatar/${v.name}?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
           <div>
             <h3 class="text-base font-semibold font-heading mb-1">{{ v.name }}</h3>
             <p class="text-sm text-muted m-0">{{ v.desc }}</p>
