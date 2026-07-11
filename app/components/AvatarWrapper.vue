@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import Avatar from '../../src/runtime/components/Avatar.vue'
+import Avatar from '../../src/vue/components/Avatar.vue'
 
 interface Props {
   name: string

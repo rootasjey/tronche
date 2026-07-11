@@ -1,15 +1,13 @@
-import type { SVGAttributes } from 'vue';
+export type AvatarVariant = 'marble' | 'bauhaus' | 'beam' | 'pixel' | 'ring' | 'sunset';
 
-export interface AvatarProps extends SVGAttributes {
+export interface AvatarOptions {
   name: string;
   colors: string[];
   title?: boolean;
   square?: boolean;
-  size?: number | string;
+  size?: number;
 }
 
-export type AvatarVariant = 'marble' | 'bauhaus' | 'beam' | 'pixel' | 'ring' | 'sunset';
-
-export interface AvatarComponentProps extends AvatarProps {
-  variant?: AvatarVariant;
+export interface AvatarData {
+  maskId: string;
 }

@@ -23,13 +23,13 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
 
     const components: [string, string][] = [
-      ['Avatar', './runtime/components/Avatar.vue'],
-      ['AvatarMarble', './runtime/components/avatar-marble.vue'],
-      ['AvatarBeam', './runtime/components/avatar-beam.vue'],
-      ['AvatarPixel', './runtime/components/avatar-pixel.vue'],
-      ['AvatarSunset', './runtime/components/avatar-sunset.vue'],
-      ['AvatarRing', './runtime/components/avatar-ring.vue'],
-      ['AvatarBauhaus', './runtime/components/avatar-bauhaus.vue'],
+      ['Avatar', './vue/components/Avatar.vue'],
+      ['AvatarMarble', './vue/components/avatar-marble.vue'],
+      ['AvatarBeam', './vue/components/avatar-beam.vue'],
+      ['AvatarPixel', './vue/components/avatar-pixel.vue'],
+      ['AvatarSunset', './vue/components/avatar-sunset.vue'],
+      ['AvatarRing', './vue/components/avatar-ring.vue'],
+      ['AvatarBauhaus', './vue/components/avatar-bauhaus.vue'],
     ]
 
     for (const [name, path] of components) {

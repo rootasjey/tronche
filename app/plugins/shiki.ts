@@ -9,6 +9,7 @@ export default defineNuxtPlugin(async () => {
     ],
     langs: [
       () => import('shiki/langs/javascript.mjs').then(m => m.default),
+      () => import('shiki/langs/typescript.mjs').then(m => m.default),
       () => import('shiki/langs/html.mjs').then(m => m.default),
       () => import('shiki/langs/shellscript.mjs').then(m => m.default),
     ],
@@ -17,6 +18,7 @@ export default defineNuxtPlugin(async () => {
 
   const langMap: Record<string, string> = {
     js: 'javascript',
+    ts: 'typescript',
     vue: 'html',
     html: 'html',
     sh: 'shellscript',
@@ -37,10 +39,11 @@ export default defineNuxtPlugin(async () => {
       })
     }
     catch {
-      return code
+      const escaped = code
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
+      return `<pre class="shiki"><code>${escaped}</code></pre>`
     }
   }
 

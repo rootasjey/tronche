@@ -16,10 +16,9 @@ const props = withDefaults(defineProps<Props>(), {
   name: 'Clara Barton',
   title: false,
   square: false,
-  size: 80
+  size: 80,
 });
 
-// Lazy load components for better performance
 const AvatarBauhaus = defineAsyncComponent(() => import('./avatar-bauhaus.vue'));
 const AvatarRing = defineAsyncComponent(() => import('./avatar-ring.vue'));
 const AvatarPixel = defineAsyncComponent(() => import('./avatar-pixel.vue'));
@@ -34,16 +33,14 @@ const AVATAR_VARIANTS = {
   beam: AvatarBeam,
   sunset: AvatarSunset,
   marble: AvatarMarble,
-  // Deprecated variants for backward compatibility
-  geometric: AvatarBeam, // Deprecated, use 'beam'
-  abstract: AvatarBauhaus, // Deprecated, use 'bauhaus'
+  geometric: AvatarBeam,
+  abstract: AvatarBauhaus,
 } as const;
 
 const AvatarComponent = computed(() => {
   return AVATAR_VARIANTS[props.variant as keyof typeof AVATAR_VARIANTS] || AvatarMarble;
 });
 
-// Forward all props except variant to the selected component
 const componentProps = computed(() => {
   const { variant, ...rest } = props;
   return rest;
@@ -51,8 +48,8 @@ const componentProps = computed(() => {
 </script>
 
 <template>
-  <component 
-    :is="AvatarComponent" 
+  <component
+    :is="AvatarComponent"
     v-bind="componentProps"
   />
 </template>

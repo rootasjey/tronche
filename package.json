@@ -25,7 +25,6 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "module": "dist/module.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -35,8 +34,8 @@
       "types": "./dist/module.d.ts",
       "import": "./dist/module.js"
     },
-    "./runtime/*": {
-      "import": "./dist/runtime/*"
+    "./vue/*": {
+      "import": "./dist/vue/*"
     }
   },
   "files": [
@@ -46,7 +45,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "tsc --p ./tsconfig.lib.json && vite build --config vite.lib.config.ts && tsc --p ./tsconfig.module.json && cp -r src/runtime dist/runtime",
+    "build": "vite build --config vite.lib.config.ts && tsc --p ./tsconfig.lib.json && tsc --p ./tsconfig.module.json && cp -r src/vue dist/vue && rm -rf dist/lib/src",
     "build:demo": "nuxt build",
     "lint": "eslint .",
     "preview": "nuxt preview",

@@ -5,10 +5,14 @@
     "copy": "Copy",
     "sections": {
       "installation": "Installation",
+      "vanilla": "Vanilla JS",
       "nuxt": "Nuxt Module",
       "vue": "Vue.js",
       "api": "REST API",
       "variants": "Variants"
+    },
+    "vanilla": {
+      "description": "Use the core generators directly — no framework required."
     },
     "installation": {
       "text": "Add the module in your"

@@ -9,8 +9,8 @@
 
     <div class="lg:flex lg:gap-12 lg:max-w-200 lg:mx-auto">
       <section class="lg:sticky lg:top-24 lg:self-start flex flex-col items-center gap-4 mb-10 lg:mb-0 lg:shrink-0 animate-in" style="animation-delay: 100ms">
-        <div class="w-[200px] h-[200px] rounded-full overflow-hidden shadow-lg transition-all duration-300 shrink-0" :class="{ '!rounded-2xl': square }">
-          <img :src="liveUrl" :alt="name" width="200" height="200" class="w-full h-full block" />
+        <div class="w-[200px] h-[200px] rounded-full overflow-hidden shadow-lg transition-all duration-300 shrink-0 flex items-center justify-center" :class="{ '!rounded-2xl': square }">
+          <Avatar :name="name || '?'" :variant="variant as any" :colors="colors" :square="square" :size="size" class="w-full h-full block" />
         </div>
         <div class="flex items-center gap-0">
           <button class="flex items-center gap-1.5 pl-4 pr-3 py-2 rounded-l-xl rounded-r-none border border-r-0 border-border text-xs font-medium text-muted cursor-pointer hover:text-[var(--c-text)] hover:border-[var(--c-text)] hover:border-r hover:z-1 transition-colors" @click="downloadFile('svg')">
@@ -153,6 +153,8 @@
 </template>
 
 <script setup lang="ts">
+import Avatar from '../../src/vue/components/Avatar.vue'
+
 const { $t } = useI18n()
 const route = useRoute()
 const router = useRouter()

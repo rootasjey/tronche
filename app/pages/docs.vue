@@ -22,6 +22,18 @@
       </div>
     </section>
 
+    <section id="vanilla" class="mb-12 fade-in" style="animation-delay: 250ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.vanilla') }}</h2>
+      <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.vanilla.description') }}</p>
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-block-label">TypeScript</span>
+          <button class="copy-btn" :class="{ copied: copied === 'vanilla-import' }" @click="copy('vanilla-import', $event)">{{ copied === 'vanilla-import' ? 'Copied!' : $t('docs.copy') }}</button>
+        </div>
+        <div v-html="$highlight(snippets['vanilla-import'], 'ts')"></div>
+      </div>
+    </section>
+
     <section id="nuxt" class="mb-12 fade-in" style="animation-delay: 300ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.nuxt') }}</h2>
       <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
@@ -177,6 +189,7 @@ const examples = [
 
 const sectionLinks = [
   { id: 'start', label: 'docs.sections.installation' },
+  { id: 'vanilla', label: 'docs.sections.vanilla' },
   { id: 'nuxt', label: 'docs.sections.nuxt' },
   { id: 'vue', label: 'docs.sections.vue' },
   { id: 'api', label: 'docs.sections.api' },

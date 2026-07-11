@@ -1,8 +1,21 @@
-// Export utilities
-export { hashCode, getRandomColor, getUnit, getBoolean, getContrast } from './utilities';
+export { hashCode, getRandomColor, getUnit, getBoolean, getContrast, getDigit, getModulus, getAngle } from './utilities';
 
-// Export types
-export type { AvatarComponentProps, AvatarVariant, AvatarProps } from './types';
+export type { AvatarVariant, AvatarOptions, AvatarData } from './types';
 
-// Note: Vue components should be imported directly in Vue/Nuxt applications
-// Example: import Avatar from 'tronche/src/runtime/components/Avatar.vue'
+export {
+  generateMarbleData, generateMarbleSvg, renderMarbleSvg,
+  generateBauhausData, generateBauhausSvg, renderBauhausSvg,
+  generateBeamData, generateBeamSvg, renderBeamSvg,
+  generatePixelData, generatePixelSvg, renderPixelSvg,
+  generateRingData, generateRingSvg, renderRingSvg,
+  generateSunsetData, generateSunsetSvg, renderSunsetSvg,
+} from './generators';
+
+export type {
+  MarbleData, MarbleElement,
+  BauhausData, BauhausElement,
+  BeamData,
+  PixelData,
+  RingData,
+  SunsetData,
+} from './generators';

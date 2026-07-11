@@ -4,12 +4,44 @@
 
 Avatars nothing like you.
 
-Tronche generates unique SVG avatars from a name and a color palette. Available as a [Nuxt module](#nuxt-module), a [standalone Vue component](#vue-usage), and a [REST API](#rest-api).
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
 
 ## Installation
 
 ```sh
 npm install tronche
+```
+
+## Vanilla Usage
+
+Use the core generators directly in any JavaScript environment — no framework required.
+
+```ts
+import { generateBeamSvg } from 'tronche'
+
+const svg = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], {
+  size: 120,
+  square: false,
+})
+// svg is a string: '<svg viewBox="0 0 36 36"...'
+document.body.innerHTML = svg
+```
+
+Each variant exports three functions:
+
+| Function | Returns | Use case |
+|----------|---------|----------|
+| `generateMarbleData(name, colors)` | Data object | Feed into Vue template or custom renderer |
+| `renderMarbleSvg(data, options)` | SVG string | Convert data to SVG with display options |
+| `generateMarbleSvg(name, colors, options)` | SVG string | One-shot generation (calls both above) |
+
+Replace `Marble` with `Beam`, `Pixel`, `Sunset`, `Ring`, or `Bauhaus` for other variants.
+
+```ts
+import {
+  generateMarbleSvg, generateBeamSvg, generatePixelSvg,
+  generateSunsetSvg, generateRingSvg, generateBauhausSvg,
+} from 'tronche'
 ```
 
 ## Nuxt Module
@@ -40,7 +72,9 @@ tronche: {
 
 ```vue
 <script setup>
-import Avatar from 'tronche/src/runtime/components/Avatar.vue'
+import Avatar from 'tronche/vue/components/Avatar.vue'
+// or individual variants:
+// import AvatarMarble from 'tronche/vue/components/avatar-marble.vue'
 </script>
 <template>
   <Avatar
@@ -97,6 +131,9 @@ curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4EC
 
 ## Stack
 
+- **Core lib** — Framework-agnostic SVG generators (`src/lib/`)
+- **Vue components** — Thin wrappers over the core lib (`src/vue/`)
+- **Nuxt module** — Auto-import via `tronche/module` (`src/module.ts`)
 - **Nuxt 4** — Frontend + API (Nitro)
 - **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)
 - **nuxt-auth-utils** — Sessions and authentication

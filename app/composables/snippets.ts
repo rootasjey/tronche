@@ -1,5 +1,13 @@
 export const snippets: Record<string, string> = {
   'npm-install': 'npm install tronche',
+  'vanilla-import': [
+    "import { generateBeamSvg } from 'tronche'",
+    '',
+    "const svg = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], {",
+    '  size: 120,',
+    '})',
+    "// svg: '<svg viewBox=\"0 0 36 36\"...'",
+  ].join('\n'),
   'nuxt-config': [
     'export default defineNuxtConfig({',
     "  modules: ['tronche/module'],",
@@ -12,7 +20,7 @@ export const snippets: Record<string, string> = {
   ].join('\n'),
   'vue-import': [
     '<script setup>',
-    "import Avatar from 'tronche/src/runtime/components/Avatar.vue'",
+    "import Avatar from 'tronche/vue/components/Avatar.vue'",
     '</script>',
     '',
     '<template>',

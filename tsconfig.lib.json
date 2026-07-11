@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "build",
+    "declarationDir": "dist",
     "emitDeclarationOnly": false,
-    "outDir": "build",
+    "outDir": "dist",
+    "rootDir": "src",
     "module": "ESNext",
     "target": "ES2019",
-    "moduleResolution": "Node",
-    "jsx": "preserve",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["node", "vue"]
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/lib",
-    "src/lib/vue-shims.d.ts"
+    "src/lib"
   ]
 }
