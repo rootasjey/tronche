@@ -12,7 +12,8 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  ignorePatterns: ['dist/'],
   rules: {
-    // Add any custom rules here
+    'vue/multi-word-component-names': 'off',
   },
 }
