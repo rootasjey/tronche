@@ -3,7 +3,7 @@
     <header class="sticky top-0 z-50 border-b border-[var(--c-border)] bg-[var(--c-bg)]/80 backdrop-blur-md">
       <div class="max-w-240 mx-auto px-5 h-14 flex items-center justify-between">
         <NuxtLink to="/" class="flex items-center gap-2 font-bold text-lg no-underline text-[var(--c-text)] hover:no-underline">
-          <img src="/images/tronche-250.png" width="28" height="28" alt="Tronche" class="shrink-0">
+          <img :src="isHome ? '/images/clara-bartoni-pixel.png' : '/images/tronche-250.png'" width="28" height="28" alt="Tronche" class="shrink-0">
           <span :class="isHome ? 'hidden' : 'font-heading'">tronche</span>
         </NuxtLink>
 
