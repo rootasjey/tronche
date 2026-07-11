@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generateSunsetData } from '../../lib/generators/sunset';
+import { generateSunsetData } from 'tronche';
 
 const DESIGN_SIZE = 80;
 

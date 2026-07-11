@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generateMarbleData } from '../../lib/generators/marble';
+import { generateMarbleData } from 'tronche';
 
 const DESIGN_SIZE = 80;
 

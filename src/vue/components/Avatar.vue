@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent } from 'vue';
+import { computed } from 'vue';
+import AvatarBauhaus from './avatar-bauhaus.vue';
+import AvatarRing from './avatar-ring.vue';
+import AvatarPixel from './avatar-pixel.vue';
+import AvatarBeam from './avatar-beam.vue';
+import AvatarSunset from './avatar-sunset.vue';
+import AvatarMarble from './avatar-marble.vue';
 
 interface Props {
   variant?: 'marble' | 'bauhaus' | 'beam' | 'pixel' | 'ring' | 'sunset';
@@ -18,13 +24,6 @@ const props = withDefaults(defineProps<Props>(), {
   square: false,
   size: 80,
 });
-
-const AvatarBauhaus = defineAsyncComponent(() => import('./avatar-bauhaus.vue'));
-const AvatarRing = defineAsyncComponent(() => import('./avatar-ring.vue'));
-const AvatarPixel = defineAsyncComponent(() => import('./avatar-pixel.vue'));
-const AvatarBeam = defineAsyncComponent(() => import('./avatar-beam.vue'));
-const AvatarSunset = defineAsyncComponent(() => import('./avatar-sunset.vue'));
-const AvatarMarble = defineAsyncComponent(() => import('./avatar-marble.vue'));
 
 const AVATAR_VARIANTS = {
   pixel: AvatarPixel,

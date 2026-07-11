@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generatePixelData } from '../../lib/generators/pixel';
+import { generatePixelData } from 'tronche';
 
 const DESIGN_SIZE = 80;
 const GRID = 8;

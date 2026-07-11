@@ -12,6 +12,29 @@ Tronche generates unique SVG avatars from a name and a color palette. Available 
 npm install tronche
 ```
 
+### Package structure
+
+```
+node_modules/tronche/
+├── dist/
+│   ├── index.js         # Core library (ESM, framework-agnostic)
+│   ├── index.d.ts       # Core TypeScript declarations
+│   ├── vue/
+│   │   ├── index.js     # Vue components (pre-compiled)
+│   │   └── index.d.ts   # Vue component types
+│   ├── module.js        # Nuxt module
+│   └── module.d.ts      # Module types
+└── package.json
+```
+
+### Consumption
+
+| Import path | Environment | Example |
+|-------------|-------------|---------|
+| `tronche` | Vanilla JS/TS | `import { generateBeamSvg } from 'tronche'` |
+| `tronche/vue` | Vue 3 | `import { Avatar } from 'tronche/vue'` |
+| `tronche/module` | Nuxt 3+ | `modules: ['tronche/module']` |
+
 ## Vanilla Usage
 
 Use the core generators directly in any JavaScript environment — no framework required.
@@ -72,9 +95,7 @@ tronche: {
 
 ```vue
 <script setup>
-import Avatar from 'tronche/vue/components/Avatar.vue'
-// or individual variants:
-// import AvatarMarble from 'tronche/vue/components/avatar-marble.vue'
+import { Avatar, AvatarMarble, AvatarBeam } from 'tronche/vue'
 </script>
 <template>
   <Avatar

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generateBauhausData } from '../../lib/generators/bauhaus';
+import { generateBauhausData } from 'tronche';
 
 const DESIGN_SIZE = 80;
 

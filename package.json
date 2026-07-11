@@ -30,14 +30,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "import": "./dist/vue/index.js"
+    },
     "./module": {
       "types": "./dist/module.d.ts",
       "import": "./dist/module.js"
-    },
-    "./vue/*": {
-      "import": "./dist/vue/*"
     }
   },
+  "sideEffects": false,
   "files": [
     "dist/*"
   ],
@@ -45,7 +47,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.lib.config.ts && tsc --p ./tsconfig.lib.json && tsc --p ./tsconfig.module.json && cp -r src/vue dist/vue && rm -rf dist/lib/src",
+    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && tsc --p ./tsconfig.module.json",
     "build:demo": "nuxt build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -55,7 +57,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "nuxt": ">=3.0.0",
@@ -79,6 +82,7 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@types/node": "^24.1.0",
     "@unocss/nuxt": "^66.7.4",
+    "@vitejs/plugin-vue": "^6.0.7",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.11",
     "drizzle-kit": "^0.31.10",

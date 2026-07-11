@@ -21,22 +21,23 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, _nuxt) {
     const resolver = createResolver(import.meta.url)
+    const entry = resolver.resolve('./vue/index.js')
 
     const components: [string, string][] = [
-      ['Avatar', './vue/components/Avatar.vue'],
-      ['AvatarMarble', './vue/components/avatar-marble.vue'],
-      ['AvatarBeam', './vue/components/avatar-beam.vue'],
-      ['AvatarPixel', './vue/components/avatar-pixel.vue'],
-      ['AvatarSunset', './vue/components/avatar-sunset.vue'],
-      ['AvatarRing', './vue/components/avatar-ring.vue'],
-      ['AvatarBauhaus', './vue/components/avatar-bauhaus.vue'],
+      ['Avatar', 'Avatar'],
+      ['AvatarMarble', 'AvatarMarble'],
+      ['AvatarBeam', 'AvatarBeam'],
+      ['AvatarPixel', 'AvatarPixel'],
+      ['AvatarSunset', 'AvatarSunset'],
+      ['AvatarRing', 'AvatarRing'],
+      ['AvatarBauhaus', 'AvatarBauhaus'],
     ]
 
-    for (const [name, path] of components) {
+    for (const [name, exportName] of components) {
       addComponent({
         name: options.prefix ? `${options.prefix}${name}` : name,
-        export: 'default',
-        filePath: resolver.resolve(path),
+        export: exportName,
+        filePath: entry,
       })
     }
   },
