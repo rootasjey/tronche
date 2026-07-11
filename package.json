@@ -47,6 +47,8 @@
     "dev": "nuxt dev",
     "build": "vite build --config vite.lib.config.ts && tsc --p ./tsconfig.lib.json && tsc --p ./tsconfig.module.json && cp -r src/vue dist/vue && rm -rf dist/lib/src",
     "build:demo": "nuxt build",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint .",
     "preview": "nuxt preview",
     "generate": "nuxt generate",
@@ -87,6 +89,7 @@
     "typescript": "~5.8.3",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.1.10",
     "vue": "^3.4.0",
     "vue-tsc": "^2.0.0",
     "wrangler": "^4.106.0"
