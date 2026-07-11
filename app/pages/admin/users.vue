@@ -200,7 +200,7 @@ async function updateUser(id: number, body: Record<string, unknown>) {
   try {
     await $fetch(`/api/admin/users/${id}`, { method: 'PUT', body })
     await fetchUsers()
-  } catch {}
+  } catch { /* ignore */ }
 }
 
 async function performDelete(id: number) {

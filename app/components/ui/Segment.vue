@@ -8,7 +8,7 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 interface Props {
   isSelected?: boolean;
 }

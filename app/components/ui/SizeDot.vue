@@ -11,7 +11,7 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 interface Props {
   size: number;
   isSelected?: boolean;

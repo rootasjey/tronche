@@ -189,7 +189,7 @@ async function updateKey(id: number, body: Record<string, unknown>) {
   try {
     await $fetch(`/api/admin/api-keys/${id}`, { method: 'PUT', body })
     await fetchKeys()
-  } catch {}
+  } catch { /* ignore */ }
 }
 
 async function performDelete(id: number) {

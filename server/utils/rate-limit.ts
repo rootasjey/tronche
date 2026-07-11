@@ -7,7 +7,7 @@ export async function checkRateLimit(ip: string): Promise<{ allowed: boolean; re
   try {
     const { kv } = await import('hub:kv').catch(() => ({ kv: null }))
     if (kv) return await kvRateLimit(ip)
-  } catch {}
+  } catch { /* ignore */ }
   return memoryRateLimit(ip)
 }
 
