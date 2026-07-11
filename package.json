@@ -96,6 +96,7 @@
     "@vitejs/plugin-vue": "^6.0.7",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.11",
+    "conventional-changelog-conventionalcommits": "^10.2.1",
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "eslint": "^8.57.0",

@@ -7,7 +7,6 @@ module.exports = {
   },
   extends: [
     '@nuxt/eslint-config',
-    '@vue/eslint-config-typescript',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
