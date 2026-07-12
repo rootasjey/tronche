@@ -51,14 +51,6 @@ export default defineNuxtConfig({
         version: '1.0.0',
       },
       route: '/_openapi.json',
-      ui: {
-        scalar: {
-          route: '/docs/api',
-          spec: {
-            url: '/api/openapi.json',
-          },
-        },
-      },
     },
   },
 
