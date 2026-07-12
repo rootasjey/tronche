@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generateRingData } from 'tronche';
+import { generateRingData } from '../../lib/index';
 
 const DESIGN_SIZE = 90;
 

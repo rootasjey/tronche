@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
-import { generateBeamData } from 'tronche';
+import { generateBeamData } from '../../lib/index';
 
 const DESIGN_SIZE = 36;
 
