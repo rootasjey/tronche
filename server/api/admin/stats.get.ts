@@ -3,6 +3,20 @@ import { db } from 'hub:db'
 import * as schema from '../../db/schema'
 import { count, eq } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Admin'],
+    summary: 'Get system statistics',
+    description: 'Returns aggregate statistics: total/admins/active users, total/active API keys, and the 5 most recent users.',
+    operationId: 'getAdminStats',
+    responses: {
+      200: { description: 'System statistics' },
+      401: { description: 'Not authenticated' },
+      403: { description: 'Not an admin' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   await requireAdmin(event)
 

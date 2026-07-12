@@ -3,6 +3,38 @@ import { db } from 'hub:db'
 import * as schema from '../../../db/schema'
 import { eq } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Admin'],
+    summary: 'Update any API key',
+    description: 'Admin-only. Update the name or active status of any API key in the system.',
+    operationId: 'adminUpdateApiKey',
+    parameters: [
+      { name: 'id', in: 'path', required: true, schema: { type: 'integer' }, description: 'API key ID' },
+    ],
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              name: { type: 'string', description: 'New label' },
+              isActive: { type: 'boolean', description: 'Enable or disable the key' },
+            },
+          },
+        },
+      },
+    },
+    responses: {
+      200: { description: 'API key updated' },
+      400: { description: 'No valid fields to update' },
+      401: { description: 'Not authenticated' },
+      403: { description: 'Not an admin' },
+      404: { description: 'API key not found' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   await requireAdmin(event)
   const id = Number(getRouterParam(event, 'id'))

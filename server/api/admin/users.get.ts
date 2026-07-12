@@ -3,6 +3,24 @@ import { db } from 'hub:db'
 import * as schema from '../../db/schema'
 import { count } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Admin'],
+    summary: 'List all users',
+    description: 'Paginated list of all registered users with their roles and status.',
+    operationId: 'listUsers',
+    parameters: [
+      { name: 'page', in: 'query', schema: { type: 'integer', default: 1 }, description: 'Page number' },
+      { name: 'limit', in: 'query', schema: { type: 'integer', default: 20 }, description: 'Items per page' },
+    ],
+    responses: {
+      200: { description: 'Paginated user list' },
+      401: { description: 'Not authenticated' },
+      403: { description: 'Not an admin' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   await requireAdmin(event)
 

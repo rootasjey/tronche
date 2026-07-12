@@ -41,6 +41,25 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare-module',
+    experimental: {
+      openAPI: true,
+    },
+    openAPI: {
+      meta: {
+        title: 'Tronche API',
+        description: 'Generate custom, SVG-based avatars from any username and color palette. Tronche provides a free API tier for avatar generation with support for 6 visual styles: beam, marble, pixel, sunset, ring, and bauhaus.',
+        version: '1.0.0',
+      },
+      route: '/_openapi.json',
+      ui: {
+        scalar: {
+          route: '/docs/api',
+          spec: {
+            url: '/api/openapi.json',
+          },
+        },
+      },
+    },
   },
 
   unocss: {

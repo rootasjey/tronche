@@ -3,6 +3,37 @@ import { db } from 'hub:db'
 import * as schema from '../../db/schema'
 import { eq, and } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['API Keys'],
+    summary: 'Update an API key',
+    description: 'Update the name or active status of an API key belonging to the authenticated user.',
+    operationId: 'updateApiKey',
+    parameters: [
+      { name: 'id', in: 'path', required: true, schema: { type: 'integer' }, description: 'API key ID' },
+    ],
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              name: { type: 'string', description: 'New label for the API key' },
+              isActive: { type: 'boolean', description: 'Enable or disable the key' },
+            },
+          },
+        },
+      },
+    },
+    responses: {
+      200: { description: 'API key updated' },
+      400: { description: 'No valid fields to update' },
+      401: { description: 'Not authenticated' },
+      404: { description: 'API key not found' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   const { user } = await requireAuth(event)
   const id = Number(getRouterParam(event, 'id'))

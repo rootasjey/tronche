@@ -3,6 +3,24 @@ import { db } from 'hub:db'
 import * as schema from '../../../db/schema'
 import { eq, count } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Admin'],
+    summary: 'Get user details',
+    description: 'Returns detailed information about a specific user, including their API keys.',
+    operationId: 'getUser',
+    parameters: [
+      { name: 'id', in: 'path', required: true, schema: { type: 'integer' }, description: 'User ID' },
+    ],
+    responses: {
+      200: { description: 'User details with API keys' },
+      401: { description: 'Not authenticated' },
+      403: { description: 'Not an admin' },
+      404: { description: 'User not found' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   await requireAdmin(event)
   const id = Number(getRouterParam(event, 'id'))

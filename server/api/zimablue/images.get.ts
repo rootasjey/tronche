@@ -1,3 +1,15 @@
+defineRouteMeta({
+  openAPI: {
+    tags: ['Gallery'],
+    summary: 'Get gallery images',
+    description: 'Fetch random gallery images from the ZimaBlue API. Returns 18 curated images with thumbnails for the gallery page.',
+    operationId: 'getGalleryImages',
+    responses: {
+      200: { description: 'Array of gallery images with metadata' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   const images = await fetchRandomImages(event, 18)
 

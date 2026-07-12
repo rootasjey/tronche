@@ -11,6 +11,18 @@
          :class="{ '!bg-primary/15 !text-primary !border-primary': activeSection === s.id }">{{ $t(s.label) }}</a>
     </nav>
 
+    <section id="api-docs" class="mb-12 fade-in" style="animation-delay: 150ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.apiDocs') }}</h2>
+      <p class="text-muted mb-4 leading-relaxed">
+        {{ $t('docs.apiDocs.description') }}
+      </p>
+      <a href="/docs/api"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white font-semibold text-sm transition-all hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.99] no-underline">
+        <span>{{ $t('docs.apiDocs.openButton') }}</span>
+        <span class="text-lg leading-none">→</span>
+      </a>
+    </section>
+
     <section id="start" class="mb-12 fade-in" style="animation-delay: 200ms">
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.installation') }}</h2>
       <div class="code-block">
@@ -188,6 +200,7 @@ const examples = [
 ]
 
 const sectionLinks = [
+  { id: 'api-docs', label: 'docs.sections.apiDocs' },
   { id: 'start', label: 'docs.sections.installation' },
   { id: 'vanilla', label: 'docs.sections.vanilla' },
   { id: 'nuxt', label: 'docs.sections.nuxt' },

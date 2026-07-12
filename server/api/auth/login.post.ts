@@ -3,6 +3,35 @@ import { db } from 'hub:db'
 import * as schema from '../../db/schema'
 import { eq } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Auth'],
+    summary: 'Sign in',
+    description: 'Authenticate with email and password. Sets a session cookie on success.',
+    operationId: 'login',
+    requestBody: {
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            required: ['email', 'password'],
+            properties: {
+              email: { type: 'string', format: 'email' },
+              password: { type: 'string' },
+            },
+          },
+        },
+      },
+    },
+    responses: {
+      200: { description: 'Login successful' },
+      400: { description: 'Email and password required' },
+      401: { description: 'Invalid credentials' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody<{ email: string; password: string }>(event)

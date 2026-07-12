@@ -3,6 +3,38 @@ import { db } from 'hub:db'
 import * as schema from '../../../db/schema'
 import { eq } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['Admin'],
+    summary: 'Update a user',
+    description: 'Update a user\'s role or active status. Cannot demote yourself from admin.',
+    operationId: 'updateUser',
+    parameters: [
+      { name: 'id', in: 'path', required: true, schema: { type: 'integer' }, description: 'User ID' },
+    ],
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              role: { type: 'string', enum: ['user', 'admin'], description: 'New role' },
+              isActive: { type: 'boolean', description: 'Activate or deactivate the user' },
+            },
+          },
+        },
+      },
+    },
+    responses: {
+      200: { description: 'User updated' },
+      400: { description: 'Cannot demote yourself or no valid fields' },
+      401: { description: 'Not authenticated' },
+      403: { description: 'Not an admin' },
+      404: { description: 'User not found' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   const { user: admin } = await requireAdmin(event)
   const id = Number(getRouterParam(event, 'id'))

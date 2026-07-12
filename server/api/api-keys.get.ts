@@ -3,6 +3,19 @@ import { db } from 'hub:db'
 import * as schema from '../db/schema'
 import { eq, inArray, sql, and } from 'drizzle-orm'
 
+defineRouteMeta({
+  openAPI: {
+    tags: ['API Keys'],
+    summary: 'List API keys',
+    description: 'Returns all API keys for the authenticated user, including usage statistics (daily and monthly counts with limits).',
+    operationId: 'listApiKeys',
+    responses: {
+      200: { description: 'List of API keys with usage stats' },
+      401: { description: 'Not authenticated' },
+    },
+  },
+})
+
 export default defineEventHandler(async (event) => {
   const { user } = await requireAuth(event)
 

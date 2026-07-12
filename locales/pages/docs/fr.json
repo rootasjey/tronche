@@ -3,7 +3,12 @@
     "title": "Documentation",
     "subtitle": "Tout pour intégrer Tronche dans vos projets",
     "copy": "Copier",
+    "apiDocs": {
+      "description": "Explorez la référence complète de notre API REST avec une documentation interactive. Testez les endpoints directement depuis votre navigateur.",
+      "openButton": "Ouvrir la référence API"
+    },
     "sections": {
+      "apiDocs": "Référence API",
       "installation": "Installation",
       "vanilla": "Vanilla JS",
       "nuxt": "Module Nuxt",
