@@ -12,6 +12,7 @@ export default defineNuxtPlugin(async () => {
       () => import('shiki/langs/typescript.mjs').then(m => m.default),
       () => import('shiki/langs/html.mjs').then(m => m.default),
       () => import('shiki/langs/shellscript.mjs').then(m => m.default),
+      () => import('shiki/langs/tsx.mjs').then(m => m.default),
     ],
     engine: createJavaScriptRegexEngine(),
   })
@@ -19,6 +20,7 @@ export default defineNuxtPlugin(async () => {
   const langMap: Record<string, string> = {
     js: 'javascript',
     ts: 'typescript',
+    tsx: 'tsx',
     vue: 'html',
     html: 'html',
     sh: 'shellscript',
