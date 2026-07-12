@@ -65,8 +65,21 @@
             <button
               class="copy-btn"
               @click="openStackBlitz(activeTab as any)"
-            >Run in StackBlitz</button>
-            <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button>
+            >
+              <NIcon name="i-tabler-bolt-filled" class="mr-2" />
+              <span>Run in StackBlitz</span>
+            </button>
+            <!-- <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button> -->
+            <NTooltip :content="activeCopied ? 'Copied!' : 'Copy'">
+              <NButton
+                btn="soft-gray"
+                class="copy-btn"
+                :class="{ copied: activeCopied }"
+                icon
+                :label="activeCopied ? 'i-lucide-clipboard-check' : 'i-lucide-clipboard'"
+                @click="copyCode($event)"
+              />
+            </NTooltip>
           </div>
         </div>
         <div v-html="$highlight(activeSnippet, activeLanguage)"></div>
@@ -94,10 +107,10 @@ const copied = ref<string | null>(null)
 const activeTab = ref('nuxt')
 
 const codeTabs = [
+  { id: 'nuxt', label: 'Nuxt' },
+  { id: 'react', label: 'React' },
   { id: 'vanilla', label: 'Vanilla' },
   { id: 'vue', label: 'Vue' },
-  { id: 'react', label: 'React' },
-  { id: 'nuxt', label: 'Nuxt' },
 ]
 
 const activeLanguage = computed(() => {
