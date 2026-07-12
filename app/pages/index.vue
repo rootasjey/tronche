@@ -63,7 +63,6 @@
           </div>
           <div class="flex items-center gap-1.5">
             <button
-              v-if="hasStackBlitz"
               class="copy-btn"
               @click="openStackBlitz(activeTab as any)"
             >Run in StackBlitz</button>
@@ -109,8 +108,6 @@ const activeLanguage = computed(() => {
 const activeSnippet = computed(() => snippets['home-' + activeTab.value])
 
 const activeCopied = computed(() => copied.value === 'home-' + activeTab.value)
-
-const hasStackBlitz = computed(() => activeTab.value !== 'nuxt')
 
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
 

@@ -4,6 +4,13 @@ import { version } from '../../package.json'
 
 const v = `^${version}`
 
+const NUXT_PKG = JSON.stringify({
+  name: 'tronche-nuxt-demo',
+  private: true,
+  scripts: { dev: 'nuxt dev', build: 'nuxt build', preview: 'nuxt preview' },
+  dependencies: { tronche: v, nuxt: '^4' },
+}, null, 2)
+
 const VITE_PKG = {
   vanilla: JSON.stringify({
     name: 'tronche-vanilla-demo',
@@ -90,9 +97,31 @@ const projects: Record<string, { project: Project; openFile: string }> = {
     },
     openFile: 'src/App.jsx',
   },
+  nuxt: {
+    project: {
+      title: 'Tronche — Nuxt Demo',
+      description: 'Tronche avatar library in Nuxt 4',
+      template: 'node',
+      files: {
+        'package.json': NUXT_PKG,
+        'nuxt.config.ts': [
+          'export default defineNuxtConfig({',
+          "  compatibilityDate: '2025-12-31',",
+          "  modules: ['tronche/module'],",
+          '})',
+        ].join('\n'),
+        'app.vue': [
+          '<template>',
+          '  <Avatar name="Clara Barton" variant="beam" />',
+          '</template>',
+        ].join('\n'),
+      },
+    },
+    openFile: 'app.vue',
+  },
 }
 
-export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react') {
+export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react' | 'nuxt') {
   const config = projects[framework]
   if (!config) return
 
