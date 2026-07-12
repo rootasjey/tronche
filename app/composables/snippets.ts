@@ -41,7 +41,7 @@ export const snippets: Record<string, string> = {
   'home-vanilla': [
     "import { generateBeamSvg } from 'tronche'",
     '',
-    "const svg = generateBeamSvg('Clara Barton', undefined, { size: 120 })",
+    "const svg = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], { size: 120 })",
     "document.getElementById('app')!.innerHTML = svg",
   ].join('\n'),
   'home-vue': [

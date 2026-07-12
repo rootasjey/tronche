@@ -40,7 +40,7 @@ const projects: Record<string, { project: Project; openFile: string }> = {
         'main.js': [
           "import { generateBeamSvg } from 'tronche'",
           '',
-          "document.getElementById('app').innerHTML = generateBeamSvg('Clara Barton', undefined, { size: 200 })",
+          "document.getElementById('app').innerHTML = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], { size: 200 })",
         ].join('\n'),
       },
     },
