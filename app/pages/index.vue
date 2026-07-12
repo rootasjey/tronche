@@ -61,7 +61,14 @@
               >{{ tab.label }}</button>
             </div>
           </div>
-          <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button>
+          <div class="flex items-center gap-1.5">
+            <button
+              v-if="hasStackBlitz"
+              class="copy-btn"
+              @click="openStackBlitz(activeTab as any)"
+            >Run in StackBlitz</button>
+            <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button>
+          </div>
         </div>
         <div v-html="$highlight(activeSnippet, activeLanguage)"></div>
       </div>
@@ -80,6 +87,7 @@
 
 <script setup lang="ts">
 import { snippets } from '../composables/snippets'
+import { openStackBlitz } from '../composables/stackblitz'
 
 const { $t } = useI18n()
 
@@ -101,6 +109,8 @@ const activeLanguage = computed(() => {
 const activeSnippet = computed(() => snippets['home-' + activeTab.value])
 
 const activeCopied = computed(() => copied.value === 'home-' + activeTab.value)
+
+const hasStackBlitz = computed(() => activeTab.value !== 'nuxt')
 
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
 
