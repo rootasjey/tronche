@@ -43,6 +43,9 @@
       "import": "./dist/module.js"
     }
   },
+  "overrides": {
+    "@semantic-release/npm": "^13.1.5"
+  },
   "sideEffects": false,
   "files": [
     "dist/*"
