@@ -11,9 +11,7 @@
       "ctaDocs": "Read the docs",
       "ctaRegister": "Create an account"
     },
-    "integration": {
-      "tab": "app.vue"
-    },
+    "integration": {},
     "playground": {
       "title": "Playground",
       "subtitle": "Customize your avatar live",

@@ -49,11 +49,21 @@
             <span class="w-2.5 h-2.5 rounded-full" style="background: #ff5f57"></span>
             <span class="w-2.5 h-2.5 rounded-full" style="background: #febc2e"></span>
             <span class="w-2.5 h-2.5 rounded-full" style="background: #28c840"></span>
-            <span class="ml-3 text-xs font-semibold text-muted">{{ $t('home.integration.tab') }}</span>
+            <div class="flex gap-0 ml-3">
+              <button
+                v-for="tab in codeTabs"
+                :key="tab.id"
+                class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md transition-all cursor-pointer"
+                :class="activeTab === tab.id
+                  ? 'text-[var(--c-text)] bg-surface'
+                  : 'text-muted hover:text-[var(--c-text)]'"
+                @click="activeTab = tab.id"
+              >{{ tab.label }}</button>
+            </div>
           </div>
-          <button class="copy-btn" :class="{ copied: copied === 'home-nuxt' }" @click="copy('home-nuxt', $event)">{{ copied === 'home-nuxt' ? 'Copied!' : 'Copy' }}</button>
+          <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button>
         </div>
-        <div v-html="$highlight(snippets['home-nuxt'], 'vue')"></div>
+        <div v-html="$highlight(activeSnippet, activeLanguage)"></div>
       </div>
 
       <div class="mt-8 animate-in flex justify-center gap-3 flex-wrap" style="animation-delay: 350ms">
@@ -74,6 +84,23 @@ import { snippets } from '../composables/snippets'
 const { $t } = useI18n()
 
 const copied = ref<string | null>(null)
+const activeTab = ref('nuxt')
+
+const codeTabs = [
+  { id: 'vanilla', label: 'Vanilla' },
+  { id: 'vue', label: 'Vue' },
+  { id: 'react', label: 'React' },
+  { id: 'nuxt', label: 'Nuxt' },
+]
+
+const activeLanguage = computed(() => {
+  const map: Record<string, string> = { vanilla: 'js', vue: 'vue', react: 'tsx', nuxt: 'vue' }
+  return map[activeTab.value]
+})
+
+const activeSnippet = computed(() => snippets['home-' + activeTab.value])
+
+const activeCopied = computed(() => copied.value === 'home-' + activeTab.value)
 
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
 
@@ -106,6 +133,10 @@ function copy(id: string, e: Event) {
   copied.value = id
   sparkle(e.target as HTMLElement)
   setTimeout(() => { copied.value = null }, 2000)
+}
+
+function copyCode(e: Event) {
+  copy('home-' + activeTab.value, e)
 }
 </script>
 

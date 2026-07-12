@@ -35,7 +35,29 @@ export const snippets: Record<string, string> = {
   'curl-colors': 'curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"',
   'home-nuxt': [
     '<template>',
-    '  <Avatar name="Maria Mitchell" variant="beam" />',
+    '  <Avatar name="Clara Barton" variant="beam" />',
     '</template>',
+  ].join('\n'),
+  'home-vanilla': [
+    "import { generateBeamSvg } from 'tronche'",
+    '',
+    "const svg = generateBeamSvg('Clara Barton', undefined, { size: 120 })",
+    "document.getElementById('app')!.innerHTML = svg",
+  ].join('\n'),
+  'home-vue': [
+    '<script setup>',
+    "import { Avatar } from 'tronche/vue'",
+    '</script>',
+    '',
+    '<template>',
+    '  <Avatar name="Clara Barton" variant="beam" />',
+    '</template>',
+  ].join('\n'),
+  'home-react': [
+    "import { Avatar } from 'tronche/react'",
+    '',
+    'function App() {',
+    '  return <Avatar name="Clara Barton" variant="beam" />',
+    '}',
   ].join('\n'),
 }
