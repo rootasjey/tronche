@@ -16,7 +16,7 @@
 
       <div class="flex gap-3 overflow-x-auto md:overflow-x-visible pb-2 mb-8">
         <div v-for="name in sampleNames" :key="name" class="flex flex-col items-center gap-1.5 shrink-0 cursor-pointer transition-transform duration-200 hover:scale-[1.1] active:scale-[0.99]" @click="goToPlayground(name, v.name, v.colors.join(','))">
-          <img :src="avatarUrl(name, v.name, 64, false, v.colors)" :alt="name" width="64" height="64" class="rounded-full bg-surface" />
+          <img :src="avatarUrl(name, v.name, 64, false, v.colors)" :alt="name" width="64" height="64" loading="lazy" class="rounded-full bg-surface" />
           <span class="text-xs text-muted">{{ name.split(' ')[0] }}</span>
         </div>
       </div>
@@ -25,7 +25,7 @@
         <!-- Social Feed -->
         <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0s;">
           <div class="flex items-center gap-3 mb-3">
-            <img :src="avatarUrl('Mahalia Jackson', v.name, 40, false, v.colors)" :alt="`Mahalia Jackson ${v.name} avatar`" width="40" height="40" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground('Mahalia Jackson', v.name, v.colors.join(','))" />
+            <img :src="avatarUrl('Mahalia Jackson', v.name, 40, false, v.colors)" :alt="`Mahalia Jackson ${v.name} avatar`" width="40" height="40" loading="lazy" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground('Mahalia Jackson', v.name, v.colors.join(','))" />
             <div class="min-w-0">
               <p class="text-sm font-semibold m-0 truncate"><strong>Mahalia Jackson</strong> uploaded a new photo</p>
               <p class="text-xs text-muted m-0">2 hours ago</p>
@@ -35,7 +35,7 @@
           <div v-else class="w-full h-32 rounded-xl bg-gradient-to-br from-primary/20 to-[#FF8A5C]/20 mb-3" />
           <div class="flex items-center gap-2 mb-3">
             <div class="flex -space-x-2">
-              <img v-for="n in feedLikers" :key="n" :src="avatarUrl(n, v.name, 28, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="28" height="28" class="rounded-full border-2 border-surface cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
+              <img v-for="n in feedLikers" :key="n" :src="avatarUrl(n, v.name, 28, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="28" height="28" loading="lazy" class="rounded-full border-2 border-surface cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
             </div>
             <span class="text-xs text-muted">5 friends liked this</span>
           </div>
@@ -48,7 +48,7 @@
         <!-- Comments -->
         <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.05s;">
           <div class="flex items-start gap-3 mb-4">
-            <img :src="avatarUrl('Margaret Bourke', v.name, 36, false, v.colors)" :alt="`Margaret Bourke ${v.name} avatar`" width="36" height="36" class="rounded-full shrink-0 mt-0.5 cursor-pointer" @click="goToPlayground('Margaret Bourke', v.name, v.colors.join(','))" />
+            <img :src="avatarUrl('Margaret Bourke', v.name, 36, false, v.colors)" :alt="`Margaret Bourke ${v.name} avatar`" width="36" height="36" loading="lazy" class="rounded-full shrink-0 mt-0.5 cursor-pointer" @click="goToPlayground('Margaret Bourke', v.name, v.colors.join(','))" />
             <div class="rounded-xl p-3 bg-[var(--c-bg)] flex-1">
               <p class="text-sm font-semibold m-0 mb-1">Margaret Bourke</p>
               <p class="text-sm text-muted m-0">I need a hobby so I think I'm gonna start calling the phone numbers on missing cat posters and just "meow" at whoever answers</p>
@@ -61,7 +61,7 @@
           </div>
           <div class="flex flex-col gap-2.5 pl-12">
             <div v-for="n in commenters" :key="n" class="flex items-center gap-2.5">
-              <img :src="avatarUrl(n, v.name, 28, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="28" height="28" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
+              <img :src="avatarUrl(n, v.name, 28, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="28" height="28" loading="lazy" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
               <span class="text-xs text-muted truncate">{{ n }}</span>
             </div>
           </div>
@@ -70,7 +70,7 @@
         <!-- Profile Card -->
         <div class="rounded-2xl p-5 bg-surface border border-border card-reveal" style="--card-delay: 0.1s;">
           <div class="flex items-center gap-4 mb-4">
-            <img :src="avatarUrl('Alicia Dickerson', v.name, 56, false, v.colors)" :alt="`Alicia Dickerson ${v.name} avatar`" width="56" height="56" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground('Alicia Dickerson', v.name, v.colors.join(','))" />
+            <img :src="avatarUrl('Alicia Dickerson', v.name, 56, false, v.colors)" :alt="`Alicia Dickerson ${v.name} avatar`" width="56" height="56" loading="lazy" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground('Alicia Dickerson', v.name, v.colors.join(','))" />
             <div class="grid grid-cols-3 gap-2 text-center flex-1">
               <div>
                 <p class="text-lg font-bold m-0">143</p>
@@ -96,7 +96,7 @@
           <img v-if="sectionImages[i].coverPhoto" :src="sectionImages[i].coverPhoto.thumbnailUrl" :alt="sectionImages[i].coverPhoto.name" class="w-full h-24 object-cover cursor-pointer" loading="lazy" @click="goToZimaBlue(sectionImages[i].coverPhoto.slug)" />
           <div v-else class="h-24 bg-gradient-to-r from-primary/30 to-[#FF8A5C]/30" />
           <div class="px-5 pb-5 -mt-10 text-center">
-            <img :src="avatarUrl('Mary Edwards', v.name, 80, false, v.colors)" :alt="`Mary Edwards ${v.name} avatar`" width="80" height="80" class="rounded-full border-4 border-surface mx-auto mb-3 cursor-pointer" @click="goToPlayground('Mary Edwards', v.name, v.colors.join(','))" />
+            <img :src="avatarUrl('Mary Edwards', v.name, 80, false, v.colors)" :alt="`Mary Edwards ${v.name} avatar`" width="80" height="80" loading="lazy" class="rounded-full border-4 border-surface mx-auto mb-3 cursor-pointer" @click="goToPlayground('Mary Edwards', v.name, v.colors.join(','))" />
             <p class="text-sm font-semibold m-0 mb-0.5">Mary Edwards</p>
             <p class="text-xs text-muted m-0 mb-3">1.2M followers &middot; 451 following</p>
             <button class="px-6 py-1.5 rounded-full border border-border bg-surface text-sm text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]">Follow</button>
@@ -108,7 +108,7 @@
           <p class="text-sm font-bold m-0 mb-4">Chat</p>
           <div class="flex flex-col gap-0">
             <div v-for="(user, i) in chatUsers" :key="user.name" class="flex items-center gap-3 py-2.5" :class="i < chatUsers.length - 1 ? 'border-b border-border' : ''">
-              <img :src="avatarUrl(user.name, v.name, 40, false, v.colors)" :alt="`${user.name} ${v.name} avatar`" width="40" height="40" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground(user.name, v.name, v.colors.join(','))" />
+              <img :src="avatarUrl(user.name, v.name, 40, false, v.colors)" :alt="`${user.name} ${v.name} avatar`" width="40" height="40" loading="lazy" class="rounded-full shrink-0 cursor-pointer" @click="goToPlayground(user.name, v.name, v.colors.join(','))" />
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2">
                   <span class="text-sm font-semibold truncate">{{ user.name }}</span>
@@ -126,7 +126,7 @@
           <p class="text-sm font-bold m-0 mb-4">Mutual followers</p>
           <div class="grid grid-cols-2 gap-3">
             <div v-for="n in mutualFollowers" :key="n" class="flex flex-col items-center gap-2 p-3 rounded-xl border border-border">
-              <img :src="avatarUrl(n, v.name, 48, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="48" height="48" class="rounded-full cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
+              <img :src="avatarUrl(n, v.name, 48, false, v.colors)" :alt="`${n} ${v.name} avatar`" width="48" height="48" loading="lazy" class="rounded-full cursor-pointer" @click="goToPlayground(n, v.name, v.colors.join(','))" />
               <span class="text-sm font-semibold">{{ n }}</span>
               <button class="px-4 py-1 rounded-full border border-border bg-surface text-xs text-muted cursor-pointer transition-colors hover:text-[var(--c-text)] hover:border-[var(--c-text)]">Follow</button>
             </div>
@@ -172,19 +172,19 @@ useHead({
     { name: 'description', content: 'Explore Tronche avatar styles in real-world UI mockups. See beam, pixel, sunset, ring, bauhaus, and marble variants in social feeds, profiles, and chat.' },
     { property: 'og:title', content: 'Gallery | Tronche' },
     { property: 'og:description', content: 'Explore Tronche avatar styles in real-world UI mockups. See beam, pixel, sunset, ring, bauhaus, and marble variants in social feeds, profiles, and chat.' },
-    { property: 'og:image', content: '/images/tronche.jpeg' },
+    { property: 'og:image', content: '/images/tronche-og.jpeg' },
     { property: 'og:url', content: `https://tronche.app${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Gallery | Tronche' },
     { name: 'twitter:description', content: 'Explore Tronche avatar styles in real-world UI mockups. See beam, pixel, sunset, ring, bauhaus, and marble variants in social feeds, profiles, and chat.' },
-    { name: 'twitter:image', content: '/images/tronche.jpeg' },
+    { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
     { rel: 'canonical', href: `https://tronche.app${route.path}` },
   ],
 })
-const { data: zimaData } = await useFetch('/api/zimablue/images')
+const { data: zimaData } = useFetch('/api/zimablue/images')
 const zimaImages = computed(() => zimaData.value?.data ?? [])
 
 const variantSections = [
