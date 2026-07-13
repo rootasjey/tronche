@@ -20,6 +20,7 @@
     "subtitle": "Test the avatar API live. Tweak parameters and copy the URL or cURL command",
     "form": {
       "name": "Name",
+      "nameHint": "The name determines the avatar's unique shape",
       "variant": "Variant",
       "size": "Size",
       "square": "Square shape",

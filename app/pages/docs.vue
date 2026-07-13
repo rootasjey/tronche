@@ -5,10 +5,12 @@
       <p class="text-muted mt-1">{{ $t('docs.subtitle') }}</p>
     </div>
 
-    <nav class="flex gap-2 flex-wrap mb-10 pb-6 border-b border-border fade-in" style="animation-delay: 100ms">
+    <nav class="flex gap-1 mb-10 border-b border-border fade-in" style="animation-delay: 100ms">
       <a v-for="s in sectionLinks" :key="s.id" :href="`#${s.id}`"
-         class="text-sm px-3.5 py-1.5 rounded-full bg-surface border border-border text-muted transition-all no-underline hover:text-[var(--c-text)] hover:border-[var(--c-text)]"
-         :class="{ '!bg-primary/15 !text-primary !border-primary': activeSection === s.id }">{{ $t(s.label) }}</a>
+         class="text-sm px-3 py-2.5 border-b-2 transition-all no-underline -mb-[1px]"
+         :class="activeSection === s.id
+           ? 'border-primary text-[var(--c-text)] font-medium'
+           : 'border-transparent text-muted hover:text-[var(--c-text)] hover:border-[var(--c-border)]'">#{{ $t(s.label) }}</a>
     </nav>
 
     <section id="api-docs" class="mb-12 fade-in" style="animation-delay: 150ms">
@@ -27,75 +29,150 @@
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.installation') }}</h2>
       <div class="code-block">
         <div class="code-block-header">
-          <span class="code-block-label">Shell</span>
-          <button class="copy-btn" :class="{ copied: copied === 'npm-install' }" @click="copy('npm-install', $event)">{{ copied === 'npm-install' ? 'Copied!' : $t('docs.copy') }}</button>
+          <div class="flex gap-0">
+            <button v-for="pm in packageManagers" :key="pm.id" @click="pmTab = pm.id"
+              class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-1 transition-all cursor-pointer"
+              :class="[
+                pmTab === pm.id
+                  ? 'bg-primary/15 text-primary'
+                  : 'text-muted hover:text-[var(--c-text)]',
+              ]">{{ pm.label }}</button>
+          </div>
+          <button class="copy-btn" :class="{ copied: copied === pmTab + '-install' }" @click="copy(pmTab + '-install', $event)">{{ copied === pmTab + '-install' ? 'Copied!' : $t('docs.copy') }}</button>
         </div>
-        <div v-html="$highlight(snippets['npm-install'], 'sh')"></div>
+        <div v-html="$highlight(snippets[pmTab + '-install'], 'sh')"></div>
       </div>
     </section>
 
-    <section id="vanilla" class="mb-12 fade-in" style="animation-delay: 250ms">
-      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.vanilla') }}</h2>
-      <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.vanilla.description') }}</p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-label">TypeScript</span>
-          <button class="copy-btn" :class="{ copied: copied === 'vanilla-import' }" @click="copy('vanilla-import', $event)">{{ copied === 'vanilla-import' ? 'Copied!' : $t('docs.copy') }}</button>
-        </div>
-        <div v-html="$highlight(snippets['vanilla-import'], 'ts')"></div>
-      </div>
-    </section>
-
-    <section id="nuxt" class="mb-12 fade-in" style="animation-delay: 300ms">
-      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.nuxt') }}</h2>
-      <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-label">JavaScript</span>
-          <button class="copy-btn" :class="{ copied: copied === 'nuxt-config' }" @click="copy('nuxt-config', $event)">{{ copied === 'nuxt-config' ? 'Copied!' : $t('docs.copy') }}</button>
-        </div>
-        <div v-html="$highlight(snippets['nuxt-config'], 'js')"></div>
+    <section class="mb-12 fade-in" style="animation-delay: 250ms">
+      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.usage') }}</h2>
+      <div class="inline-flex bg-surface border border-border rounded-xl p-1 mb-6" role="tablist">
+        <button v-for="fw in frameworkItems" :key="fw.value" @click="frameworkTab = fw.value" role="tab" :aria-selected="frameworkTab === fw.value"
+          class="text-sm font-medium px-3.5 py-1.5 rounded-lg transition-all cursor-pointer"
+          :class="frameworkTab === fw.value
+            ? 'bg-[var(--c-bg)] text-primary shadow-sm'
+            : 'text-muted hover:text-[var(--c-text)]'">
+          {{ fw.name }}
+        </button>
       </div>
 
-      <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.autoImport') }}</p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-label">Vue</span>
-          <button class="copy-btn" :class="{ copied: copied === 'nuxt-template' }" @click="copy('nuxt-template', $event)">{{ copied === 'nuxt-template' ? 'Copied!' : $t('docs.copy') }}</button>
+      <div v-if="frameworkTab === 'vanilla'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">
+          {{ $t('docs.vanilla.prefix') }}
+          <NTooltip :content="$t('docs.vanilla.functions.generateData')">
+            <code class="fn-name">generate*Data</code>
+          </NTooltip>,
+          <NTooltip :content="$t('docs.vanilla.functions.renderSvg')">
+            <code class="fn-name">render*Svg</code>
+          </NTooltip>
+          {{ $t('docs.vanilla.and') }}
+          <NTooltip :content="$t('docs.vanilla.functions.generateSvg')">
+            <code class="fn-name">generate*Svg</code>
+          </NTooltip>
+          {{ $t('docs.vanilla.suffix') }}
+        </p>
+        <div class="code-block">
+          <div class="code-block-header">
+        <div class="flex gap-1.5">
+          <button @click="vanillaTab = 'ts'"
+            class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-lg border border-border transition-all cursor-pointer"
+            :class="vanillaTab === 'ts'
+              ? 'bg-primary/15 text-primary border-primary/30'
+              : 'text-muted hover:text-[var(--c-text)] hover:border-[var(--c-text)] bg-surface'">TypeScript</button>
+          <button @click="vanillaTab = 'html'"
+            class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-lg border border-border transition-all cursor-pointer"
+            :class="vanillaTab === 'html'
+              ? 'bg-primary/15 text-primary border-primary/30'
+              : 'text-muted hover:text-[var(--c-text)] hover:border-[var(--c-text)] bg-surface'">HTML</button>
         </div>
-        <div v-html="$highlight(snippets['nuxt-template'], 'vue')"></div>
-      </div>
-    </section>
-
-    <section id="vue" class="mb-12 fade-in" style="animation-delay: 400ms">
-      <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.vue') }}</h2>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-label">Vue</span>
-          <button class="copy-btn" :class="{ copied: copied === 'vue-import' }" @click="copy('vue-import', $event)">{{ copied === 'vue-import' ? 'Copied!' : $t('docs.copy') }}</button>
+            <button class="copy-btn" :class="{ copied: copied === (vanillaTab === 'ts' ? 'vanilla-import' : 'vanilla-html') }" @click="copy(vanillaTab === 'ts' ? 'vanilla-import' : 'vanilla-html', $event)">{{ copied === (vanillaTab === 'ts' ? 'vanilla-import' : 'vanilla-html') ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-if="vanillaTab === 'ts'" v-html="$highlight(snippets['vanilla-import'], 'ts')"></div>
+          <div v-else v-html="$highlight(snippets['vanilla-html'], 'html')"></div>
         </div>
-        <div v-html="$highlight(snippets['vue-import'], 'vue')"></div>
       </div>
 
-      <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
-      <table class="w-full border-collapse mb-4">
-        <thead>
-          <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
-            <th class="p-3 border-b border-border">{{ $t('docs.table.prop') }}</th>
-            <th class="p-3 border-b border-border">{{ $t('docs.table.type') }}</th>
-            <th class="p-3 border-b border-border">{{ $t('docs.table.default') }}</th>
-            <th class="p-3 border-b border-border">{{ $t('docs.table.description') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="p in props" :key="p[0]" class="text-sm">
-            <td class="p-3 border-b border-border font-mono">{{ p[0] }}</td>
-            <td class="p-3 border-b border-border text-muted">{{ p[1] }}</td>
-            <td class="p-3 border-b border-border text-muted">{{ p[2] }}</td>
-            <td class="p-3 border-b border-border text-muted">{{ p[3] }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-else-if="frameworkTab === 'vue'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.vue.description') }}</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">Vue</span>
+            <button class="copy-btn" :class="{ copied: copied === 'vue-import' }" @click="copy('vue-import', $event)">{{ copied === 'vue-import' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['vue-import'], 'vue')"></div>
+        </div>
+
+        <h3 class="text-lg font-semibold font-heading mt-6 mb-3">{{ $t('docs.table.prop') }}</h3>
+        <table class="w-full border-collapse mb-4">
+          <thead>
+            <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
+              <th class="p-3 border-b border-border">{{ $t('docs.table.prop') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.type') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.default') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.description') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in vueProps" :key="p[0]" class="text-sm">
+              <td class="p-3 border-b border-border font-mono">{{ p[0] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[1] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[2] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div v-else-if="frameworkTab === 'react'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.react.description') }}</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">TSX</span>
+            <button class="copy-btn" :class="{ copied: copied === 'react-import' }" @click="copy('react-import', $event)">{{ copied === 'react-import' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['react-import'], 'tsx')"></div>
+        </div>
+
+        <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
+        <table class="w-full border-collapse mb-4">
+          <thead>
+            <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
+              <th class="p-3 border-b border-border">{{ $t('docs.table.prop') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.type') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.default') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.description') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in reactProps" :key="p[0]" class="text-sm">
+              <td class="p-3 border-b border-border font-mono">{{ p[0] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[1] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[2] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div v-else-if="frameworkTab === 'nuxt'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">JavaScript</span>
+            <button class="copy-btn" :class="{ copied: copied === 'nuxt-config' }" @click="copy('nuxt-config', $event)">{{ copied === 'nuxt-config' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['nuxt-config'], 'js')"></div>
+        </div>
+
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.autoImport') }}</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">Vue</span>
+            <button class="copy-btn" :class="{ copied: copied === 'nuxt-template' }" @click="copy('nuxt-template', $event)">{{ copied === 'nuxt-template' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['nuxt-template'], 'vue')"></div>
+        </div>
+      </div>
     </section>
 
     <section id="api" class="mb-12 fade-in" style="animation-delay: 500ms">
@@ -127,12 +204,24 @@
       </table>
 
       <h3 class="text-lg font-semibold font-heading mb-3">{{ $t('docs.api.examples') }}</h3>
-      <div v-for="(ex, i) in examples" :key="i" class="code-block">
+      <div class="code-block">
         <div class="code-block-header">
-          <span class="code-block-label">Shell</span>
-          <button class="copy-btn" :class="{ copied: copied === ex.id }" @click="copy(ex.id, $event)">{{ copied === ex.id ? 'Copied!' : $t('docs.copy') }}</button>
+          <div class="flex gap-0">
+            <button @click="curlTab = 'basic'"
+              class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-1 transition-all cursor-pointer"
+              :class="curlTab === 'basic'
+                ? 'bg-primary/15 text-primary'
+                : 'text-muted hover:text-[var(--c-text)]'">Basic</button>
+            <button @click="curlTab = 'colors'"
+              class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-1 transition-all cursor-pointer"
+              :class="curlTab === 'colors'
+                ? 'bg-primary/15 text-primary'
+                : 'text-muted hover:text-[var(--c-text)]'">Custom colors</button>
+          </div>
+          <button class="copy-btn" :class="{ copied: copied === (curlTab === 'basic' ? 'curl-example' : 'curl-colors') }" @click="copy(curlTab === 'basic' ? 'curl-example' : 'curl-colors', $event)">{{ copied === (curlTab === 'basic' ? 'curl-example' : 'curl-colors') ? 'Copied!' : $t('docs.copy') }}</button>
         </div>
-        <div v-html="$highlight(ex.code, 'sh')"></div>
+        <div v-if="curlTab === 'basic'" v-html="$highlight(examples[0].code, 'sh')"></div>
+        <div v-else v-html="$highlight(examples[1].code, 'sh')"></div>
       </div>
 
       <h3 class="text-lg font-semibold font-heading mt-6 mb-2">{{ $t('docs.api.rateLimiting') }}</h3>
@@ -146,7 +235,14 @@
       <h2 class="text-2xl font-bold font-heading mb-4">{{ $t('docs.sections.variants') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div v-for="(v, i) in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v.name, v.name, variantColors[i])">
-          <img :src="`/api/avatar/${v.name}?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`" :alt="v.name" width="40" height="40" class="rounded-full shrink-0" loading="lazy" />
+          <img
+            :src="`/api/avatar/${v.name}?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`"
+            :alt="v.name"
+            width="40"
+            height="40"
+            class="rounded-full shrink-0 hover:shadow-lg hover:scale-105 active:scale-99 active:shadow-none transition-[transform]"
+            loading="lazy"
+          >
           <div>
             <h3 class="text-base font-semibold font-heading mb-1">{{ v.name }}</h3>
             <p class="text-sm text-muted m-0">{{ v.desc }}</p>
@@ -161,13 +257,46 @@
 import { snippets } from '../composables/snippets'
 
 const { $t } = useI18n()
+const route = useRoute()
+const router = useRouter()
 
 const activeSection = ref('start')
 const copied = ref<string | null>(null)
 
+const curlTab = ref('basic')
+
+const validFrameworks = ['vanilla', 'vue', 'react', 'nuxt']
+const initialFramework = typeof route.query.framework === 'string' && validFrameworks.includes(route.query.framework)
+  ? route.query.framework
+  : 'vanilla'
+
+const vanillaTab = ref('ts')
+
+const pmTab = ref('npm')
+
+const packageManagers = [
+  { id: 'npm', label: 'npm' },
+  { id: 'bun', label: 'bun' },
+  { id: 'pnpm', label: 'pnpm' },
+  { id: 'yarn', label: 'yarn' },
+]
+
+const frameworkTab = ref(initialFramework)
+
+watch(frameworkTab, (val) => {
+  router.replace({ query: { ...route.query, framework: val } })
+})
+
 const docsColors = '#4300FF,#0065F8,#00CAFF,#00FFDE,#00FF9C'
 
 const variantColors = Array(6).fill(docsColors)
+
+const frameworkItems = computed(() => [
+  { value: 'vanilla', name: $t('docs.sections.vanilla') },
+  { value: 'vue', name: $t('docs.sections.vue') },
+  { value: 'react', name: $t('docs.sections.react') },
+  { value: 'nuxt', name: $t('docs.sections.nuxt') },
+])
 
 const variants = computed(() => [
   { name: 'beam', desc: $t('docs.variants.beam') },
@@ -178,13 +307,22 @@ const variants = computed(() => [
   { name: 'marble', desc: $t('docs.variants.marble') },
 ])
 
-const props = computed(() => [
+const vueProps = computed(() => [
   ['name', 'string', 'Clara Barton', $t('docs.vue.props.name')],
   ['variant', 'string', 'marble', $t('docs.vue.props.variant')],
   ['size', 'number', '80', $t('docs.vue.props.size')],
   ['square', 'boolean', 'false', $t('docs.vue.props.square')],
   ['colors', 'string[]', 'palette', $t('docs.vue.props.colors')],
   ['title', 'boolean', 'false', $t('docs.vue.props.title')],
+])
+
+const reactProps = computed(() => [
+  ['name', 'string', 'Clara Barton', $t('docs.react.props.name')],
+  ['variant', 'string', 'marble', $t('docs.react.props.variant')],
+  ['size', 'number', '80', $t('docs.react.props.size')],
+  ['square', 'boolean', 'false', $t('docs.react.props.square')],
+  ['colors', 'string[]', 'palette', $t('docs.react.props.colors')],
+  ['title', 'boolean', 'false', $t('docs.react.props.title')],
 ])
 
 const apiParams = computed(() => [
@@ -202,9 +340,6 @@ const examples = [
 const sectionLinks = [
   { id: 'api-docs', label: 'docs.sections.apiDocs' },
   { id: 'start', label: 'docs.sections.installation' },
-  { id: 'vanilla', label: 'docs.sections.vanilla' },
-  { id: 'nuxt', label: 'docs.sections.nuxt' },
-  { id: 'vue', label: 'docs.sections.vue' },
   { id: 'api', label: 'docs.sections.api' },
   { id: 'variants', label: 'docs.sections.variants' },
 ]
@@ -238,7 +373,10 @@ onMounted(() => {
   }
 })
 
-useHead({ title: 'Docs | Tronche' })
+useHead({
+  title: 'Docs | Tronche',
+  htmlAttrs: { style: 'scroll-behavior: smooth' },
+})
 </script>
 
 <style scoped>
@@ -255,5 +393,12 @@ useHead({ title: 'Docs | Tronche' })
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+:deep(.fn-name) {
+  color: var(--una-primary-hex);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
 }
 </style>

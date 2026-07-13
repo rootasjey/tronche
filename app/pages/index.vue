@@ -69,7 +69,6 @@
               <NIcon name="i-tabler-bolt-filled" class="mr-2" />
               <span>Run in StackBlitz</span>
             </button>
-            <!-- <button class="copy-btn" :class="{ copied: activeCopied }" @click="copyCode($event)">{{ activeCopied ? 'Copied!' : 'Copy' }}</button> -->
             <NTooltip :content="activeCopied ? 'Copied!' : 'Copy'">
               <NButton
                 btn="soft-gray"

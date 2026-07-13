@@ -10,23 +10,44 @@
     "sections": {
       "apiDocs": "Référence API",
       "installation": "Installation",
+      "usage": "Utilisation",
       "vanilla": "Vanilla JS",
-      "nuxt": "Module Nuxt",
       "vue": "Vue.js",
+      "react": "React",
+      "nuxt": "Module Nuxt",
       "api": "API REST",
       "variants": "Variants"
     },
     "vanilla": {
-      "description": "Utilisez les générateurs directement — aucun framework requis."
+      "prefix": "Utilisez les générateurs directement — aucun framework requis. Chaque variante propose trois fonctions : ",
+      "suffix": " pour un contrôle total.",
+      "and": "et",
+      "functions": {
+        "generateData": "Retourne les données brutes de génération pour un rendu personnalisé",
+        "renderSvg": "Génère le SVG à partir des données avec vos options",
+        "generateSvg": "Combine génération et rendu en un seul appel"
+      }
     },
     "installation": {
       "text": "Ajoutez le module dans votre"
+    },
+    "react": {
+      "description": "Utilisez les composants React Tronche dans tout projet React 18+.",
+      "props": {
+        "name": "Nom pour générer l'avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Taille en pixels",
+        "square": "Avatar carré",
+        "colors": "5 couleurs hexadécimales",
+        "title": "Balise title"
+      }
     },
     "nuxt": {
       "addModule": "Ajoutez le module dans votre",
       "autoImport": "Les composants sont auto-importés :"
     },
     "vue": {
+      "description": "Importez et utilisez les composants Tronche dans votre projet Vue 3.",
       "props": {
         "name": "Nom pour générer l'avatar",
         "variant": "marble, beam, pixel, sunset, ring, bauhaus",

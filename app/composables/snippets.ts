@@ -1,12 +1,26 @@
 export const snippets: Record<string, string> = {
   'npm-install': 'npm install tronche',
+  'bun-install': 'bun add tronche',
+  'pnpm-install': 'pnpm add tronche',
+  'yarn-install': 'yarn add tronche',
   'vanilla-import': [
     "import { generateBeamSvg } from 'tronche'",
     '',
     "const svg = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], {",
     '  size: 120,',
     '})',
-    "// svg: '<svg viewBox=\"0 0 36 36\"...'",
+    "document.getElementById('app')!.innerHTML = svg",
+  ].join('\n'),
+  'vanilla-html': [
+    '<div id="app"></div>',
+    '',
+    '<script type="module">',
+    '  // Using CDN for quick prototyping — use "import { generateBeamSvg } from \'tronche\'" if you installed the package',
+    "  import { generateBeamSvg } from 'https://esm.sh/tronche'",
+    '',
+    "  const svg = generateBeamSvg('Clara Barton', ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F'], { size: 200 })",
+    "  document.getElementById('app').innerHTML = svg",
+    '</script>',
   ].join('\n'),
   'nuxt-config': [
     'export default defineNuxtConfig({',
@@ -20,7 +34,7 @@ export const snippets: Record<string, string> = {
   ].join('\n'),
   'vue-import': [
     '<script setup>',
-    "import Avatar from 'tronche/vue/components/Avatar.vue'",
+    "import { Avatar } from 'tronche/vue'",
     '</script>',
     '',
     '<template>',
@@ -52,6 +66,13 @@ export const snippets: Record<string, string> = {
     '<template>',
     '  <Avatar name="Clara Barton" variant="beam" />',
     '</template>',
+  ].join('\n'),
+  'react-import': [
+    "import { Avatar } from 'tronche/react'",
+    '',
+    'function App() {',
+    '  return <Avatar name="Grace Hopper" variant="marble" size={120} />',
+    '}',
   ].join('\n'),
   'home-react': [
     "import { Avatar } from 'tronche/react'",

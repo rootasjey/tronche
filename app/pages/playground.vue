@@ -45,6 +45,7 @@
             class="w-full px-5 py-3 rounded-xl bg-surface border border-border text-center lg:text-left text-lg outline-none transition-colors focus:border-primary"
             :placeholder="$t('playground.form.name')"
           />
+          <p class="text-xs text-muted text-center lg:text-left mt-2">{{ $t('playground.form.nameHint') }}</p>
           <div class="flex items-center justify-center lg:justify-start gap-3 mt-3">
             <NSwitch v-model="square" size="sm" />
             <span class="text-sm font-semibold">{{ $t('playground.form.square') }}</span>
@@ -64,12 +65,12 @@
               @click="variant = v.name"
             >
               <img
-                :src="`/api/avatar/Demo?variant=${v.name}&size=48`"
+                :src="`/api/avatar/Demo?variant=${v.name}&size=48${colorsParam}`"
                 alt=""
                 width="48"
                 height="48"
-                class="rounded-full"
-              />
+                class="rounded-full hover:shadow-lg hover:scale-105 active:scale-99 active:shadow-none transition-[transform]"
+              >
               <span class="text-xs font-medium" :class="variant === v.name ? 'text-primary' : 'text-muted'">{{ v.name }}</span>
             </button>
           </div>
@@ -222,6 +223,8 @@ const variants = [
   { name: 'bauhaus' },
   { name: 'marble' },
 ]
+
+const colorsParam = computed(() => colors.value.length ? `&colors=${encodeURIComponent(colors.value.join(','))}` : '')
 
 const codeTabs = [
   { id: 'url', label: 'URL' },

@@ -10,23 +10,44 @@
     "sections": {
       "apiDocs": "API Reference",
       "installation": "Installation",
+      "usage": "Usage",
       "vanilla": "Vanilla JS",
-      "nuxt": "Nuxt Module",
       "vue": "Vue.js",
+      "react": "React",
+      "nuxt": "Nuxt Module",
       "api": "REST API",
       "variants": "Variants"
     },
     "vanilla": {
-      "description": "Use the core generators directly — no framework required."
+      "prefix": "Use the core generators directly — no framework required. Each variant provides three functions: ",
+      "suffix": " for full control.",
+      "and": "and",
+      "functions": {
+        "generateData": "Returns raw generation data for custom rendering",
+        "renderSvg": "Renders SVG from data with options",
+        "generateSvg": "Combines generation and rendering in one call"
+      }
     },
     "installation": {
       "text": "Add the module in your"
+    },
+    "react": {
+      "description": "Use the Tronche React components in any React 18+ project.",
+      "props": {
+        "name": "Name to generate the avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Size in pixels",
+        "square": "Square avatar",
+        "colors": "5 hexadecimal colors",
+        "title": "Title tag"
+      }
     },
     "nuxt": {
       "addModule": "Add the module in your",
       "autoImport": "Components are auto-imported:"
     },
     "vue": {
+      "description": "Import and use Tronche components in your Vue 3 project.",
       "props": {
         "name": "Name to generate the avatar",
         "variant": "marble, beam, pixel, sunset, ring, bauhaus",

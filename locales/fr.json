@@ -20,6 +20,7 @@
     "subtitle": "Testez l'API avatar en direct. Ajustez les paramètres et copiez l'URL ou la commande cURL",
     "form": {
       "name": "Nom",
+      "nameHint": "Le nom détermine la forme unique de l'avatar",
       "variant": "Variante",
       "size": "Taille",
       "square": "Forme carrée",
