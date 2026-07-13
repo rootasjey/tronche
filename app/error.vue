@@ -14,6 +14,9 @@
         <div class="text-8xl font-heading font-bold text-primary/20 leading-none mb-4">
           {{ error.statusCode }}
         </div>
+        <p class="text-sm text-muted font-mono mb-6">
+          {{ error.statusMessage || 'Unexpected error' }}
+        </p>
         <h1 class="text-3xl font-heading font-bold mb-3">
           {{ statusTitle }}
         </h1>
