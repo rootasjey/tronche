@@ -83,7 +83,7 @@
               v-for="(palette, i) in palettes"
               :key="i"
               class="flex gap-1 p-2 rounded-xl border transition-all cursor-pointer"
-              :class="colors === palette ? 'border-primary ring-2 ring-primary/30' : 'border-border hover:border-[var(--c-text)]'"
+              :class="isActivePalette(palette) ? 'border-primary ring-2 ring-primary/30' : 'border-border hover:border-[var(--c-text)]'"
               @click="colors = palette; customColors = ''"
             >
               <span
@@ -106,7 +106,8 @@
             v-model="customColors"
             type="text"
             :placeholder="$t('playground.form.colorsPlaceholder')"
-            class="w-full px-4 py-2.5 mt-3 rounded-xl bg-surface border border-border text-sm text-center lg:text-left outline-none font-mono transition-colors focus:border-primary text-muted"
+            class="w-full px-4 py-2.5 mt-3 rounded-xl bg-surface border text-sm text-center lg:text-left outline-none font-mono transition-colors focus:border-primary text-muted"
+            :class="customColors ? 'border-primary' : 'border-border'"
           />
         </div>
 
@@ -200,6 +201,10 @@ function hslToHex(h: number, s: number, l: number): string {
   }
   const toHex = (n: number) => n.toString(16).padStart(2, '0')
   return `#${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`
+}
+
+function isActivePalette(palette: string[]) {
+  return colors.value.length === palette.length && colors.value.every((c, i) => c === palette[i])
 }
 
 function randomColors() {
