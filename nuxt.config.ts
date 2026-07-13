@@ -12,8 +12,23 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@una-ui/nuxt',
     'nuxt-i18n-micro',
+    '@nuxtjs/google-fonts',
     './src/module.ts',
   ],
+
+  googleFonts: {
+    families: {
+      'DM+Sans': [400, 500, 600, 700],
+      Fraunces: {
+        wght: [400, 600, 700],
+        ital: [400, 600],
+      },
+    },
+    display: 'swap',
+    preconnect: true,
+    download: true,
+    base64: false,
+  },
 
   i18n: {
     locales: [
@@ -107,9 +122,6 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/images/favicon.ico' },
         { rel: 'canonical', href: 'https://tronche.app' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&display=swap' },
       ],
     },
   },
