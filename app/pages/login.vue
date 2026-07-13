@@ -29,7 +29,19 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const route = useRoute()
 const { fetch: refreshSession } = useUserSession()
+
+useHead({
+  title: 'Login | Tronche',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' },
+    { name: 'description', content: 'Log in to your Tronche account to manage your API keys and access avatar generation.' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+})
 
 const email = ref('')
 const password = ref('')

@@ -150,8 +150,20 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const route = useRoute()
 const { locale } = useI18nLocale()
 const { user } = useUserSession()
+
+useHead({
+  title: 'Dashboard | Tronche',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' },
+    { name: 'description', content: 'Manage your Tronche API keys, view usage statistics, and control access to avatar generation.' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+})
 
 const keys = ref<any[]>([])
 const loading = ref(true)

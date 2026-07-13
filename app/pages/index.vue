@@ -101,6 +101,44 @@ import { snippets } from '../composables/snippets'
 import { openStackBlitz } from '../composables/stackblitz'
 
 const { $t } = useI18n()
+const route = useRoute()
+
+useHead({
+  title: 'Tronche - Avatar generator',
+  meta: [
+    { name: 'description', content: 'Tronche generates custom, SVG-based avatars from any username and color palette. Try 6 unique styles: beam, pixel, sunset, ring, bauhaus & marble.' },
+    { property: 'og:title', content: 'Tronche - Avatar generator' },
+    { property: 'og:description', content: 'Tronche generates custom, SVG-based avatars from any username and color palette. Try 6 unique styles: beam, pixel, sunset, ring, bauhaus & marble.' },
+    { property: 'og:image', content: '/images/tronche.jpeg' },
+    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Tronche - Avatar generator' },
+    { name: 'twitter:description', content: 'Tronche generates custom, SVG-based avatars from any username and color palette. Try 6 unique styles: beam, pixel, sunset, ring, bauhaus & marble.' },
+    { name: 'twitter:image', content: '/images/tronche.jpeg' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Tronche',
+        url: 'https://tronche.app',
+        description: 'Tronche generates custom, SVG-based avatars from any username and color palette.',
+        applicationCategory: 'Multimedia',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      }),
+    },
+  ],
+})
 
 const copied = ref<string | null>(null)
 const activeTab = ref('nuxt')

@@ -113,8 +113,20 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const route = useRoute()
 const { user } = useUserSession()
 const { locale } = useI18nLocale()
+
+useHead({
+  title: 'Admin Users | Tronche',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' },
+    { name: 'description', content: 'Tronche admin panel — manage registered users, roles, and account statuses.' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+})
 
 const users = ref<any[]>([])
 const loading = ref(true)

@@ -72,8 +72,20 @@
 
 <script setup lang="ts">
 const { $t } = useI18n()
+const route = useRoute()
 const { user } = useUserSession()
 const { locale } = useI18nLocale()
+
+useHead({
+  title: 'Admin | Tronche',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' },
+    { name: 'description', content: 'Tronche admin dashboard — manage users, API keys, and monitor platform statistics.' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+})
 
 const stats = ref<any>(null)
 const loading = ref(true)

@@ -376,6 +376,21 @@ onMounted(() => {
 useHead({
   title: 'Docs | Tronche',
   htmlAttrs: { style: 'scroll-behavior: smooth' },
+  meta: [
+    { name: 'description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, or Vanilla JS.' },
+    { property: 'og:title', content: 'Docs | Tronche' },
+    { property: 'og:description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, or Vanilla JS.' },
+    { property: 'og:image', content: '/images/tronche.jpeg' },
+    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Docs | Tronche' },
+    { name: 'twitter:description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, or Vanilla JS.' },
+    { name: 'twitter:image', content: '/images/tronche.jpeg' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
 })
 </script>
 

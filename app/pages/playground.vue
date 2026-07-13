@@ -66,7 +66,7 @@
             >
               <img
                 :src="`/api/avatar/Demo?variant=${v.name}&size=48${colorsParam}`"
-                alt=""
+                :alt="`${v.name} avatar variant`"
                 width="48"
                 height="48"
                 class="rounded-full hover:shadow-lg hover:scale-105 active:scale-99 active:shadow-none transition-[transform]"
@@ -314,7 +314,24 @@ function copyCode(e: Event) {
   setTimeout(() => { copied.value = null }, 2000)
 }
 
-useHead({ title: 'Playground | Tronche' })
+useHead({
+  title: 'Playground | Tronche',
+  meta: [
+    { name: 'description', content: 'Experiment with Tronche SVG avatar generator. Customize name, variant, colors, and size in real-time. Download your avatars as SVG, PNG, JPEG, or WebP.' },
+    { property: 'og:title', content: 'Playground | Tronche' },
+    { property: 'og:description', content: 'Experiment with Tronche SVG avatar generator. Customize name, variant, colors, and size in real-time. Download your avatars as SVG, PNG, JPEG, or WebP.' },
+    { property: 'og:image', content: '/images/tronche.jpeg' },
+    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Playground | Tronche' },
+    { name: 'twitter:description', content: 'Experiment with Tronche SVG avatar generator. Customize name, variant, colors, and size in real-time. Download your avatars as SVG, PNG, JPEG, or WebP.' },
+    { name: 'twitter:image', content: '/images/tronche.jpeg' },
+  ],
+  link: [
+    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+  ],
+})
 </script>
 
 <style scoped>
