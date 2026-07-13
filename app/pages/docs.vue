@@ -237,7 +237,7 @@
         <div v-for="(v, i) in variants" :key="v.name" class="flex gap-4 items-center p-4 bg-surface border border-border rounded-xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v.name, v.name, variantColors[i])">
           <img
             :src="`/api/avatar/${v.name}?variant=${v.name}&size=40&colors=${encodeURIComponent(docsColors)}`"
-            :alt="v.name"
+            :alt="`${v.name} avatar preview`"
             width="40"
             height="40"
             class="rounded-full shrink-0 hover:shadow-lg hover:scale-105 active:scale-99 active:shadow-none transition-[transform]"
@@ -259,6 +259,7 @@ import { snippets } from '../composables/snippets'
 const { $t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const breadcrumb = useBreadcrumb([{ name: 'Home', path: '/' }, { name: 'Docs' }])
 
 const activeSection = ref('start')
 const copied = ref<string | null>(null)
@@ -391,6 +392,7 @@ useHead({
   link: [
     { rel: 'canonical', href: `https://tronche.app${route.path}` },
   ],
+  script: [breadcrumb],
 })
 </script>
 

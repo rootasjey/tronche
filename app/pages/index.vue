@@ -35,7 +35,7 @@
       <div class="flex justify-center items-start gap-6 flex-wrap animate-in" style="animation-delay: 200ms">
         <div v-for="(v, i) in variants" :key="v" class="flex flex-col items-center gap-3 cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v, variantColors[i])">
           <div class="w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg transition-transform duration-200 hover:scale-110">
-            <img :src="avatarUrl('Clara Barton', v, 72, false, variantColors[i])" :alt="v" width="72" height="72" class="w-full h-full block" />
+            <img :src="avatarUrl('Clara Barton', v, 72, false, variantColors[i])" :alt="`${v} avatar preview`" width="72" height="72" class="w-full h-full block" />
           </div>
           <span class="text-xs font-medium text-muted capitalize">{{ v }}</span>
         </div>
@@ -102,6 +102,7 @@ import { openStackBlitz } from '../composables/stackblitz'
 
 const { $t } = useI18n()
 const route = useRoute()
+const breadcrumb = useBreadcrumb([{ name: 'Home' }])
 
 useHead({
   title: 'Tronche - Avatar generator',
@@ -137,6 +138,7 @@ useHead({
         },
       }),
     },
+    breadcrumb,
   ],
 })
 

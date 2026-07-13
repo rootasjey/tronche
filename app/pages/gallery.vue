@@ -165,6 +165,7 @@
 const { $t } = useI18n()
 const route = useRoute()
 const copiedVariant = ref<string | null>(null)
+const breadcrumb = useBreadcrumb([{ name: 'Home', path: '/' }, { name: 'Gallery' }])
 
 useHead({
   title: 'Gallery | Tronche',
@@ -183,6 +184,7 @@ useHead({
   link: [
     { rel: 'canonical', href: `https://tronche.app${route.path}` },
   ],
+  script: [breadcrumb],
 })
 const { data: zimaData } = useFetch('/api/zimablue/images')
 const zimaImages = computed(() => zimaData.value?.data ?? [])

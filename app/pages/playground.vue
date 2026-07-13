@@ -161,6 +161,7 @@ const { $t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const copied = ref<string | null>(null)
+const breadcrumb = useBreadcrumb([{ name: 'Home', path: '/' }, { name: 'Playground' }])
 const activeTab = ref<'url' | 'curl'>('url')
 
 const name = ref((route.query.name as string) || 'Clara Barton')
@@ -331,6 +332,7 @@ useHead({
   link: [
     { rel: 'canonical', href: `https://tronche.app${route.path}` },
   ],
+  script: [breadcrumb],
 })
 </script>
 

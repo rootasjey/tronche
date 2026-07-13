@@ -8,7 +8,7 @@
     <div class="flex justify-center items-center gap-5 flex-wrap my-10 fade-in" style="animation-delay: 100ms">
       <div v-for="(v, i) in variants" :key="v" class="flex flex-col items-center gap-2 cursor-pointer transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" @click="goToPlayground(v, variantColors[i])">
         <div class="w-16 h-16 rounded-full overflow-hidden shadow-lg transition-transform duration-200 hover:scale-110">
-          <img :src="avatarUrl('tronche', v, 64, false, variantColors[i])" :alt="v" width="64" height="64" class="w-full h-full block" />
+          <img :src="avatarUrl('tronche', v, 64, false, variantColors[i])" :alt="`${v} avatar preview`" width="64" height="64" class="w-full h-full block" />
         </div>
         <span class="text-xs font-medium text-muted capitalize">{{ v }}</span>
       </div>
@@ -73,6 +73,7 @@
 <script setup lang="ts">
 const { $t } = useI18n()
 const route = useRoute()
+const breadcrumb = useBreadcrumb([{ name: 'Home', path: '/' }, { name: $t('about.title') }])
 
 useHead({
   title: `${$t('about.title')} | Tronche`,
@@ -91,6 +92,7 @@ useHead({
   link: [
     { rel: 'canonical', href: `https://tronche.app${route.path}` },
   ],
+  script: [breadcrumb],
 })
 
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']

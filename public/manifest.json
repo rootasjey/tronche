@@ -1,11 +1,17 @@
 {
-  "name": "Tronche",
+  "name": "Tronche - Avatar generator",
   "short_name": "Tronche",
+  "description": "Generate custom, SVG-based avatars from any username and color palette.",
+  "lang": "en",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "theme_color": "#F05D5E",
   "background_color": "#0a0a0b",
+  "categories": ["multimedia", "utilities", "developer-tools"],
   "icons": [
-    { "src": "/images/tronche-250.png", "sizes": "250x250", "type": "image/png" }
+    { "src": "/images/tronche-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/tronche-250.png", "sizes": "250x250", "type": "image/png" },
+    { "src": "/images/tronche-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
