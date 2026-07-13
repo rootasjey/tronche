@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-[calc(100vh-112px)] px-5">
+  <section class="flex items-center justify-center min-h-[calc(100vh-112px)] px-5">
     <div class="w-full max-w-sm bg-surface border border-border rounded-xl p-10 text-center">
       <h1 class="font-heading text-2xl font-bold mb-1">{{ $t('register.title') }}</h1>
       <p class="text-muted text-sm mb-6">{{ $t('register.subtitle') }}</p>
@@ -27,7 +27,7 @@
         <NuxtLink to="/login" class="text-primary hover:underline">{{ $t('register.login') }}</NuxtLink>
       </p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

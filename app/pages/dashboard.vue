@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div v-if="!loading && keys.length > 0" class="flex gap-3 mb-6 animate-in" style="animation-delay: 25ms">
+    <section v-if="!loading && keys.length > 0" class="flex gap-3 mb-6 animate-in" style="animation-delay: 25ms">
       <div class="bg-surface border border-border rounded-xl px-4 py-3 flex items-center gap-3 flex-1">
         <div class="w-8 h-8 rounded-lg bg-[var(--c-bg)] flex items-center justify-center shrink-0">
           <NIcon name="i-tabler-key" class="text-muted text-sm" />
@@ -31,9 +31,9 @@
           <p class="text-xs text-muted mt-1">{{ $t('dashboard.activeKeys') }}</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="bg-surface border border-border rounded-xl p-6 animate-in" style="animation-delay: 50ms">
+    <section class="bg-surface border border-border rounded-xl p-6 animate-in" style="animation-delay: 50ms">
       <div class="flex items-center justify-between mb-5">
         <h2 class="text-lg font-semibold">{{ $t('dashboard.keys') }}</h2>
         <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white hover:text-[var(--c-text)] font-semibold text-sm border-none cursor-pointer hover:bg-primary-600 transition-colors" @click="showCreate = true">
@@ -133,7 +133,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <NAlertDialog
       v-model:open="deleteDialogOpen"
