@@ -1,0 +1,7 @@
+export { Avatar } from './components/Avatar'
+export { AvatarMarble } from './components/AvatarMarble'
+export { AvatarBauhaus } from './components/AvatarBauhaus'
+export { AvatarBeam } from './components/AvatarBeam'
+export { AvatarPixel } from './components/AvatarPixel'
+export { AvatarRing } from './components/AvatarRing'
+export { AvatarSunset } from './components/AvatarSunset'

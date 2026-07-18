@@ -81,4 +81,18 @@ export const snippets: Record<string, string> = {
     '  return <Avatar name="Clara Barton" variant="beam" />',
     '}',
   ].join('\n'),
+  'solid-import': [
+    "import { Avatar } from 'tronche/solid'",
+    '',
+    'function App() {',
+    '  return <Avatar name="Grace Hopper" variant="marble" size={120} />',
+    '}',
+  ].join('\n'),
+  'home-solid': [
+    "import { Avatar } from 'tronche/solid'",
+    '',
+    'function App() {',
+    '  return <Avatar name="Clara Barton" variant="beam" />',
+    '}',
+  ].join('\n'),
 }

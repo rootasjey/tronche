@@ -154,6 +154,37 @@
         </table>
       </div>
 
+      <div v-else-if="frameworkTab === 'solid'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.solid.description') }}</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">TSX</span>
+            <button class="copy-btn" :class="{ copied: copied === 'solid-import' }" @click="copy('solid-import', $event)">{{ copied === 'solid-import' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['solid-import'], 'tsx')"></div>
+        </div>
+
+        <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
+        <table class="w-full border-collapse mb-4">
+          <thead>
+            <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
+              <th class="p-3 border-b border-border">{{ $t('docs.table.prop') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.type') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.default') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.description') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in reactProps" :key="p[0]" class="text-sm">
+              <td class="p-3 border-b border-border font-mono">{{ p[0] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[1] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[2] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div v-else-if="frameworkTab === 'nuxt'" class="pt-4">
         <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
         <div class="code-block">
@@ -266,7 +297,7 @@ const copied = ref<string | null>(null)
 
 const curlTab = ref('basic')
 
-const validFrameworks = ['vanilla', 'vue', 'react', 'nuxt']
+const validFrameworks = ['vanilla', 'vue', 'react', 'solid', 'nuxt']
 const initialFramework = typeof route.query.framework === 'string' && validFrameworks.includes(route.query.framework)
   ? route.query.framework
   : 'vanilla'
@@ -296,6 +327,7 @@ const frameworkItems = computed(() => [
   { value: 'vanilla', name: $t('docs.sections.vanilla') },
   { value: 'vue', name: $t('docs.sections.vue') },
   { value: 'react', name: $t('docs.sections.react') },
+  { value: 'solid', name: $t('docs.sections.solid') },
   { value: 'nuxt', name: $t('docs.sections.nuxt') },
 ])
 

@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 import react from '@vitejs/plugin-react';
+import solid from 'vite-plugin-solid';
 import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [vue(), react()],
+  plugins: [vue(), react(), solid({ include: 'src/solid/**' })],
   resolve: {
     alias: {
       'hub:kv': resolve(__dirname, 'server/__tests__/__mocks__/hub-kv.ts'),

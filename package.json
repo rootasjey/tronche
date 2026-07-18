@@ -22,6 +22,8 @@
     "nuxt-module",
     "vue3",
     "nuxt3",
+    "solid",
+    "solidjs",
     "tronche"
   ],
   "main": "dist/index.js",
@@ -42,6 +44,10 @@
     "./module": {
       "types": "./dist/module.d.ts",
       "import": "./dist/module.js"
+    },
+    "./solid": {
+      "types": "./dist/solid/index.d.ts",
+      "import": "./dist/solid/index.js"
     }
   },
   "overrides": {
@@ -55,7 +61,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && tsc --p ./tsconfig.module.json",
+    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && vite build --config vite.solid.config.ts && cp src/solid/tronche-solid.d.ts dist/solid/index.d.ts && tsc --p ./tsconfig.module.json && vitest run test/solid-bundle.test.ts",
     "build:demo": "nuxt build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -73,6 +79,7 @@
     "nuxt": ">=3.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
+    "solid-js": ">=1.8.0",
     "vue": ">=3.0.0"
   },
   "dependencies": {
@@ -93,6 +100,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^13.1.5",
+    "@solidjs/testing-library": "^0.8.10",
     "@stackblitz/sdk": "^1.11.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^24.1.0",
@@ -118,9 +126,11 @@
     "react-dom": "^19.2.0",
     "semantic-release": "^24.2.9",
     "shiki": "^4.3.1",
+    "solid-js": "^1.9.14",
     "typescript": "~5.8.3",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-solid": "^2.11.12",
     "vitest": "^4.1.10",
     "vue": "^3.4.0",
     "vue-tsc": "^2.0.0",
