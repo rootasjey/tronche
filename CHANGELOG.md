@@ -1,3 +1,5 @@
+## [1.3.0](https://github.com/rootasjey/tronche/compare/v1.2.0...v1.3.0) (2026-07-18)
+
 ## [1.2.0](https://github.com/rootasjey/tronche/compare/v1.1.0...v1.2.0) (2026-07-14)
 
 ## [1.1.0](https://github.com/rootasjey/tronche/compare/v1.0.3...v1.1.0) (2026-07-12)
