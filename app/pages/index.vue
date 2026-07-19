@@ -43,7 +43,7 @@
     </section>
 
     <section class="px-5 pb-14 max-w-240 mx-auto">
-      <div class="code-block max-w-xl mx-auto animate-in" style="animation-delay: 300ms">
+      <div class="code-block max-w-160 mx-auto animate-in" style="animation-delay: 300ms">
         <div class="code-block-header">
           <div class="flex items-center gap-1.5">
             <span class="w-2.5 h-2.5 rounded-full" style="background: #ff5f57"></span>
@@ -53,12 +53,15 @@
               <button
                 v-for="tab in codeTabs"
                 :key="tab.id"
-                class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md transition-all cursor-pointer"
+                class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded-md transition-all cursor-pointer inline-flex items-center gap-1"
                 :class="activeTab === tab.id
                   ? 'text-[var(--c-text)] bg-surface'
                   : 'text-muted hover:text-[var(--c-text)]'"
                 @click="activeTab = tab.id"
-              >{{ tab.label }}</button>
+              >
+                <NIcon v-if="tab.icon" :name="tab.icon" class="text-sm" />
+                <span v-if="activeTab === tab.id">{{ tab.label }}</span>
+              </button>
             </div>
           </div>
           <div class="flex items-center gap-1.5">
@@ -146,12 +149,12 @@ const copied = ref<string | null>(null)
 const activeTab = ref('nuxt')
 
 const codeTabs = [
-  { id: 'nuxt', label: 'Nuxt' },
-  { id: 'react', label: 'React' },
-  { id: 'solid', label: 'Solid' },
-  { id: 'svelte', label: 'Svelte' },
-  { id: 'vanilla', label: 'Vanilla' },
-  { id: 'vue', label: 'Vue' },
+  { id: 'nuxt', label: 'Nuxt', icon: 'i-tabler-brand-nuxt' },
+  { id: 'react', label: 'React', icon: 'i-tabler-brand-react' },
+  { id: 'solid', label: 'Solid', icon: 'i-tabler-brand-solidjs' },
+  { id: 'svelte', label: 'Svelte', icon: 'i-tabler-brand-svelte' },
+  { id: 'vanilla', label: 'Vanilla', icon: 'i-tabler-brand-javascript' },
+  { id: 'vue', label: 'Vue', icon: 'i-tabler-brand-vue' },
 ]
 
 const activeLanguage = computed(() => {
