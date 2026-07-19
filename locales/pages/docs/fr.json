@@ -15,6 +15,7 @@
       "vue": "Vue.js",
       "react": "React",
       "solid": "SolidJS",
+      "svelte": "Svelte",
       "nuxt": "Module Nuxt",
       "api": "API REST",
       "variants": "Variants"
@@ -45,6 +46,17 @@
     },
     "solid": {
       "description": "Utilisez les composants Solid Tronche dans tout projet SolidJS 1.8+.",
+      "props": {
+        "name": "Nom pour générer l'avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Taille en pixels",
+        "square": "Avatar carré",
+        "colors": "5 couleurs hexadécimales",
+        "title": "Balise title"
+      }
+    },
+    "svelte": {
+      "description": "Utilisez les composants Svelte Tronche dans tout projet Svelte 5.",
       "props": {
         "name": "Nom pour générer l'avatar",
         "variant": "marble, beam, pixel, sunset, ring, bauhaus",

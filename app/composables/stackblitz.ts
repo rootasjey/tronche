@@ -33,6 +33,20 @@ const VITE_PKG = {
     dependencies: { tronche: v, react: '^18', 'react-dom': '^18' },
     devDependencies: { vite: '^6', '@vitejs/plugin-react': '^4' },
   }, null, 2),
+  solid: JSON.stringify({
+    name: 'tronche-solid-demo',
+    private: true,
+    scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
+    dependencies: { tronche: v, 'solid-js': '^1.8' },
+    devDependencies: { vite: '^6', 'vite-plugin-solid': '^2' },
+  }, null, 2),
+  svelte: JSON.stringify({
+    name: 'tronche-svelte-demo',
+    private: true,
+    scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
+    dependencies: { tronche: v, svelte: '^5' },
+    devDependencies: { vite: '^6', '@sveltejs/vite-plugin-svelte': '^5' },
+  }, null, 2),
 }
 
 const projects: Record<string, { project: Project; openFile: string }> = {
@@ -119,9 +133,51 @@ const projects: Record<string, { project: Project; openFile: string }> = {
     },
     openFile: 'app.vue',
   },
+  solid: {
+    project: {
+      title: 'Tronche — Solid Demo',
+      description: 'Tronche avatar library in SolidJS',
+      template: 'node',
+      files: {
+        'package.json': VITE_PKG.solid,
+        'vite.config.js': "import { defineConfig } from 'vite'\nimport solid from 'vite-plugin-solid'\n\nexport default defineConfig({ plugins: [solid()] })",
+        'index.html': '<div id="root"></div>\n<script type="module" src="/src/main.jsx"></script>',
+        'src/main.jsx': "import { render } from 'solid-js/web'\nimport { App } from './App'\n\nrender(() => <App />, document.getElementById('root')!)",
+        'src/App.jsx': [
+          "import { Avatar } from 'tronche/solid'",
+          '',
+          'export default function App() {',
+          '  return <Avatar name="Clara Barton" variant="beam" size={200} />',
+          '}',
+        ].join('\n'),
+      },
+    },
+    openFile: 'src/App.jsx',
+  },
+  svelte: {
+    project: {
+      title: 'Tronche — Svelte Demo',
+      description: 'Tronche avatar library in Svelte 5',
+      template: 'node',
+      files: {
+        'package.json': VITE_PKG.svelte,
+        'vite.config.js': "import { defineConfig } from 'vite'\nimport { svelte } from '@sveltejs/vite-plugin-svelte'\n\nexport default defineConfig({ plugins: [svelte()] })",
+        'index.html': '<div id="app"></div>\n<script type="module" src="/src/main.js"></script>',
+        'src/main.js': "import { mount } from 'svelte'\nimport App from './App.svelte'\n\nmount(App, { target: document.getElementById('app') })",
+        'src/App.svelte': [
+          '<script>',
+          "  import { Avatar } from 'tronche/svelte'",
+          '</script>',
+          '',
+          '<Avatar name="Clara Barton" variant="beam" size={200} />',
+        ].join('\n'),
+      },
+    },
+    openFile: 'src/App.svelte',
+  },
 }
 
-export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react' | 'nuxt') {
+export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react' | 'nuxt' | 'solid' | 'svelte') {
   const config = projects[framework]
   if (!config) return
 

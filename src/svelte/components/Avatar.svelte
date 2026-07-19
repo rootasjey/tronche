@@ -17,9 +17,11 @@
     abstract: AvatarBauhaus,
   }
 
+  const DEFAULT_COLORS = ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F']
+
   let {
     name = 'Clara Barton',
-    colors,
+    colors = DEFAULT_COLORS,
     title = false,
     square = false,
     size = 80,

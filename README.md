@@ -4,7 +4,7 @@
 
 Avatars nothing like you.
 
-Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Svelte component](#svelte-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
 
 ## Installation
 
@@ -22,9 +22,15 @@ node_modules/tronche/
 │   ├── vue/
 │   │   ├── index.js     # Vue components (pre-compiled)
 │   │   └── index.d.ts   # Vue component types
+│   ├── react/
+│   │   ├── index.js     # React components (pre-compiled)
+│   │   └── index.d.ts   # React component types
 │   ├── solid/
 │   │   ├── index.js     # Solid components (pre-compiled)
 │   │   └── index.d.ts   # Solid component types
+│   ├── svelte/
+│   │   ├── index.js     # Svelte components (pre-compiled)
+│   │   └── index.d.ts   # Svelte component types
 │   ├── module.js        # Nuxt module
 │   └── module.d.ts      # Module types
 └── package.json
@@ -38,6 +44,7 @@ node_modules/tronche/
 | `tronche/vue` | Vue 3 | `import { Avatar } from 'tronche/vue'` |
 | `tronche/react` | React 18+ | `import { Avatar } from 'tronche/react'` |
 | `tronche/solid` | SolidJS 1.8+ | `import { Avatar } from 'tronche/solid'` |
+| `tronche/svelte` | Svelte 5+ | `import { Avatar } from 'tronche/svelte'` |
 | `tronche/module` | Nuxt 3+ | `modules: ['tronche/module']` |
 
 ## Vanilla Usage
@@ -164,6 +171,24 @@ function Profile() {
 
 Props are the same as [Vue](#props).
 
+## Svelte Usage
+
+```svelte
+<script>
+  import { Avatar, AvatarMarble } from 'tronche/svelte'
+</script>
+
+<Avatar
+  name="Grace Hopper"
+  colors={['#fb6900', '#f63700', '#004853']}
+  variant="marble"
+  size={120}
+  square
+/>
+```
+
+Props are the same as [Vue](#props).
+
 ## REST API
 
 Base URL: `https://tronche.app`
@@ -252,6 +277,7 @@ DELETE /api/admin/api-keys/:id       # Delete any key
 - **Vue components** — Thin wrappers over the core lib (`src/vue/`)
 - **React components** — Thin wrappers over the core lib (`src/react/`)
 - **Solid components** — Thin wrappers over the core lib (`src/solid/`)
+- **Svelte components** — Thin wrappers over the core lib (`src/svelte/`)
 - **Nuxt module** — Auto-import via `tronche/module` (`src/module.ts`)
 - **Nuxt 4** — Frontend + API (Nitro)
 - **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)

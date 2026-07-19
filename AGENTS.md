@@ -8,12 +8,13 @@
 
 # Svelte adapter
 
-- Svelte 5 gère nativement les attributs SVG kebab-case (`stop-color`, `flood-opacity`, etc.) dans ses templates — pas besoin de contournement `innerHTML` contrairement à Solid.
+- Svelte 5 gère la plupart des attributs SVG kebab-case dans ses templates, mais certains éléments SVG dans `<defs>` (`<filter>`, `<linearGradient>`) ont des problèmes de rendu en environnement réel. Solution : injecter le contenu de `<defs>` via `innerHTML={markup}` (comme Solid).
 - Les composants utilisent les runes Svelte 5 : `$props()` pour les props, `$derived()` pour les valeurs réactives.
 - Le spread `{...rest}` permet de passer les attributs SVG supplémentaires.
-- Les composants variants sont sélectionnés dynamiquement via une variable `$derived` contenant le constructeur.
+- Les composants variants sont sélectionnés dynamiquement via une variable `$derived` contenant le constructeur (pas de `<svelte:component>`).
 - Le bundle externalise `svelte/internal/client` pour éviter le doublement du runtime.
 - Utiliser `@testing-library/svelte` pour les tests : `render(Component, { props })`.
+- Les props passées par le dispatcher doivent avoir une valeur par défaut pour éviter que `$props()` ne reçoive `undefined` (car Svelte 5 n'applique pas les defaults des enfants si la prop est explicitement passée).
 
 # Solid adapter
 

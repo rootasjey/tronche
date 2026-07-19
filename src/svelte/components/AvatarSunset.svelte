@@ -22,6 +22,8 @@
   const data = $derived(generateSunsetData(name, colors))
   const mid = DESIGN_SIZE / 2
   const displaySize = $derived(typeof size === 'string' && size.endsWith('%') ? size : Number(size))
+  const id = $derived(data.nameWithoutSpace)
+  const defsMarkup = $derived(`<linearGradient id="gradient0_${id}" x1="${mid}" y1="0" x2="${mid}" y2="${mid}" gradientUnits="userSpaceOnUse"><stop stop-color="${data.colors[0]}"/><stop offset="1" stop-color="${data.colors[1]}"/></linearGradient><linearGradient id="gradient1_${id}" x1="${mid}" y1="${mid}" x2="${mid}" y2="${DESIGN_SIZE}" gradientUnits="userSpaceOnUse"><stop stop-color="${data.colors[2]}"/><stop offset="1" stop-color="${data.colors[3]}"/></linearGradient>`)
 </script>
 
 <svg
@@ -43,14 +45,5 @@
     <path d="M0 0h{DESIGN_SIZE}v{mid}H0z" fill="url(#gradient0_{data.nameWithoutSpace})" />
     <path d="M0 {mid}h{DESIGN_SIZE}v{mid}H0z" fill="url(#gradient1_{data.nameWithoutSpace})" />
   </g>
-  <defs>
-    <linearGradient id="gradient0_{data.nameWithoutSpace}" x1={mid} y1={0} x2={mid} y2={mid} gradientUnits="userSpaceOnUse">
-      <stop stop-color={data.colors[0]} />
-      <stop offset="1" stop-color={data.colors[1]} />
-    </linearGradient>
-    <linearGradient id="gradient1_{data.nameWithoutSpace}" x1={mid} y1={mid} x2={mid} y2={DESIGN_SIZE} gradientUnits="userSpaceOnUse">
-      <stop stop-color={data.colors[2]} />
-      <stop offset="1" stop-color={data.colors[3]} />
-    </linearGradient>
-  </defs>
+  <defs innerHTML={defsMarkup} />
 </svg>

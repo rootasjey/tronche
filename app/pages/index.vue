@@ -148,12 +148,14 @@ const activeTab = ref('nuxt')
 const codeTabs = [
   { id: 'nuxt', label: 'Nuxt' },
   { id: 'react', label: 'React' },
+  { id: 'solid', label: 'Solid' },
+  { id: 'svelte', label: 'Svelte' },
   { id: 'vanilla', label: 'Vanilla' },
   { id: 'vue', label: 'Vue' },
 ]
 
 const activeLanguage = computed(() => {
-  const map: Record<string, string> = { vanilla: 'js', vue: 'vue', react: 'tsx', nuxt: 'vue' }
+  const map: Record<string, string> = { vanilla: 'js', vue: 'vue', react: 'tsx', nuxt: 'vue', solid: 'tsx', svelte: 'html' }
   return map[activeTab.value]
 })
 

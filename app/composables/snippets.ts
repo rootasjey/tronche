@@ -95,4 +95,18 @@ export const snippets: Record<string, string> = {
     '  return <Avatar name="Clara Barton" variant="beam" />',
     '}',
   ].join('\n'),
+  'svelte-import': [
+    '<script>',
+    "  import { Avatar } from 'tronche/svelte'",
+    '</script>',
+    '',
+    '<Avatar name="Grace Hopper" variant="marble" size={120} />',
+  ].join('\n'),
+  'home-svelte': [
+    '<script>',
+    "  import { Avatar } from 'tronche/svelte'",
+    '</script>',
+    '',
+    '<Avatar name="Clara Barton" variant="beam" />',
+  ].join('\n'),
 }
