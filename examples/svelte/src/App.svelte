@@ -55,10 +55,12 @@
       Change palette
     </button>
 
-    <label style="display: flex; align-items: center; gap: .5rem; font-size: .875rem; cursor: pointer; color: var(--text)">
-      <input type="checkbox" bind:checked={square} style="width: 1rem; height: 1rem; cursor: pointer" />
-      Square
-    </label>
+    <button
+      onclick={() => square = !square}
+      style="padding: .5rem 1rem; background: var(--btn-bg); color: var(--text); border: 1px solid var(--border); border-radius: .5rem; cursor: pointer; font-size: .875rem"
+    >
+      {square ? '■ Square' : '▢ Round'}
+    </button>
 
     <input
       type="text"
