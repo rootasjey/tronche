@@ -24,6 +24,7 @@ export function App() {
   const [palette, setPalette] = createSignal(0)
   const [theme, setTheme] = createSignal<Theme>('system')
   const [menuOpen, setMenuOpen] = createSignal(false)
+  const [square, setSquare] = createSignal(false)
 
   createEffect(() => applyTheme(theme()))
 
@@ -99,11 +100,26 @@ export function App() {
         >
           Change palette
         </button>
+
+        <button
+          onClick={() => setSquare(s => !s)}
+          style={{
+            padding: '.5rem 1rem',
+            background: 'var(--btn-bg)',
+            color: 'var(--text)',
+            border: '1px solid var(--border)',
+            'border-radius': '.5rem',
+            cursor: 'pointer',
+            'font-size': '.875rem',
+          }}
+        >
+          {square() ? '■ Square' : '▢ Round'}
+        </button>
       </div>
       <div style={{ display: 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(100px, 1fr))', gap: '1rem' }}>
         {VARIANTS.map(v => (
           <div style={{ display: 'flex', 'flex-direction': 'column', 'align-items': 'center', gap: '.5rem' }}>
-            <Avatar name="Clara Barton" variant={v} colors={PALETTES[palette()]} size={100} />
+            <Avatar name="Clara Barton" variant={v} colors={PALETTES[palette()]} size={100} square={square()} />
             <span style={{ 'font-size': '.75rem', color: 'var(--muted)' }}>{v}</span>
           </div>
         ))}
