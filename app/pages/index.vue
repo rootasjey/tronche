@@ -164,6 +164,10 @@ const activeLanguage = computed(() => {
 
 const activeSnippet = computed(() => snippets['home-' + activeTab.value])
 
+function switchTab(id: string) {
+  activeTab.value = id
+}
+
 const activeCopied = computed(() => copied.value === 'home-' + activeTab.value)
 
 const variants = ['beam', 'pixel', 'sunset', 'ring', 'bauhaus', 'marble']
