@@ -39,7 +39,7 @@
   <mask id={data.maskId} maskUnits="userSpaceOnUse" x={0} y={0} width={DESIGN_SIZE} height={DESIGN_SIZE}>
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} rx={square ? undefined : DESIGN_SIZE * 2} fill="#FFFFFF" />
   </mask>
-  <g mask="url({data.maskId})">
+  <g mask="url(#{data.maskId})">
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} fill={data.elements[0].color} />
     <rect
       x={(DESIGN_SIZE - 60) / 2}

@@ -42,7 +42,7 @@
   <mask id={data.maskId} maskUnits="userSpaceOnUse" x={0} y={0} width={DESIGN_SIZE} height={DESIGN_SIZE}>
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} rx={square ? undefined : DESIGN_SIZE * 2} fill="#FFFFFF" />
   </mask>
-  <g mask="url({data.maskId})">
+  <g mask="url(#{data.maskId})">
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} fill={data.elements[0].color} />
     <path
       d="M32.414 59.35L50.376 70.5H72.5v-71H33.728L26.5 13.381l19.057 27.08L32.414 59.35z"

@@ -39,7 +39,7 @@
   <mask id={data.maskId} maskUnits="userSpaceOnUse" x={0} y={0} width={DESIGN_SIZE} height={DESIGN_SIZE}>
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} rx={square ? undefined : DESIGN_SIZE * 2} fill="#FFFFFF" />
   </mask>
-  <g mask="url({data.maskId})">
+  <g mask="url(#{data.maskId})">
     <path d="M0 0h{DESIGN_SIZE}v{mid}H0z" fill="url(#gradient0_{data.nameWithoutSpace})" />
     <path d="M0 {mid}h{DESIGN_SIZE}v{mid}H0z" fill="url(#gradient1_{data.nameWithoutSpace})" />
   </g>

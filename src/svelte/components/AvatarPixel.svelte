@@ -40,7 +40,7 @@
   <mask id={data.maskId} mask-type="alpha" maskUnits="userSpaceOnUse" x={0} y={0} width={DESIGN_SIZE} height={DESIGN_SIZE}>
     <rect width={DESIGN_SIZE} height={DESIGN_SIZE} rx={square ? undefined : DESIGN_SIZE * 2} fill="#FFFFFF" />
   </mask>
-  <g mask="url({data.maskId})">
+  <g mask="url(#{data.maskId})">
     {#each data.colors as color, index}
       <rect
         x={(index % GRID) * cellSize}
