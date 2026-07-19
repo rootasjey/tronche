@@ -40,4 +40,19 @@ describe('Avatar.vue', () => {
     const wrapper = shallowMount(Avatar, { props: { name: 'test', variant: 'bauhaus' } });
     expect(wrapper.findComponent({ name: 'AvatarBauhaus' }).exists()).toBe(true);
   });
+
+  it('selects geometric alias as beam', () => {
+    const wrapper = shallowMount(Avatar, { props: { name: 'test', variant: 'geometric' } });
+    expect(wrapper.findComponent({ name: 'AvatarBeam' }).exists()).toBe(true);
+  });
+
+  it('selects abstract alias as bauhaus', () => {
+    const wrapper = shallowMount(Avatar, { props: { name: 'test', variant: 'abstract' } });
+    expect(wrapper.findComponent({ name: 'AvatarBauhaus' }).exists()).toBe(true);
+  });
+
+  it('falls back to marble for unknown variant', () => {
+    const wrapper = shallowMount(Avatar, { props: { name: 'test', variant: 'unknown' } });
+    expect(wrapper.findComponent({ name: 'AvatarMarble' }).exists()).toBe(true);
+  });
 });

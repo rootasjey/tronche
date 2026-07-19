@@ -17,7 +17,7 @@ export function AvatarBeam(allProps: AvatarBeamProps & JSX.SvgSVGAttributes<SVGS
   const resolvedName = () => props.name ?? 'Clara Barton'
   const resolvedColors = () => props.colors ?? ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F']
   const data = createMemo(() => generateBeamData(resolvedName(), resolvedColors()))
-  const displaySize = () => Number(props.size ?? 36)
+  const displaySize = () => typeof props.size === 'string' && props.size.endsWith('%') ? props.size : Number(props.size ?? 36)
   const mid = DESIGN_SIZE / 2
 
   return (

@@ -17,7 +17,7 @@ export function AvatarBauhaus(allProps: AvatarBauhausProps & JSX.SvgSVGAttribute
   const resolvedName = () => props.name ?? 'Clara Barton'
   const resolvedColors = () => props.colors ?? ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F']
   const data = createMemo(() => generateBauhausData(resolvedName(), resolvedColors()))
-  const displaySize = () => Number(props.size ?? 80)
+  const displaySize = () => typeof props.size === 'string' && props.size.endsWith('%') ? props.size : Number(props.size ?? 80)
   const mid = DESIGN_SIZE / 2
 
   return (

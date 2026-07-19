@@ -17,4 +17,10 @@ describe('AvatarPixel', () => {
     const { container } = render(<AvatarPixel name="test" />);
     expect(container.querySelector('mask')!.getAttribute('id')).toMatch(/^tronche-mask-pixel-/);
   });
+
+  it('is deterministic: same name produces same mask ID', () => {
+    const { container: c1 } = render(<AvatarPixel name="Alice" />);
+    const { container: c2 } = render(<AvatarPixel name="Alice" />);
+    expect(c1.querySelector('mask')!.getAttribute('id')).toBe(c2.querySelector('mask')!.getAttribute('id'));
+  });
 });

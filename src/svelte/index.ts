@@ -1,0 +1,7 @@
+export { default as Avatar } from './components/Avatar.svelte'
+export { default as AvatarMarble } from './components/AvatarMarble.svelte'
+export { default as AvatarBauhaus } from './components/AvatarBauhaus.svelte'
+export { default as AvatarBeam } from './components/AvatarBeam.svelte'
+export { default as AvatarPixel } from './components/AvatarPixel.svelte'
+export { default as AvatarRing } from './components/AvatarRing.svelte'
+export { default as AvatarSunset } from './components/AvatarSunset.svelte'

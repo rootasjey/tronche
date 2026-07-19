@@ -20,7 +20,7 @@ export function AvatarBeam({
   ...attrs
 }: AvatarBeamProps & React.SVGAttributes<SVGSVGElement>) {
   const data = useMemo(() => generateBeamData(name, colors), [name, colors])
-  const displaySize = Number(size)
+  const displaySize = typeof size === 'string' && size.endsWith('%') ? size : Number(size)
   const mid = DESIGN_SIZE / 2
 
   return (

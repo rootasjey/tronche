@@ -28,6 +28,22 @@ describe('hashCode', () => {
   it('handles empty string', () => {
     expect(hashCode('')).toBe(0);
   });
+
+  it('handles very long string', () => {
+    const result = hashCode('A'.repeat(10000));
+    expect(Number.isInteger(result)).toBe(true);
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
+
+  it('handles special characters (accents, emojis)', () => {
+    const result = hashCode('Jérôme 🎉 日本語');
+    expect(Number.isInteger(result)).toBe(true);
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
+
+  it('handles whitespace-only string', () => {
+    expect(hashCode('   ')).toBeGreaterThanOrEqual(0);
+  });
 });
 
 describe('getModulus', () => {

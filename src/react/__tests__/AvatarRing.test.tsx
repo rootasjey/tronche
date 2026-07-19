@@ -17,4 +17,10 @@ describe('AvatarRing', () => {
     const { container } = render(<AvatarRing name="test" />);
     expect(container.querySelector('mask')!.getAttribute('id')).toMatch(/^tronche-mask-ring-/);
   });
+
+  it('is deterministic: same name produces same mask ID', () => {
+    const { container: c1 } = render(<AvatarRing name="Alice" />);
+    const { container: c2 } = render(<AvatarRing name="Alice" />);
+    expect(c1.querySelector('mask')!.getAttribute('id')).toBe(c2.querySelector('mask')!.getAttribute('id'));
+  });
 });

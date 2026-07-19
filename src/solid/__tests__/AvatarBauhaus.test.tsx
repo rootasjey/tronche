@@ -18,4 +18,10 @@ describe('AvatarBauhaus', () => {
     const { container } = render(() => <AvatarBauhaus name="test" />);
     expect(container.querySelector('mask')!.getAttribute('id')).toMatch(/^tronche-mask-bauhaus-/);
   });
+
+  it('is deterministic: same name produces same mask ID', () => {
+    const { container: c1 } = render(() => <AvatarBauhaus name="Alice" />);
+    const { container: c2 } = render(() => <AvatarBauhaus name="Alice" />);
+    expect(c1.querySelector('mask')!.getAttribute('id')).toBe(c2.querySelector('mask')!.getAttribute('id'));
+  });
 });

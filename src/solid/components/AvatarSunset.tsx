@@ -26,7 +26,7 @@ export function AvatarSunset(allProps: AvatarSunsetProps & JSX.SvgSVGAttributes<
     return `${props.title ? `<title>${name}</title>` : ''}<mask id="${data.maskId}" maskUnits="userSpaceOnUse" x="0" y="0" width="${DESIGN_SIZE}" height="${DESIGN_SIZE}"><rect width="${DESIGN_SIZE}" height="${DESIGN_SIZE}" ${rx} fill="#FFFFFF"/></mask><defs><linearGradient id="gradient0_${id}" x1="${mid}" y1="0" x2="${mid}" y2="${mid}" gradientUnits="userSpaceOnUse"><stop stop-color="${data.colors[0]}"/><stop offset="1" stop-color="${data.colors[1]}"/></linearGradient><linearGradient id="gradient1_${id}" x1="${mid}" y1="${mid}" x2="${mid}" y2="${DESIGN_SIZE}" gradientUnits="userSpaceOnUse"><stop stop-color="${data.colors[2]}"/><stop offset="1" stop-color="${data.colors[3]}"/></linearGradient></defs><g mask="url(#${data.maskId})"><path fill="url(#gradient0_${id})" d="M0 0h${DESIGN_SIZE}v${mid}H0z"/><path fill="url(#gradient1_${id})" d="M0 ${mid}h${DESIGN_SIZE}v${mid}H0z"/></g>`
   })
 
-  const displaySize = () => Number(props.size ?? 80)
+  const displaySize = () => typeof props.size === 'string' && props.size.endsWith('%') ? props.size : Number(props.size ?? 80)
 
   return (
     <svg

@@ -17,7 +17,7 @@ export function AvatarRing(allProps: AvatarRingProps & JSX.SvgSVGAttributes<SVGS
   const resolvedName = () => props.name ?? 'Clara Barton'
   const resolvedColors = () => props.colors ?? ['#E07A5F', '#3D405B', '#81B29A', '#F4D06F', '#D8A47F']
   const data = createMemo(() => generateRingData(resolvedName(), resolvedColors()))
-  const displaySize = () => Number(props.size ?? 90)
+  const displaySize = () => typeof props.size === 'string' && props.size.endsWith('%') ? props.size : Number(props.size ?? 90)
   const mid = DESIGN_SIZE / 2
 
   return (

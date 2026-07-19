@@ -18,4 +18,10 @@ describe('avatar-ring.vue', () => {
     const wrapper = mount(AvatarRing, { props: { name: 'Ring', title: true } });
     expect(wrapper.find('title').text()).toBe('Ring');
   });
+
+  it('is deterministic: same name produces same mask ID', () => {
+    const w1 = mount(AvatarRing, { props: { name: 'Alice' } });
+    const w2 = mount(AvatarRing, { props: { name: 'Alice' } });
+    expect(w1.find('mask').attributes('id')).toBe(w2.find('mask').attributes('id'));
+  });
 });

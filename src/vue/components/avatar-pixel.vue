@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const attrs = useAttrs();
 const data = computed(() => generatePixelData(props.name, props.colors));
-const displaySize = computed(() => Number(props.size));
+const displaySize = computed(() => typeof props.size === 'string' && props.size.endsWith('%') ? props.size : Number(props.size));
 const cellSize = computed(() => DESIGN_SIZE / GRID);
 </script>
 

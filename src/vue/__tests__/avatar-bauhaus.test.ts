@@ -20,4 +20,10 @@ describe('avatar-bauhaus.vue', () => {
     const wrapper = mount(AvatarBauhaus, { props: { name: 'Bauhaus', title: true } });
     expect(wrapper.find('title').text()).toBe('Bauhaus');
   });
+
+  it('is deterministic: same name produces same mask ID', () => {
+    const w1 = mount(AvatarBauhaus, { props: { name: 'Alice' } });
+    const w2 = mount(AvatarBauhaus, { props: { name: 'Alice' } });
+    expect(w1.find('mask').attributes('id')).toBe(w2.find('mask').attributes('id'));
+  });
 });

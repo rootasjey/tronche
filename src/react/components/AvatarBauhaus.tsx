@@ -20,7 +20,7 @@ export function AvatarBauhaus({
   ...attrs
 }: AvatarBauhausProps & React.SVGAttributes<SVGSVGElement>) {
   const data = useMemo(() => generateBauhausData(name, colors), [name, colors])
-  const displaySize = Number(size)
+  const displaySize = typeof size === 'string' && size.endsWith('%') ? size : Number(size)
   const mid = DESIGN_SIZE / 2
 
   return (
