@@ -56,14 +56,14 @@
       r={DESIGN_SIZE / 5}
       transform="translate({data.elements[2].translateX} {data.elements[2].translateY})"
     />
-    <line
-      x1={0}
-      y1={mid}
-      x2={DESIGN_SIZE}
-      y2={mid}
-      strokeWidth={2}
-      stroke={data.elements[3].color}
-      transform="translate({data.elements[3].translateX} {data.elements[3].translateY}) rotate({data.elements[3].rotate} {mid} {mid})"
-    />
+      <line
+        x1={0}
+        y1={mid}
+        x2={DESIGN_SIZE}
+        y2={mid}
+        stroke-width={2}
+        stroke={data.elements[3].color}
+        transform="translate({data.elements[3].translateX} {data.elements[3].translateY}) rotate({data.elements[3].rotate} {mid} {mid})"
+      />
   </g>
 </svg>

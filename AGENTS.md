@@ -15,6 +15,7 @@
 - Le bundle externalise `svelte/internal/client` pour éviter le doublement du runtime.
 - Utiliser `@testing-library/svelte` pour les tests : `render(Component, { props })`.
 - Les props passées par le dispatcher doivent avoir une valeur par défaut pour éviter que `$props()` ne reçoive `undefined` (car Svelte 5 n'applique pas les defaults des enfants si la prop est explicitement passée).
+- **IMPORTANT : SVG camelCase → kebab-case** — Svelte ne convertit PAS les attributs SVG camelCase en kebab-case (contrairement à React). Les attributs comme `strokeLinecap`, `strokeWidth`, `strokeLinejoin` doivent être écrits en kebab-case : `stroke-linecap`, `stroke-width`, `stroke-linejoin`. React/Solid les convertissent automatiquement, pas Svelte.
 
 # Solid adapter
 

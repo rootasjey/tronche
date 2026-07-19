@@ -8,9 +8,9 @@ describe('AvatarSunset', () => {
     expect(container.querySelector('svg')).toBeTruthy()
   })
 
-  it('renders defs element', () => {
+  it('renders linearGradient defs', () => {
     const { container } = render(AvatarSunset, { name: 'test' })
-    expect(container.querySelector('defs')).toBeTruthy()
+    expect(container.querySelectorAll('linearGradient').length).toBe(2)
   })
 
   it('renders a mask with correct id', () => {

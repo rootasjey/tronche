@@ -23,7 +23,6 @@
   const mid = DESIGN_SIZE / 2
   const filterId = $derived(`${data.maskId}Filter`)
   const displaySize = $derived(typeof size === 'string' && size.endsWith('%') ? size : Number(size))
-  const filterMarkup = $derived(`<filter id="${filterId}" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur"/></filter>`)
 </script>
 
 <svg
@@ -57,5 +56,11 @@
       transform="translate({data.elements[2].translateX} {data.elements[2].translateY}) rotate({data.elements[2].rotate} {mid} {mid}) scale({data.elements[2].scale})"
     />
   </g>
-  <defs innerHTML={filterMarkup} />
+  <defs>
+    <filter id={filterId} filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur" />
+    </filter>
+  </defs>
 </svg>

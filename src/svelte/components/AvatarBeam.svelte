@@ -52,7 +52,7 @@
     />
     <g transform="translate({data.faceTranslateX} {data.faceTranslateY}) rotate({data.faceRotate} {mid} {mid})">
       {#if data.isMouthOpen}
-        <path d="M15 {19 + data.mouthSpread}c2 1 4 1 6 0" stroke={data.faceColor} fill="none" strokeLinecap="round" />
+        <path d="M15 {19 + data.mouthSpread}c2 1 4 1 6 0" stroke={data.faceColor} fill="none" stroke-linecap="round" />
       {:else}
         <path d="M13,{19 + data.mouthSpread} a1,0.75 0 0,0 10,0" fill={data.faceColor} />
       {/if}
