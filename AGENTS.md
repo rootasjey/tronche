@@ -5,6 +5,8 @@
 - AVANT de lancer un dev server, vérifier avec `curl -s -o /dev/null -w "%{http_code}" http://localhost:3004` s'il est déjà actif. Si oui, ne pas en lancer un nouveau.
 - Ne pas tuer un dev server pour "nettoyer". Un kill n'est acceptable que si l'utilisateur le demande explicitement, ou s'il est nécessaire pour appliquer des modifications (ex : reconfig de port, redémarrage requis).
 - Pour tuer un dev server, utiliser `lsof -ti :3004` (avec un espace avant le port) pour obtenir le PID, puis `kill <PID>`. Ne jamais utiliser `pkill -f` ou `lsof -ti:3004` (sans espace), qui peuvent matcher d'autres processus.
+- **NE JAMAIS commiter avant que l'utilisateur ait testé et confirmé le fix.** Les commits intermédiaires non testés polluent l'historique et rendent le revert difficile. Créer des commits atomiques de test uniquement après validation.
+- **AVANT de commiter un fix, s'assurer qu'il est vérifiable** : test unitaire qui reproduit le bug et prouve sa résolution, OU test manuel validé par l'utilisateur. Ne jamais commiter un fix non vérifié. C'est le ba-ba du développement.
 
 # Svelte adapter
 
