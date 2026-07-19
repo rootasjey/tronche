@@ -13,6 +13,8 @@
   let palette = $state(0)
   let theme = $state('system')
   let menuOpen = $state(false)
+  let avatarName = $state('Clara Barton')
+  let square = $state(false)
 
   const THEME_LABELS = { light: '☀️ Light', dark: '🌙 Dark', system: '💻 System' }
 
@@ -52,12 +54,24 @@
     >
       Change palette
     </button>
+
+    <label style="display: flex; align-items: center; gap: .5rem; font-size: .875rem; cursor: pointer; color: var(--text)">
+      <input type="checkbox" bind:checked={square} style="width: 1rem; height: 1rem; cursor: pointer" />
+      Square
+    </label>
+
+    <input
+      type="text"
+      bind:value={avatarName}
+      placeholder="Enter a name"
+      style="padding: .5rem .75rem; background: var(--btn-bg); color: var(--text); border: 1px solid var(--border); border-radius: .5rem; font-size: .875rem; width: 200px; outline: none"
+    />
   </div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem">
     {#each VARIANTS as v}
       <div style="display: flex; flex-direction: column; align-items: center; gap: .5rem">
-        <Avatar name="Clara Barton" variant={v} colors={PALETTES[palette]} size={100} />
+        <Avatar name={avatarName} variant={v} colors={PALETTES[palette]} size={100} square={square} />
         <span style="font-size: .75rem; color: var(--muted)">{v}</span>
       </div>
     {/each}
