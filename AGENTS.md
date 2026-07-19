@@ -27,3 +27,9 @@
 - Les attributs comme `stopColor`, `floodOpacity`, `colorInterpolationFilters` doivent être écrits en kebab-case : `stop-color`, `flood-opacity`, `color-interpolation-filters`.
 - Impossible d'utiliser des attributs kebab-case directement en JSX Solid → solution : injecter le fragment SVG via `innerHTML` (le parseur SVG natif du navigateur gère les kebab-case).
 - Concernés : `<linearGradient>`, `<stop>`, `<filter>`, `<feFlood>`, `<feBlend>`, `<feGaussianBlur>`, `<feDropShadow>` et leurs attributs camelCase.
+
+# Animation de hauteur (height auto)
+
+- **Piège `scrollHeight` + `overflow: hidden`** : Quand un élément a `overflow: hidden` et une `height` explicitement fixée, `scrollHeight` retourne `max(clientHeight, contentHeight)`. Si le contenu devient plus court que la hauteur fixée, `scrollHeight` ne diminue pas → impossible de détecter le changement.
+- **Solution** : Ne pas mesurer l'élément qui a `overflow: hidden`. Mesurer plutôt un élément enfant *sans* contrainte de hauteur/débordement. Sa `scrollHeight` retournera toujours la vraie hauteur du contenu.
+- **FLIP fiable** : `wrapper.offsetHeight` pour l'ancienne hauteur, `inner.scrollHeight` (enfant libre) pour la nouvelle. Puis transition CSS sur `height` du wrapper entre les deux valeurs.

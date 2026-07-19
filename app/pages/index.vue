@@ -84,7 +84,9 @@
             </NTooltip>
           </div>
         </div>
-        <div v-html="$highlight(activeSnippet, activeLanguage)"></div>
+        <div ref="codeContentRef" class="code-content-wrapper">
+          <div ref="codeInnerRef" v-html="$highlight(activeSnippet, activeLanguage)"></div>
+        </div>
       </div>
 
       <div class="mt-8 animate-in flex justify-center gap-3 flex-wrap" style="animation-delay: 350ms">
@@ -147,6 +149,8 @@ useHead({
 
 const copied = ref<string | null>(null)
 const activeTab = ref('nuxt')
+const codeContentRef = ref<HTMLElement | null>(null)
+const codeInnerRef = ref<HTMLElement | null>(null)
 
 const codeTabs = [
   { id: 'nuxt', label: 'Nuxt', icon: 'i-tabler-brand-nuxt' },
@@ -163,6 +167,28 @@ const activeLanguage = computed(() => {
 })
 
 const activeSnippet = computed(() => snippets['home-' + activeTab.value])
+
+watch(activeTab, async () => {
+  const wrapper = codeContentRef.value
+  const inner = codeInnerRef.value
+  if (!wrapper || !inner) return
+
+  const prevHeight = wrapper.offsetHeight
+  wrapper.style.height = prevHeight + 'px'
+
+  await nextTick()
+
+  const newHeight = inner.scrollHeight
+  if (prevHeight === newHeight) {
+    wrapper.style.height = ''
+    return
+  }
+
+  wrapper.style.height = newHeight + 'px'
+
+  const reset = () => { wrapper.style.height = '' }
+  wrapper.addEventListener('transitionend', reset, { once: true })
+})
 
 function switchTab(id: string) {
   activeTab.value = id
@@ -223,6 +249,11 @@ function copyCode(e: Event) {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.code-content-wrapper {
+  overflow: hidden;
+  transition: height 0.35s ease;
 }
 
 .glow {
