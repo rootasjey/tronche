@@ -254,7 +254,7 @@ Props are the same as [Vue](#props).
 
 ## REST API
 
-Base URL: `https://tronche.app`
+Base URL: `https://tronche.cc`
 
 ### Public avatar generation
 
@@ -272,11 +272,11 @@ Generates an SVG avatar from a name. No auth required — IP rate limited.
 | `colors` | `string` | default palette | Comma-separated hex colors (e.g. `FF6B6B,4ECDC4`) |
 
 ```sh
-curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"
-curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"
+curl "https://tronche.cc/api/avatar/Clara%20Barton?variant=beam"
+curl "https://tronche.cc/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"
 ```
 
-**Rate limit:** 1 000 requests/min per IP. [Create an account](https://tronche.app/register) for API key access with higher limits.
+**Rate limit:** 1 000 requests/min per IP. [Create an account](https://tronche.cc/register) for API key access with higher limits.
 
 ### Authentication
 
