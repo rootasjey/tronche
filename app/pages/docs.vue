@@ -216,6 +216,37 @@
         </table>
       </div>
 
+      <div v-else-if="frameworkTab === 'lit'" class="pt-4">
+        <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.lit.description') }}</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-label">HTML</span>
+            <button class="copy-btn" :class="{ copied: copied === 'lit-import' }" @click="copy('lit-import', $event)">{{ copied === 'lit-import' ? 'Copied!' : $t('docs.copy') }}</button>
+          </div>
+          <div v-html="$highlight(snippets['lit-import'], 'html')"></div>
+        </div>
+
+        <h3 class="text-lg font-semibold font-heading mt-6 mb-3">Props</h3>
+        <table class="w-full border-collapse mb-4">
+          <thead>
+            <tr class="text-left text-xs text-muted font-semibold uppercase tracking-wider">
+              <th class="p-3 border-b border-border">{{ $t('docs.table.prop') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.type') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.default') }}</th>
+              <th class="p-3 border-b border-border">{{ $t('docs.table.description') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in litProps" :key="p[0]" class="text-sm">
+              <td class="p-3 border-b border-border font-mono">{{ p[0] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[1] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[2] }}</td>
+              <td class="p-3 border-b border-border text-muted">{{ p[3] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div v-else-if="frameworkTab === 'nuxt'" class="pt-4">
         <p class="text-muted mb-3 leading-relaxed">{{ $t('docs.nuxt.addModule') }} <code class="bg-surface px-1.5 py-0.5 rounded text-sm text-primary">nuxt.config.ts</code> :</p>
         <div class="code-block">
@@ -328,7 +359,7 @@ const copied = ref<string | null>(null)
 
 const curlTab = ref('basic')
 
-const validFrameworks = ['vanilla', 'vue', 'react', 'solid', 'svelte', 'nuxt']
+const validFrameworks = ['vanilla', 'vue', 'react', 'solid', 'svelte', 'lit', 'nuxt']
 const initialFramework = typeof route.query.framework === 'string' && validFrameworks.includes(route.query.framework)
   ? route.query.framework
   : 'vanilla'
@@ -360,6 +391,7 @@ const frameworkItems = computed(() => [
   { value: 'react', name: $t('docs.sections.react') },
   { value: 'solid', name: $t('docs.sections.solid') },
   { value: 'svelte', name: $t('docs.sections.svelte') },
+  { value: 'lit', name: $t('docs.sections.lit') },
   { value: 'nuxt', name: $t('docs.sections.nuxt') },
 ])
 
@@ -388,6 +420,15 @@ const reactProps = computed(() => [
   ['square', 'boolean', 'false', $t('docs.react.props.square')],
   ['colors', 'string[]', 'palette', $t('docs.react.props.colors')],
   ['title', 'boolean', 'false', $t('docs.react.props.title')],
+])
+
+const litProps = computed(() => [
+  ['name', 'string', 'Clara Barton', $t('docs.lit.props.name')],
+  ['variant', 'string', 'marble', $t('docs.lit.props.variant')],
+  ['size', 'number | string', '80', $t('docs.lit.props.size')],
+  ['square', 'boolean', 'false', $t('docs.lit.props.square')],
+  ['colors', 'string[]', 'palette', $t('docs.lit.props.colors')],
+  ['title', 'boolean', 'false', $t('docs.lit.props.title')],
 ])
 
 const apiParams = computed(() => [
@@ -442,9 +483,9 @@ useHead({
   title: 'Docs | Tronche',
   htmlAttrs: { style: 'scroll-behavior: smooth' },
   meta: [
-    { name: 'description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, or Vanilla JS.' },
+    { name: 'description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, Svelte, Lit, or Vanilla JS.' },
     { property: 'og:title', content: 'Docs | Tronche' },
-    { property: 'og:description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, or Vanilla JS.' },
+    { property: 'og:description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, Svelte, Lit, or Vanilla JS.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
     { property: 'og:url', content: `https://tronche.app${route.path}` },
     { property: 'og:type', content: 'website' },

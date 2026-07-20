@@ -16,6 +16,7 @@
       "react": "React",
       "solid": "SolidJS",
       "svelte": "Svelte",
+      "lit": "Lit",
       "nuxt": "Module Nuxt",
       "api": "API REST",
       "variants": "Variants"
@@ -78,6 +79,17 @@
         "size": "Taille en pixels",
         "square": "Avatar carré",
         "colors": "5 couleurs hexadécimales",
+        "title": "Balise title"
+      }
+    },
+    "lit": {
+      "description": "Utilisez les composants Lit Tronche dans tout projet Lit 3+.",
+      "props": {
+        "name": "Nom pour générer l'avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Taille en pixels (nombre ou pourcentage)",
+        "square": "Avatar carré",
+        "colors": "5 couleurs hexadécimales (via .colors=)",
         "title": "Balise title"
       }
     },

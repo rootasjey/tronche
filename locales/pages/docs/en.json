@@ -16,6 +16,7 @@
       "react": "React",
       "solid": "Solid",
       "svelte": "Svelte",
+      "lit": "Lit",
       "nuxt": "Nuxt Module",
       "api": "REST API",
       "variants": "Variants"
@@ -78,6 +79,17 @@
         "size": "Size in pixels",
         "square": "Square avatar",
         "colors": "5 hexadecimal colors",
+        "title": "Title tag"
+      }
+    },
+    "lit": {
+      "description": "Use Tronche Lit custom elements in any Lit 3+ project.",
+      "props": {
+        "name": "Name to generate the avatar",
+        "variant": "marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Size in pixels (number or percentage string)",
+        "square": "Square avatar",
+        "colors": "5 hexadecimal colors (pass via .colors= binding)",
         "title": "Title tag"
       }
     },

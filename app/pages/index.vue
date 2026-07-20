@@ -157,12 +157,13 @@ const codeTabs = [
   { id: 'react', label: 'React', icon: 'i-tabler-brand-react' },
   { id: 'solid', label: 'Solid', icon: 'i-tabler-brand-solidjs' },
   { id: 'svelte', label: 'Svelte', icon: 'i-tabler-brand-svelte' },
+  { id: 'lit', label: 'Lit', icon: 'i-tabler-brand-react' },
   { id: 'vanilla', label: 'Vanilla', icon: 'i-tabler-brand-javascript' },
   { id: 'vue', label: 'Vue', icon: 'i-tabler-brand-vue' },
 ]
 
 const activeLanguage = computed(() => {
-  const map: Record<string, string> = { vanilla: 'js', vue: 'vue', react: 'tsx', nuxt: 'vue', solid: 'tsx', svelte: 'html' }
+  const map: Record<string, string> = { vanilla: 'js', vue: 'vue', react: 'tsx', nuxt: 'vue', solid: 'tsx', svelte: 'html', lit: 'html' }
   return map[activeTab.value]
 })
 

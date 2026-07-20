@@ -4,7 +4,7 @@
 
 Avatars nothing like you.
 
-Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Svelte component](#svelte-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Svelte component](#svelte-usage), a [Lit component](#lit-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
 
 ## Installation
 
@@ -31,6 +31,9 @@ node_modules/tronche/
 │   ├── svelte/
 │   │   ├── index.js     # Svelte components (pre-compiled)
 │   │   └── index.d.ts   # Svelte component types
+│   ├── lit/
+│   │   ├── index.js     # Lit components (pre-compiled)
+│   │   └── index.d.ts   # Lit component types
 │   ├── module.js        # Nuxt module
 │   └── module.d.ts      # Module types
 └── package.json
@@ -45,6 +48,7 @@ node_modules/tronche/
 | `tronche/react` | React 18+ | `import { Avatar } from 'tronche/react'` |
 | `tronche/solid` | SolidJS 1.8+ | `import { Avatar } from 'tronche/solid'` |
 | `tronche/svelte` | Svelte 5+ | `import { Avatar } from 'tronche/svelte'` |
+| `tronche/lit` | Lit 3+ | `<script>import 'tronche/lit'</script>` |
 | `tronche/module` | Nuxt 3+ | `modules: ['tronche/module']` |
 
 ## Vanilla Usage
@@ -189,6 +193,31 @@ Props are the same as [Vue](#props).
 
 Props are the same as [Vue](#props).
 
+## Lit Usage
+
+Import the module — custom elements are auto-registered.
+
+```html
+<script type="module">
+  import 'tronche/lit'
+</script>
+
+<tronche-avatar
+  name="Grace Hopper"
+  variant="marble"
+  size="120"
+  square
+></tronche-avatar>
+```
+
+Or import specific variant classes:
+
+```ts
+import { AvatarMarble } from 'tronche/lit'
+```
+
+Props are the same as [Vue](#props). Set array/boolean props via Lit property bindings (`.colors=${palette}`, `?square`).
+
 ## REST API
 
 Base URL: `https://tronche.app`
@@ -278,6 +307,7 @@ DELETE /api/admin/api-keys/:id       # Delete any key
 - **React components** — Thin wrappers over the core lib (`src/react/`)
 - **Solid components** — Thin wrappers over the core lib (`src/solid/`)
 - **Svelte components** — Thin wrappers over the core lib (`src/svelte/`)
+- **Lit components** — Custom elements over the core lib (`src/lit/`)
 - **Nuxt module** — Auto-import via `tronche/module` (`src/module.ts`)
 - **Nuxt 4** — Frontend + API (Nitro)
 - **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)

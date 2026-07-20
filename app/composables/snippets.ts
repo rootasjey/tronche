@@ -109,4 +109,22 @@ export const snippets: Record<string, string> = {
     '',
     '<Avatar name="Clara Barton" variant="beam" />',
   ].join('\n'),
+  'home-lit': [
+    '<script type="module">',
+    "  import 'tronche/lit'",
+    '</script>',
+    '',
+    '<tronche-avatar name="Clara Barton" variant="beam"></tronche-avatar>',
+  ].join('\n'),
+  'lit-import': [
+    '<script type="module">',
+    "  import 'tronche/lit'",
+    '</script>',
+    '',
+    '<tronche-avatar',
+    '  name="Grace Hopper"',
+    '  variant="marble"',
+    '  size="120"',
+    '></tronche-avatar>',
+  ].join('\n'),
 }
