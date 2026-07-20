@@ -2,7 +2,7 @@
   "name": "tronche",
   "description": "Tronche generates custom, SVG-based avatars from any username and color palette. Vue.js/Nuxt.js library with a free API tier.",
   "homepage": "https://github.com/rootasjey/tronche",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/rootasjey/tronche"
