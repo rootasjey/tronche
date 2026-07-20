@@ -1,0 +1,7 @@
+export { TroncheAvatar } from './components/avatar.component'
+export { TroncheMarble } from './components/avatar-marble.component'
+export { TroncheBeam } from './components/avatar-beam.component'
+export { TroncheBauhaus } from './components/avatar-bauhaus.component'
+export { TronchePixel } from './components/avatar-pixel.component'
+export { TroncheRing } from './components/avatar-ring.component'
+export { TroncheSunset } from './components/avatar-sunset.component'

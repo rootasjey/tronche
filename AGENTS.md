@@ -32,6 +32,17 @@
 - Impossible d'utiliser des attributs kebab-case directement en JSX Solid → solution : injecter le fragment SVG via `innerHTML` (le parseur SVG natif du navigateur gère les kebab-case).
 - Concernés : `<linearGradient>`, `<stop>`, `<filter>`, `<feFlood>`, `<feBlend>`, `<feGaussianBlur>`, `<feDropShadow>` et leurs attributs camelCase.
 
+# Angular adapter
+
+- Composants standalone Angular 17+ avec `input()` signaux et `computed()`.
+- **SVG kebab-case natif** — Les attributs comme `flood-opacity`, `color-interpolation-filters`, `stroke-linecap` fonctionnent directement dans les templates Angular. Pas de hack nécessaire (contrairement à Solid).
+- **Expressions complexes** dans les bindings `[attr.name]="..."` → les concaténations avec `()` ou `+` ne marchent pas en JIT. Toujours utiliser des `computed()` dans la classe pour les transform strings, mask URLs, etc.
+- **Pas de passthrough d'attributs** — Angular n'a pas de spread `{...rest}`. Les attributs inconnus sont ignorés. Les composants exposent uniquement les props définies (`name`, `colors`, `title`, `square`, `size`).
+- **Inputs signaux non résolus en JIT** — `componentRef.setInput()` et `overrideComponent` échouent avec `NG0303` en mode JIT. Les tests ne peuvent utiliser que les valeurs par défaut. Le build AOT fonctionne parfaitement.
+- **Build** : `vite build --config vite.angular.config.ts` avec `@analogjs/vite-plugin-angular`.
+- **Peer dependency** : `@angular/core >=17.0.0`.
+- **Exemple** : `examples/angular/` — standalone, avec theme/palette/name controls.
+
 # Animation de hauteur (height auto)
 
 - **Piège `scrollHeight` + `overflow: hidden`** : Quand un élément a `overflow: hidden` et une `height` explicitement fixée, `scrollHeight` retourne `max(clientHeight, contentHeight)`. Si le contenu devient plus court que la hauteur fixée, `scrollHeight` ne diminue pas → impossible de détecter le changement.

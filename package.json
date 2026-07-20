@@ -27,6 +27,7 @@
     "svelte",
     "svelte5",
     "lit",
+    "angular",
     "tronche"
   ],
   "main": "dist/index.js",
@@ -59,6 +60,10 @@
     "./lit": {
       "types": "./dist/lit/index.d.ts",
       "import": "./dist/lit/index.js"
+    },
+    "./angular": {
+      "types": "./dist/angular/index.d.ts",
+      "import": "./dist/angular/index.js"
     }
   },
   "overrides": {
@@ -72,7 +77,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && vite build --config vite.solid.config.ts && cp src/solid/tronche-solid.d.ts dist/solid/index.d.ts && vite build --config vite.svelte.config.ts && cp src/svelte/tronche-svelte.d.ts dist/svelte/index.d.ts && vite build --config vite.lit.config.ts && cp src/lit/tronche-lit.d.ts dist/lit/index.d.ts && tsc --p ./tsconfig.module.json && vitest run test/solid-bundle.test.ts test/svelte-bundle.test.ts test/lit-bundle.test.ts",
+    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && vite build --config vite.solid.config.ts && cp src/solid/tronche-solid.d.ts dist/solid/index.d.ts && vite build --config vite.svelte.config.ts && cp src/svelte/tronche-svelte.d.ts dist/svelte/index.d.ts && vite build --config vite.lit.config.ts && cp src/lit/tronche-lit.d.ts dist/lit/index.d.ts && vite build --config vite.angular.config.ts && cp src/angular/tronche-angular.d.ts dist/angular/index.d.ts && rm -rf dist/angular/angular && tsc --p ./tsconfig.module.json && vitest run test/solid-bundle.test.ts test/svelte-bundle.test.ts test/lit-bundle.test.ts",
     "build:demo": "nuxt build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -87,6 +92,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@angular/core": ">=17.0.0",
     "lit": ">=3.0.0",
     "nuxt": ">=3.0.0",
     "react": ">=18.0.0",
@@ -96,9 +102,22 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.4.8"
+    "@angular/common": "^19.2.25",
+    "@angular/forms": "^19.2.25",
+    "@nuxt/kit": "^4.4.8",
+    "zone.js": "^0.16.2"
   },
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.6.3",
+    "@angular-devkit/build-angular": "^19.0.0",
+    "@angular/build": "^19.0.0",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
     "@arethetypeswrong/cli": "^0.18.5",
     "@iconify-json/lucide": "^1.2.102",
     "@iconify-json/radix-icons": "^1.2.6",

@@ -47,6 +47,20 @@ const VITE_PKG = {
     dependencies: { tronche: v, svelte: '^5' },
     devDependencies: { vite: '^6', '@sveltejs/vite-plugin-svelte': '^5' },
   }, null, 2),
+  lit: JSON.stringify({
+    name: 'tronche-lit-demo',
+    private: true,
+    scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
+    dependencies: { tronche: v, lit: '^3' },
+    devDependencies: { vite: '^6' },
+  }, null, 2),
+  angular: JSON.stringify({
+    name: 'tronche-angular-demo',
+    private: true,
+    scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
+    dependencies: { tronche: v, '@angular/core': '^19', '@angular/common': '^19', '@angular/platform-browser': '^19', 'zone.js': '^0.15' },
+    devDependencies: { vite: '^6', '@analogjs/vite-plugin-angular': '^2.6', '@angular/compiler': '^19', '@angular/build': '^19', '@angular/compiler-cli': '^19' },
+  }, null, 2),
 }
 
 const projects: Record<string, { project: Project; openFile: string }> = {
@@ -175,9 +189,74 @@ const projects: Record<string, { project: Project; openFile: string }> = {
     },
     openFile: 'src/App.svelte',
   },
+  lit: {
+    project: {
+      title: 'Tronche — Lit Demo',
+      description: 'Tronche avatar library in Lit 3',
+      template: 'node',
+      files: {
+        'package.json': VITE_PKG.lit,
+        'vite.config.js': "import { defineConfig } from 'vite'\n\nexport default defineConfig({})",
+        'index.html': '<!doctype html>\n<html>\n<head>\n  <script type="module" src="/src/main.js"></script>\n</head>\n<body>\n  <tronche-avatar name="Clara Barton" variant="beam"></tronche-avatar>\n</body>\n</html>',
+        'src/main.js': ["import 'tronche/lit'"].join('\n'),
+      },
+    },
+    openFile: 'src/main.js',
+  },
+  angular: {
+    project: {
+      title: 'Tronche — Angular Demo',
+      description: 'Tronche avatar library in Angular 19',
+      template: 'node',
+      files: {
+        'package.json': VITE_PKG.angular,
+        'vite.config.ts': [
+          "import { defineConfig } from 'vite'",
+          "import angular from '@analogjs/vite-plugin-angular'",
+          "import { resolve } from 'path'",
+          '',
+          'export default defineConfig({',
+          "  plugins: [angular({ tsconfig: resolve(__dirname, 'tsconfig.json') })],",
+          '})',
+        ].join('\n'),
+        'tsconfig.json': JSON.stringify({
+          compilerOptions: {
+            target: 'ES2022',
+            module: 'ESNext',
+            moduleResolution: 'bundler',
+            experimentalDecorators: true,
+            useDefineForClassFields: false,
+            skipLibCheck: true,
+            strict: true,
+          },
+          include: ['src'],
+        }, null, 2),
+        'index.html': '<!doctype html>\n<html>\n<head>\n  <script type="module" src="/src/main.ts"></script>\n</head>\n<body>\n  <app-root></app-root>\n</body>\n</html>',
+        'src/main.ts': "import 'zone.js'\nimport '@angular/compiler'\nimport { bootstrapApplication } from '@angular/platform-browser'\nimport { App } from './app.component'\n\nbootstrapApplication(App)",
+        'src/app.component.ts': [
+          "import { Component } from '@angular/core'",
+          "import { TroncheAvatar } from 'tronche/angular'",
+          '',
+          '@Component({',
+          "  selector: 'app-root',",
+          '  standalone: true,',
+          '  imports: [TroncheAvatar],',
+          '  template: `',
+          '    <tronche-avatar',
+          '      name="Clara Barton"',
+          '      variant="beam"',
+          '    />',
+          '  `',
+          '})',
+          'export class App {}',
+        ].join('\n'),
+      },
+    },
+    openFile: 'src/app.component.ts',
+  },
 }
 
-export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react' | 'nuxt' | 'solid' | 'svelte') {
+export function openStackBlitz(framework: 'vanilla' | 'vue' | 'react' | 'nuxt' | 'solid' | 'svelte' | 'lit' | 'angular') {
   const config = projects[framework]
   if (!config) return
 

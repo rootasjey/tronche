@@ -4,7 +4,7 @@
 
 Avatars nothing like you.
 
-Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Svelte component](#svelte-usage), a [Lit component](#lit-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
+Tronche generates unique SVG avatars from a name and a color palette. Available as a [vanilla JS package](#vanilla-usage) (no framework), a [Vue component](#vue-usage), a [React component](#react-usage), a [Solid component](#solid-usage), a [Svelte component](#svelte-usage), a [Lit component](#lit-usage), an [Angular component](#angular-usage), a [Nuxt module](#nuxt-module), and a [REST API](#rest-api).
 
 ## Installation
 
@@ -34,6 +34,9 @@ node_modules/tronche/
 │   ├── lit/
 │   │   ├── index.js     # Lit components (pre-compiled)
 │   │   └── index.d.ts   # Lit component types
+│   ├── angular/
+│   │   ├── index.js     # Angular components (pre-compiled)
+│   │   └── index.d.ts   # Angular component types
 │   ├── module.js        # Nuxt module
 │   └── module.d.ts      # Module types
 └── package.json
@@ -49,6 +52,7 @@ node_modules/tronche/
 | `tronche/solid` | SolidJS 1.8+ | `import { Avatar } from 'tronche/solid'` |
 | `tronche/svelte` | Svelte 5+ | `import { Avatar } from 'tronche/svelte'` |
 | `tronche/lit` | Lit 3+ | `<script>import 'tronche/lit'</script>` |
+| `tronche/angular` | Angular 17+ | `import { Avatar } from 'tronche/angular'` |
 | `tronche/module` | Nuxt 3+ | `modules: ['tronche/module']` |
 
 ## Vanilla Usage
@@ -218,6 +222,36 @@ import { AvatarMarble } from 'tronche/lit'
 
 Props are the same as [Vue](#props). Set array/boolean props via Lit property bindings (`.colors=${palette}`, `?square`).
 
+## Angular Usage
+
+```typescript
+import { Component } from '@angular/core'
+import { TroncheAvatar } from 'tronche/angular'
+
+@Component({
+  standalone: true,
+  imports: [TroncheAvatar],
+  template: `
+    <tronche-avatar
+      name="Grace Hopper"
+      [colors]="['#fb6900', '#f63700', '#004853']"
+      variant="marble"
+      [size]="120"
+      square
+    />
+  `,
+})
+export class Profile {}
+```
+
+Or import individual variant components:
+
+```typescript
+import { TroncheMarble, TroncheBeam } from 'tronche/angular'
+```
+
+Props are the same as [Vue](#props).
+
 ## REST API
 
 Base URL: `https://tronche.app`
@@ -308,6 +342,7 @@ DELETE /api/admin/api-keys/:id       # Delete any key
 - **Solid components** — Thin wrappers over the core lib (`src/solid/`)
 - **Svelte components** — Thin wrappers over the core lib (`src/svelte/`)
 - **Lit components** — Custom elements over the core lib (`src/lit/`)
+- **Angular components** — Thin wrappers over the core lib (`src/angular/`)
 - **Nuxt module** — Auto-import via `tronche/module` (`src/module.ts`)
 - **Nuxt 4** — Frontend + API (Nitro)
 - **@nuxthub/core** — Cloudflare deployment (D1, KV, R2)

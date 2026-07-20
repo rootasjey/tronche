@@ -32,6 +32,22 @@
     "copy": "Copy",
     "download": "Download SVG"
   },
+  "docs": {
+    "sections": {
+      "angular": "Angular"
+    },
+    "angular": {
+      "description": "Standalone Angular 17+ components with signal-based inputs.",
+      "props": {
+        "name": "Seed for deterministic generation",
+        "variant": "Avatar style: marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Width/height in pixels (number or percentage string)",
+        "square": "Square crop (otherwise rounded)",
+        "colors": "Custom hex colors array",
+        "title": "Show title element"
+      }
+    }
+  },
   "footer": {
     "tagline": "tronche — avatars nothing like you"
   }

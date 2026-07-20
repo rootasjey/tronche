@@ -22,5 +22,6 @@ export default defineConfig({
         inline: ['@noble/hashes'],
       },
     },
+    setupFiles: ['src/angular/__tests__/setup.ts'],
   },
 });

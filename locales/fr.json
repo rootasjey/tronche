@@ -32,6 +32,22 @@
     "copy": "Copier",
     "download": "Télécharger SVG"
   },
+  "docs": {
+    "sections": {
+      "angular": "Angular"
+    },
+    "angular": {
+      "description": "Composants standalone Angular 17+ avec inputs signaux.",
+      "props": {
+        "name": "Seed pour la génération déterministe",
+        "variant": "Style d'avatar : marble, beam, pixel, sunset, ring, bauhaus",
+        "size": "Largeur/hauteur en pixels (nombre ou chaîne de pourcentage)",
+        "square": "Carré (sinon arrondi)",
+        "colors": "Tableau de couleurs hexadécimales personnalisées",
+        "title": "Afficher l'élément title"
+      }
+    }
+  },
   "footer": {
     "tagline": "tronche — des avatars qui vous ressemblent pas"
   }
