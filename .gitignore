@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 test/**/node_modules
+examples/**/node_modules
+examples/**/dist
 
 # testing
 /coverage

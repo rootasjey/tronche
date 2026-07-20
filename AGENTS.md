@@ -1,5 +1,9 @@
 # Rules
 
+- **NE JAMAIS proposer une fonctionnalité, un package, une API ou une solution sans l'avoir vérifié.** Systématiquement : `npm view`, consultation de la doc officielle, ou test rapide. Ne pas deviner. Si l'info n'est pas trouvable, dire "je ne sais pas" plutôt qu'inventer.
+- **Sourcer/référencer ses propos.** Quand une affirmation technique est faite, l'accompagner d'une source (lien doc, extrait de code, résultat de commande).
+- **Vérifier les suppositions avant d'agir.** "Je pense que X fonctionne" n'est pas suffisant — le confirmer par un test, une lecture de code, ou une requête au registry.
+
 - NE JAMAIS tuer les dev servers (ports 3002, 3004, etc.) — ce sont les serveurs du user. Les laisser tourner après les tests.
 - NE PAS utiliser `kill` sur des process Node sans demande explicite.
 - AVANT de lancer un dev server, vérifier avec `curl -s -o /dev/null -w "%{http_code}" http://localhost:3004` s'il est déjà actif. Si oui, ne pas en lancer un nouveau.

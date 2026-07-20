@@ -26,6 +26,7 @@
     "solidjs",
     "svelte",
     "svelte5",
+    "lit",
     "tronche"
   ],
   "main": "dist/index.js",
@@ -54,6 +55,10 @@
     "./svelte": {
       "types": "./dist/svelte/index.d.ts",
       "import": "./dist/svelte/index.js"
+    },
+    "./lit": {
+      "types": "./dist/lit/index.d.ts",
+      "import": "./dist/lit/index.js"
     }
   },
   "overrides": {
@@ -67,7 +72,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && vite build --config vite.solid.config.ts && cp src/solid/tronche-solid.d.ts dist/solid/index.d.ts && vite build --config vite.svelte.config.ts && cp src/svelte/tronche-svelte.d.ts dist/svelte/index.d.ts && tsc --p ./tsconfig.module.json && vitest run test/solid-bundle.test.ts test/svelte-bundle.test.ts",
+    "build": "vite build --config vite.lib.config.ts && vite build --config vite.vue.config.ts && cp src/vue/tronche-vue.d.ts dist/vue/index.d.ts && vite build --config vite.react.config.ts && cp src/react/tronche-react.d.ts dist/react/index.d.ts && vite build --config vite.solid.config.ts && cp src/solid/tronche-solid.d.ts dist/solid/index.d.ts && vite build --config vite.svelte.config.ts && cp src/svelte/tronche-svelte.d.ts dist/svelte/index.d.ts && vite build --config vite.lit.config.ts && cp src/lit/tronche-lit.d.ts dist/lit/index.d.ts && tsc --p ./tsconfig.module.json && vitest run test/solid-bundle.test.ts test/svelte-bundle.test.ts test/lit-bundle.test.ts",
     "build:demo": "nuxt build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -82,6 +87,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "lit": ">=3.0.0",
     "nuxt": ">=3.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
@@ -127,6 +133,7 @@
     "eslint-plugin-vue": "^9.20.1",
     "globals": "^16.2.0",
     "jsdom": "^29.1.1",
+    "lit": "^3.3.3",
     "nice-color-palettes": "^4.0.0",
     "nuxt": "^4.4.8",
     "nuxt-auth-utils": "^0.5.29",
