@@ -15,6 +15,7 @@ const VITE_PKG = {
   vanilla: JSON.stringify({
     name: 'tronche-vanilla-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v },
     devDependencies: { vite: '^6' },
@@ -22,6 +23,7 @@ const VITE_PKG = {
   vue: JSON.stringify({
     name: 'tronche-vue-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, vue: '^3' },
     devDependencies: { vite: '^6', '@vitejs/plugin-vue': '^5' },
@@ -29,6 +31,7 @@ const VITE_PKG = {
   react: JSON.stringify({
     name: 'tronche-react-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, react: '^18', 'react-dom': '^18' },
     devDependencies: { vite: '^6', '@vitejs/plugin-react': '^4' },
@@ -36,6 +39,7 @@ const VITE_PKG = {
   solid: JSON.stringify({
     name: 'tronche-solid-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, 'solid-js': '^1.8' },
     devDependencies: { vite: '^6', 'vite-plugin-solid': '^2' },
@@ -43,6 +47,7 @@ const VITE_PKG = {
   svelte: JSON.stringify({
     name: 'tronche-svelte-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, svelte: '^5' },
     devDependencies: { vite: '^6', '@sveltejs/vite-plugin-svelte': '^5' },
@@ -50,6 +55,7 @@ const VITE_PKG = {
   lit: JSON.stringify({
     name: 'tronche-lit-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, lit: '^3' },
     devDependencies: { vite: '^6' },
@@ -57,6 +63,7 @@ const VITE_PKG = {
   angular: JSON.stringify({
     name: 'tronche-angular-demo',
     private: true,
+    type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
     dependencies: { tronche: v, '@angular/core': '^19', '@angular/common': '^19', '@angular/platform-browser': '^19', 'zone.js': '^0.15' },
     devDependencies: { vite: '^6', '@analogjs/vite-plugin-angular': '^2.6', '@angular/compiler': '^19', '@angular/build': '^19', '@angular/compiler-cli': '^19' },
