@@ -157,7 +157,7 @@ const codeTabs = [
   { id: 'react', label: 'React', icon: 'i-tabler-brand-react' },
   { id: 'solid', label: 'Solid', icon: 'i-tabler-brand-solidjs' },
   { id: 'svelte', label: 'Svelte', icon: 'i-tabler-brand-svelte' },
-  { id: 'lit', label: 'Lit', icon: 'i-tabler-brand-react' },
+  { id: 'lit', label: 'Lit', icon: 'i-tabler-campfire' },
   { id: 'vanilla', label: 'Vanilla', icon: 'i-tabler-brand-javascript' },
   { id: 'vue', label: 'Vue', icon: 'i-tabler-brand-vue' },
 ]
