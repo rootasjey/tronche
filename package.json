@@ -102,10 +102,7 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@angular/common": "^19.2.25",
-    "@angular/forms": "^19.2.25",
-    "@nuxt/kit": "^4.4.8",
-    "zone.js": "^0.16.2"
+    "@nuxt/kit": "^4.4.8"
   },
   "devDependencies": {
     "@analogjs/vite-plugin-angular": "^2.6.3",
@@ -118,6 +115,7 @@
     "@angular/forms": "^19.0.0",
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
+    "zone.js": "~0.15.0",
     "@arethetypeswrong/cli": "^0.18.5",
     "@iconify-json/lucide": "^1.2.102",
     "@iconify-json/radix-icons": "^1.2.6",
