@@ -194,6 +194,22 @@ async function handleLogout() {
   margin: 0;
 }
 
+::selection {
+  background-color: rgba(240, 93, 94, 0.3);
+}
+
+[data-theme="light"] ::selection {
+  background-color: rgba(240, 93, 94, 0.45);
+}
+
+::-moz-selection {
+  background-color: rgba(240, 93, 94, 0.3);
+}
+
+[data-theme="light"] ::-moz-selection {
+  background-color: rgba(240, 93, 94, 0.45);
+}
+
 body {
   margin: 0;
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
