@@ -31,12 +31,10 @@ export default defineEventHandler(async (event) => {
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@latest/dist/browser/standalone.js" defer></script>
 </head>
 <body>
-  <script type="application/json" id="scalar-spec">{"url":"${specUrl}"}</script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const spec = JSON.parse(document.getElementById('scalar-spec').textContent)
       Scalar.createApiReference(document.body, {
-        spec: spec.url,
+        spec: { url: '${specUrl}' },
         hideDownloadButton: false,
         showSidebar: true,
         darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
