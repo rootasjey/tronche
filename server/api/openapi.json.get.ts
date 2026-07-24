@@ -31,7 +31,8 @@ function hasApiMeta(_path: string, methods: Record<string, any>): boolean {
 }
 
 export default defineEventHandler(async (event) => {
-  const spec = await $fetch('/_openapi.json')
+  const url = getRequestURL(event)
+  const spec = await $fetch(new URL('/_openapi.json', url).toString())
 
   for (const path of Object.keys(spec.paths)) {
     if (EXCLUDED_PATHS.has(path) || !hasApiMeta(path, spec.paths[path])) {
