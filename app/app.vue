@@ -195,19 +195,19 @@ async function handleLogout() {
 }
 
 ::selection {
-  background-color: rgba(240, 93, 94, 0.3);
+  background-color: rgba(240, 93, 94, 0.6);
 }
 
 [data-theme="light"] ::selection {
-  background-color: rgba(240, 93, 94, 0.45);
+  background-color: rgba(240, 93, 94, 1.0);
 }
 
 ::-moz-selection {
-  background-color: rgba(240, 93, 94, 0.3);
+  background-color: rgba(240, 93, 94, 0.6);
 }
 
 [data-theme="light"] ::-moz-selection {
-  background-color: rgba(240, 93, 94, 0.45);
+  background-color: rgba(240, 93, 94, 1.0);
 }
 
 body {
