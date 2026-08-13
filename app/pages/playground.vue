@@ -322,7 +322,7 @@ useHead({
     { property: 'og:title', content: 'Playground | Tronche' },
     { property: 'og:description', content: 'Experiment with Tronche SVG avatar generator. Customize name, variant, colors, and size in real-time. Download your avatars as SVG, PNG, JPEG, or WebP.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
-    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:url', content: `https://tronche.cc${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Playground | Tronche' },
@@ -330,7 +330,7 @@ useHead({
     { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
   script: [breadcrumb],
 })

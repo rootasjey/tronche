@@ -4,6 +4,7 @@
     "gallery": "Galerie",
     "docs": "Docs",
     "about": "À propos",
+    "contact": "Contact",
     "login": "Connexion",
     "dashboard": "Dashboard",
     "admin": "Admin",
@@ -50,5 +51,41 @@
   },
   "footer": {
     "tagline": "tronche — des avatars qui vous ressemblent pas"
+  },
+  "forgotPassword": {
+    "title": "Mot de passe oublié ?",
+    "subtitle": "Saisissez votre email pour recevoir un lien de réinitialisation.",
+    "email": "Email",
+    "loading": "Envoi...",
+    "submit": "Envoyer le lien",
+    "sent": "Si un compte existe avec cet email, un lien vient d'être envoyé.",
+    "error": "Impossible d'envoyer l'email de réinitialisation."
+  },
+  "resetPassword": {
+    "title": "Choisissez un nouveau mot de passe",
+    "password": "Nouveau mot de passe (8+ caractères)",
+    "loading": "Mise à jour...",
+    "submit": "Mettre à jour",
+    "success": "Mot de passe mis à jour. Vous pouvez vous connecter.",
+    "error": "Ce lien est invalide ou expiré."
+  },
+  "verifyEmail": {
+    "title": "Vérification de l'email",
+    "loading": "Vérification de votre email...",
+    "success": "Votre email a été vérifié.",
+    "error": "Ce lien est invalide ou expiré.",
+    "login": "Se connecter"
+  },
+  "contact": {
+    "title": "Contacter Tronche",
+    "subtitle": "Envoyez-nous un message, nous vous répondrons rapidement.",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "loading": "Envoi...",
+    "submit": "Envoyer le message",
+    "sent": "Votre message a été envoyé. Un email de confirmation vous attend.",
+    "error": "Impossible d'envoyer votre message."
   }
 }

@@ -83,7 +83,7 @@ useHead({
     { name: 'description', content: 'Tronche admin dashboard — manage users, API keys, and monitor platform statistics.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

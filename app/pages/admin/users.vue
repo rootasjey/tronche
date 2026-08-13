@@ -124,7 +124,7 @@ useHead({
     { name: 'description', content: 'Tronche admin panel — manage registered users, roles, and account statuses.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

@@ -42,7 +42,7 @@ useHead({
     { name: 'description', content: 'Create a Tronche account to get API keys for avatar generation. Free tier available with 6 avatar styles.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

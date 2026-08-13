@@ -2,6 +2,8 @@ import { hashPassword } from '../../utils/password'
 import { db } from 'hub:db'
 import * as schema from '../../db/schema'
 import { eq } from 'drizzle-orm'
+import { createToken } from '../../utils/tokens'
+import { sendVerificationEmail, sendWelcomeEmail } from '../../utils/email'
 
 defineRouteMeta({
   openAPI: {
@@ -58,6 +60,18 @@ export default defineEventHandler(async (event) => {
       password: hashed,
       createdAt: now,
     }).returning().get()
+
+    const verification = await createToken()
+    await db.insert(schema.emailVerificationTokens).values({
+      userId: result.id,
+      tokenHash: verification.hash,
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    }).run()
+
+    await Promise.all([
+      sendWelcomeEmail(event, result.email, result.name),
+      sendVerificationEmail(event, result.email, verification.token),
+    ]).catch(error => console.error('[register email]', error))
 
     await setUserSession(event, {
       user: {

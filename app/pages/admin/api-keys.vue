@@ -131,7 +131,7 @@ useHead({
     { name: 'description', content: 'Tronche admin panel — view and manage all API keys across the platform.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

@@ -174,7 +174,7 @@ useHead({
     { property: 'og:title', content: 'Gallery | Tronche' },
     { property: 'og:description', content: 'Explore Tronche avatar styles in real-world UI mockups. See beam, pixel, sunset, ring, bauhaus, and marble variants in social feeds, profiles, and chat.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
-    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:url', content: `https://tronche.cc${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Gallery | Tronche' },
@@ -182,7 +182,7 @@ useHead({
     { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
   script: [breadcrumb],
 })

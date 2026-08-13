@@ -480,8 +480,8 @@ const apiParams = computed(() => [
 ])
 
 const examples = [
-  { id: 'curl-example', code: 'curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"' },
-  { id: 'curl-colors', code: 'curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"' },
+  { id: 'curl-example', code: 'curl "https://tronche.cc/api/avatar/Clara%20Barton?variant=beam"' },
+  { id: 'curl-colors', code: 'curl "https://tronche.cc/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"' },
 ]
 
 const sectionLinks = [
@@ -528,7 +528,7 @@ useHead({
     { property: 'og:title', content: 'Docs | Tronche' },
     { property: 'og:description', content: 'Documentation for Tronche SVG avatar generator. Learn how to install, use, and customize avatars with Nuxt, Vue, React, Solid, Svelte, Lit, Angular, or Vanilla JS.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
-    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:url', content: `https://tronche.cc${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Docs | Tronche' },
@@ -536,7 +536,7 @@ useHead({
     { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
   script: [breadcrumb],
 })

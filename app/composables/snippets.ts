@@ -45,8 +45,8 @@ export const snippets: Record<string, string> = {
     '  ]" />',
     '</template>',
   ].join('\n'),
-  'curl-example': 'curl "https://tronche.app/api/avatar/Clara%20Barton?variant=beam"',
-  'curl-colors': 'curl "https://tronche.app/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"',
+  'curl-example': 'curl "https://tronche.cc/api/avatar/Clara%20Barton?variant=beam"',
+  'curl-colors': 'curl "https://tronche.cc/api/avatar/test?size=200&square=true&colors=FF6B6B,4ECDC4,45B7D1"',
   'home-nuxt': [
     '<template>',
     '  <Avatar name="Clara Barton" variant="beam" />',

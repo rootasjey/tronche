@@ -11,6 +11,7 @@
         <div class="mb-3">
           <input v-model="password" type="password" :placeholder="$t('login.password')" class="w-full px-3.5 py-2.5 rounded-xl bg-[var(--c-bg)] border border-border hover:text-[var(--c-text)] text-sm outline-none transition-colors focus:border-primary" />
         </div>
+        <NuxtLink to="/forgot-password" class="text-primary text-sm hover:underline">{{ $t('login.forgotPassword') }}</NuxtLink>
 
         <p v-if="error" class="text-primary text-sm mb-3">{{ error }}</p>
 
@@ -39,7 +40,7 @@ useHead({
     { name: 'description', content: 'Log in to your Tronche account to manage your API keys and access avatar generation.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

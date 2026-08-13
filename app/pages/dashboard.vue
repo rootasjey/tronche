@@ -161,7 +161,7 @@ useHead({
     { name: 'description', content: 'Manage your Tronche API keys, view usage statistics, and control access to avatar generation.' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
 })
 

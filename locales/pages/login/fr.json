@@ -6,6 +6,7 @@
     "password": "Mot de passe",
     "loading": "Connexion...",
     "submit": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
     "noAccount": "Pas encore de compte ?",
     "signup": "S'inscrire",
     "error": "Erreur de connexion"

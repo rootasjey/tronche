@@ -128,6 +128,7 @@ const navItems = computed(() => {
     { label: t('nav.docs'), to: '/docs' },
     { label: t('nav.playground'), to: '/playground' },
     { label: t('nav.about'), to: '/about' },
+    { label: t('nav.contact'), to: '/contact' },
     { label: 'GitHub', to: 'https://github.com/rootasjey/tronche', target: '_blank' },
   ]
 

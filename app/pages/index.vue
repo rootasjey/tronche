@@ -116,7 +116,7 @@ useHead({
     { property: 'og:title', content: 'Tronche - Avatar generator' },
     { property: 'og:description', content: 'Tronche generates custom, SVG-based avatars from any username and color palette. Try 6 unique styles: beam, pixel, sunset, ring, bauhaus & marble.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
-    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:url', content: `https://tronche.cc${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Tronche - Avatar generator' },
@@ -124,7 +124,7 @@ useHead({
     { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
   script: [
     {
@@ -133,7 +133,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'Tronche',
-        url: 'https://tronche.app',
+      url: 'https://tronche.cc',
         description: 'Tronche generates custom, SVG-based avatars from any username and color palette.',
         applicationCategory: 'Multimedia',
         offers: {

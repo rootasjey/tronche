@@ -82,7 +82,7 @@ useHead({
     { property: 'og:title', content: `${$t('about.title')} | Tronche` },
     { property: 'og:description', content: 'Learn about Tronche — an open-source SVG avatar generator inspired by Boring Avatars. Find out why we built it and how it improves on existing solutions.' },
     { property: 'og:image', content: '/images/tronche-og.jpeg' },
-    { property: 'og:url', content: `https://tronche.app${route.path}` },
+    { property: 'og:url', content: `https://tronche.cc${route.path}` },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: `${$t('about.title')} | Tronche` },
@@ -90,7 +90,7 @@ useHead({
     { name: 'twitter:image', content: '/images/tronche-og.jpeg' },
   ],
   link: [
-    { rel: 'canonical', href: `https://tronche.app${route.path}` },
+    { rel: 'canonical', href: `https://tronche.cc${route.path}` },
   ],
   script: [breadcrumb],
 })

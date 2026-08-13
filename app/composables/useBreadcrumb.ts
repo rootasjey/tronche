@@ -3,7 +3,7 @@ export function useBreadcrumb(items: { name: string; path?: string }[]) {
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: item.path ? `https://tronche.app${item.path}` : undefined,
+    item: item.path ? `https://tronche.cc${item.path}` : undefined,
   }))
 
   return {
