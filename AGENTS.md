@@ -12,6 +12,16 @@
 - **NE JAMAIS commiter avant que l'utilisateur ait testé et confirmé le fix.** Les commits intermédiaires non testés polluent l'historique et rendent le revert difficile. Créer des commits atomiques de test uniquement après validation.
 - **AVANT de commiter un fix, s'assurer qu'il est vérifiable** : test unitaire qui reproduit le bug et prouve sa résolution, OU test manuel validé par l'utilisateur. Ne jamais commiter un fix non vérifié. C'est le ba-ba du développement.
 
+# Déploiement Cloudflare
+
+- L'application Nuxt est déployée comme un Worker Cloudflare via le preset Nitro `cloudflare-module` (`nuxt.config.ts`) et la configuration `wrangler.jsonc` (`name: tronche`, D1 `tronche`).
+- Le dépôt GitHub ne contient pas de workflow de déploiement Cloudflare : `.github/workflows/ci.yml` exécute les tests, le build et le lint ; `.github/workflows/release.yml` exécute Semantic Release pour le package NPM.
+- Des déploiements du Worker sont bien visibles côté Cloudflare avec `npx wrangler deployments list --name tronche`, mais leur source est affichée `Unknown`. Le déclencheur exact (intégration Git Cloudflare ou déploiement manuel) n'est donc pas traçable depuis ce dépôt ; ne pas supposer qu'un job GitHub déploie l'application.
+- Build de production local : `npm run build:demo`. Le build indique ensuite le déploiement du bundle avec `npx wrangler --cwd .output deploy`.
+- Avant de tester une fonctionnalité en production, vérifier le déploiement courant avec `npx wrangler deployments status --name tronche` et l'URL `https://tronche.cc`.
+- Les migrations D1 de production sont séparées du déploiement applicatif. Les lister avec `npx wrangler d1 migrations list tronche --remote`, puis les appliquer explicitement avec `npx wrangler d1 migrations apply tronche --remote` après validation.
+- Ne jamais déployer ou appliquer une migration de production sans validation explicite de l'utilisateur.
+
 # Svelte adapter
 
 - Svelte gère nativement les attributs SVG kebab-case et les éléments `<defs>` (`<filter>`, `<linearGradient>`). Pas de hack nécessaire contrairement à Solid.

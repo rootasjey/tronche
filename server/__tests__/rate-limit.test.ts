@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { checkRateLimit } from '../utils/rate-limit';
+import { checkRateLimit, checkScopedRateLimit } from '../utils/rate-limit';
 
 describe('checkRateLimit (memory path)', () => {
   it('allows the first request', async () => {
@@ -22,5 +22,16 @@ describe('checkRateLimit (memory path)', () => {
     const r2 = await checkRateLimit('ip-b');
     expect(r1.remaining).toBe(999);
     expect(r2.remaining).toBe(999);
+  });
+
+  it('supports independent scoped limits', async () => {
+    const scope = `contact-${Date.now()}`;
+    const first = await checkScopedRateLimit(scope, 'ip-a', 2, 60_000);
+    const second = await checkScopedRateLimit(scope, 'ip-a', 2, 60_000);
+    const blocked = await checkScopedRateLimit(scope, 'ip-a', 2, 60_000);
+
+    expect(first.remaining).toBe(1);
+    expect(second.remaining).toBe(0);
+    expect(blocked.allowed).toBe(false);
   });
 });
