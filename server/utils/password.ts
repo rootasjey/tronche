@@ -52,7 +52,7 @@ export async function verifyPassword(hashed: string, plain: string): Promise<boo
     }
     const salt = fromBase64(parts[3])
     const hashBytes = fromBase64(parts[4])
-    const { scryptAsync } = await import('@noble/hashes/scrypt')
+    const { scryptAsync } = await import('@noble/hashes/scrypt.js')
     const derived = await scryptAsync(plain, salt, {
       N: params.n,
       r: params.r,
