@@ -65,8 +65,8 @@ const VITE_PKG = {
     private: true,
     type: 'module',
     scripts: { dev: 'vite', build: 'vite build', preview: 'vite preview' },
-    dependencies: { tronche: v, '@angular/core': '^19', '@angular/common': '^19', '@angular/platform-browser': '^19', 'zone.js': '^0.15' },
-    devDependencies: { vite: '^6', '@analogjs/vite-plugin-angular': '^2.6', '@angular/compiler': '^19', '@angular/build': '^19', '@angular/compiler-cli': '^19' },
+    dependencies: { tronche: v, '@angular/core': '^21', '@angular/common': '^21', '@angular/platform-browser': '^21', 'zone.js': '^0.16' },
+    devDependencies: { vite: '^6', '@analogjs/vite-plugin-angular': '^2.9', '@angular/compiler': '^21', '@angular/build': '^21', '@angular/compiler-cli': '^21' },
   }, null, 2),
 }
 
