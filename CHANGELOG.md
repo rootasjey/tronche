@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/rootasjey/tronche/compare/v1.7.0...v1.7.1) (2026-10-26)
+
+### Bug Fixes
+
+* **ci:** sync lockfile with npm 10 ([292477a](https://github.com/rootasjey/tronche/commit/292477a3f91e5567b733663becc81fd8c924dde1))
+* **release:** align changelog preset ([f98e46f](https://github.com/rootasjey/tronche/commit/f98e46f20eeaada15a1f46f1bdc52af3924dbe40))
+
 ## [1.7.0](https://github.com/rootasjey/tronche/compare/v1.6.1...v1.7.0) (2026-08-13)
 
 ## [1.6.1](https://github.com/rootasjey/tronche/compare/v1.6.0...v1.6.1) (2026-07-20)
